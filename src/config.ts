@@ -6,7 +6,7 @@ export const SITE: Site = {
   desc: "My developer blog",
   title: "Harald Binkle",
   ogImage: "harrybin_icon.png",
-  lightAndDarkMode: true,
+  lightAndDarkMode: false,
   postPerPage: 3,
 };
 
