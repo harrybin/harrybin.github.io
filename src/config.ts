@@ -143,7 +143,7 @@ export const SOCIALS: SocialObjects = [
   {
     name: "Work",
     href: "https://xpirit.com/team/harald-binkle/",
-    linkTitle: `${SITE.title} on Xebia`,
-    active: false,
+    linkTitle: `${SITE.title} works for Xebia`,
+    active: true,
   },
 ];
