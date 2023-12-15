@@ -5,11 +5,11 @@ title: "About Me"
 
 > Don't talk about problems, solve them!
 
-I'm Fullstack developer, DevOps evangelist and consultant currently working [Xebia Deutschland GmbH](https://xpirit.com/team/harald-binkle/) (former Xpirit Germany GmbH), prodly part of [Xebia](https://xebia.com/).
+I'm a fullstack developer, DevOps evangelist and consultant, currently working at [Xebia Deutschland GmbH](https://xpirit.com/team/harald-binkle/) (former Xpirit Germany GmbH), prodly part of [Xebia](https://xebia.com/).
 
 ### Love to..
 
-I'm is passionate about helping companies transform to truly
+I'm passionate about helping companies transform to truly
 digital enterprises. As an Frontend Expert I realize this passion by
 designing, implementing and assessing enterprise frontend
 architectures aligned with his customers’ business and IT objectives.

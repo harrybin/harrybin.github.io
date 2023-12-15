@@ -1,11 +1,11 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "https://astro-paper.pages.dev/", // replace this with your deployed domain
+  website: "https://harrybin.de/", // replace this with your deployed domain
   author: "Harald Binkle",
-  desc: "A developer blog",
+  desc: "My developer blog",
   title: "Harald Binkle",
-  ogImage: "", //"astropaper-og.jpg",
+  ogImage: "harrybin_icon.png",
   lightAndDarkMode: true,
   postPerPage: 3,
 };
@@ -13,10 +13,10 @@ export const SITE: Site = {
 export const LOCALE = ["en-EN"]; // set to [] to use the environment default
 
 export const LOGO_IMAGE = {
-  enable: false,
-  svg: true,
-  width: 216,
-  height: 46,
+  enable: true,
+  svg: false,
+  width: 50,
+  height: 50,
 };
 
 export const SOCIALS: SocialObjects = [
