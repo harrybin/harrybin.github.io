@@ -5,7 +5,7 @@ title: "About Me"
 
 > Don't talk about problems, solve them!
 
-I'm a fullstack developer, DevOps evangelist and consultant, currently working at [Xebia Deutschland GmbH](https://xpirit.com/team/harald-binkle/) (former Xpirit Germany GmbH), prodly part of [Xebia](https://xebia.com/).
+My name is **Harald Binkle**, I'm a fullstack developer, DevOps evangelist and consultant, currently working at [Xebia Deutschland GmbH](https://xpirit.com/team/harald-binkle/) (former Xpirit Germany GmbH), prodly part of [Xebia](https://xebia.com/).
 
 ### Love to..
 
