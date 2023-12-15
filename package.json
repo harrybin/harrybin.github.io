@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "harrybin_dev-blog",
   "version": "3.0.0",
   "scripts": {
     "dev": "astro dev",
