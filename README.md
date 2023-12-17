@@ -1,4 +1,4 @@
-# Developer blog
+# Developer blog of harrybin
 Here you will find short developer posts all around my dialy work. 📄
 
 ## 💻 Tech Stack
