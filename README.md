@@ -1,10 +1,6 @@
 # Developer blog
 Here you will find short developer posts all around my dialy work. 📄
 
-Technically this is based on
-![AstroPaper](public/astropaper-og.jpg)
-
-
 ## 💻 Tech Stack
 
 **Main Framework** - [Astro](https://astro.build/)  
