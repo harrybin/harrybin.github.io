@@ -54,7 +54,7 @@ As you are able to generate a cool blog with astro the next big question was:
 
 > Where and how do I host my blog?
 
-...since working for [<img src="../../../public/assets/xebia.svg" height="16" style="all: unset;">](https://xebia.com/)'s Microsoft service line this question can be answered easily...
+...since working for [<img src="../../../public/assets/xebia.svg" style="all: unset;height:16px">](https://xebia.com/)'s Microsoft service line this question can be answered easily...
 
 ### Microsoft Azure
 
