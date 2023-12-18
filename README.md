@@ -1,4 +1,5 @@
 # Developer blog of harrybin
+
 Here you will find short developer posts all around my dialy work. 📄
 
 ## 💻 Tech Stack
@@ -14,6 +15,12 @@ Here you will find short developer posts all around my dialy work. 📄
 **Deployment** - [Cloudflare Pages](https://pages.cloudflare.com/)  
 **Illustration in About Page** - [https://freesvgillustration.com](https://freesvgillustration.com/)  
 **Linting** - [ESLint](https://eslint.org)
+
+### Additionally:
+
+**[giscus](https://giscus.app/)**
+
+**Microsoft Azure Application Insights**
 
 ## 👨🏻‍💻 Running Locally
 
@@ -66,4 +73,3 @@ All commands are run from the root of the project, from a terminal:
 ## 📜 License
 
 Licensed under the MIT License, Copyright © 2023
-
