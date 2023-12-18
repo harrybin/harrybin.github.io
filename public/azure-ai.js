@@ -316,5 +316,6 @@
     // Application Insights Configuration
     connectionString:
       "InstrumentationKey=b208ea4e-1a7b-46d5-9bc1-5dfd8f3ff797;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/",
+    isCookieUseDisabled: true,
   },
 });
