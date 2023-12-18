@@ -85,3 +85,4 @@ Finally I noticed that the blog did not yet give the option to create user comme
 For this **giscus** comes on the stage.</br>
 giscus adds support for a commenting section based on the discussing feature of the underlying GitHub repo.
 This is really nice, as you don't need to a database or need to take car about authentication.
+Feel free to leave me a node using that cool feature right below.
