@@ -8,24 +8,6 @@ import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
 import getSortedPosts from "@utils/getSortedPosts";
 import slugify from "@utils/slugify";
-import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-import { ReactPlugin } from "@microsoft/applicationinsights-react-js";
-import { AppInsightsErrorBoundary } from "@microsoft/applicationinsights-react-js";
-
-const reactPlugin = new ReactPlugin();
-const appInsights = new ApplicationInsights({
-  config: {
-    connectionString:
-      "InstrumentationKey=b208ea4e-1a7b-46d5-9bc1-5dfd8f3ff797;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/",
-    extensions: [reactPlugin],
-    enableAutoRouteTracking: true,
-    autoTrackPageVisitTime: true,
-    // enableCorsCorrelation: true,
-    // enableRequestHeaderTracking: true,
-    // enableResponseHeaderTracking: true,
-  },
-});
-appInsights.loadAppInsights();
 
 const posts = await getCollection("blog");
 
@@ -33,101 +15,94 @@ const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 ---
 
-<AppInsightsErrorBoundary
-  onError={message =>
-    "Uhhha, something went wrong. It's totally broken:" + message}
-  appInsights={reactPlugin}
->
-  <Layout>
-    <Header />
-    <main id="main-content">
-      <section id="hero">
-        <h1 class="mr-2">harrybin</h1>
-        <a
-          target="_blank"
-          href="/rss.xml"
-          class="rss-link"
-          aria-label="rss feed"
-          title="RSS Feed"
+<script type="text/javascript" src="azure-ai.js"></script>
+<Layout>
+  <Header />
+  <main id="main-content">
+    <section id="hero">
+      <h1 class="mr-2">harrybin</h1>
+      <a
+        target="_blank"
+        href="/rss.xml"
+        class="rss-link"
+        aria-label="rss feed"
+        title="RSS Feed"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
+          ><path
+            d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
+          ></path><path
+            d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
+          ></path><circle cx="6" cy="18" r="2"></circle>
+        </svg>
+      </a>
+      <p>Here you will find short developer posts all around my dialy work.</p>
+      <p>
+        Some of them, and others from my collegues, you can find at the
+        <LinkButton
+          className="hover:text-skin-accent underline underline-offset-4 decoration-dashed"
+          href="https://xpirit.com/news/"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
-            ><path
-              d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
-            ></path><path
-              d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
-            ></path><circle cx="6" cy="18" r="2"></circle>
-          </svg>
-        </a>
-        <p>
-          Here you will find short developer posts all around my dialy work.
-        </p>
-        <p>
-          Some of them, and others from my collegues, you can find at the
-          <LinkButton
-            className="hover:text-skin-accent underline underline-offset-4 decoration-dashed"
-            href="https://xpirit.com/news/"
-          >
-            Xebia|Xpirit
-          </LinkButton> blog.
-        </p>
-      </section>
+          Xebia|Xpirit
+        </LinkButton> blog.
+      </p>
+    </section>
 
-      <Hr />
+    <Hr />
 
-      {
-        featuredPosts.length > 0 && (
-          <>
-            <section id="featured">
-              <h2>Featured</h2>
-              <ul>
-                {featuredPosts.map(({ data }) => (
+    {
+      featuredPosts.length > 0 && (
+        <>
+          <section id="featured">
+            <h2>Featured</h2>
+            <ul>
+              {featuredPosts.map(({ data }) => (
+                <Card
+                  href={`/posts/${slugify(data)}`}
+                  frontmatter={data}
+                  secHeading={false}
+                />
+              ))}
+            </ul>
+          </section>
+          <Hr />
+        </>
+      )
+    }
+
+    <section id="recent-posts">
+      <h2>Recent Posts</h2>
+      <ul>
+        {
+          sortedPosts
+            .filter(({ data }) => !data.featured)
+            .map(
+              ({ data }, index) =>
+                index < 4 && (
                   <Card
                     href={`/posts/${slugify(data)}`}
                     frontmatter={data}
                     secHeading={false}
                   />
-                ))}
-              </ul>
-            </section>
-            <Hr />
-          </>
-        )
-      }
+                )
+            )
+        }
+      </ul>
+      <div class="all-posts-btn-wrapper">
+        <LinkButton href="/posts">
+          All Posts
+          <svg xmlns="http://www.w3.org/2000/svg"
+            ><path
+              d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+            ></path>
+          </svg>
+        </LinkButton>
+      </div>
+    </section>
+  </main>
 
-      <section id="recent-posts">
-        <h2>Recent Posts</h2>
-        <ul>
-          {
-            sortedPosts
-              .filter(({ data }) => !data.featured)
-              .map(
-                ({ data }, index) =>
-                  index < 4 && (
-                    <Card
-                      href={`/posts/${slugify(data)}`}
-                      frontmatter={data}
-                      secHeading={false}
-                    />
-                  )
-              )
-          }
-        </ul>
-        <div class="all-posts-btn-wrapper">
-          <LinkButton href="/posts">
-            All Posts
-            <svg xmlns="http://www.w3.org/2000/svg"
-              ><path
-                d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
-              ></path>
-            </svg>
-          </LinkButton>
-        </div>
-      </section>
-    </main>
-
-    <Footer />
-  </Layout>
-</AppInsightsErrorBoundary>
+  <Footer />
+</Layout>
 
 <style>
   /* ===== Hero Section ===== */
