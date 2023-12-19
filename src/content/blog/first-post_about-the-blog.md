@@ -41,20 +41,20 @@ It's really attractive, from the point of a developer view, being able to create
 
 ### Astro
 
-When talking about my plan to create a blog under those conditions, my colleague [Jonathan David <img src="../../../public/assets/xebia.svg" style="all: unset;">](https://xpirit.com/team/jonathan-david/) suggested to use [Astro](https://astro.build/), which was a really good choice by now.
+When talking about my plan to create a blog under those conditions, my colleague [Jonathan David <img alt="Xebia-icon" src="../../../public/assets/xebia.svg" style="all: unset;">](https://xpirit.com/team/jonathan-david/) suggested to use [Astro](https://astro.build/), which was a really good choice by now.
 
 With Astro you can either generate static web pages or even SPAs.
 the resulting web page Astro generates, static or as SPA, is really fast when loading:
 ![http://Astro.build](../../../public/assets/astroPerf.png)
 
 There are also some [themes](https://astro.build/themes/) available, payed and free, where I chose the [AstroPaper theme](https://astro-paper.pages.dev/).
-This theme supports React <img src="../../../public/assets/React-icon.svg" style="all: unset;">.
+This theme supports React <img alt="React-icon" src="../../../public/assets/React-icon.svg" style="all: unset;">.
 
 As you are able to generate a cool blog with astro the next big question was:
 
 > Where and how do I host my blog?
 
-...since working for [<img src="../../../public/assets/xebia.svg" style="all: unset;height:16px">](https://xebia.com/)'s Microsoft service line this question can be answered easily...
+...since working for [<img alt="Xebia-icon" src="../../../public/assets/xebia.svg" style="all: unset;height:16px">](https://xebia.com/)'s Microsoft service line this question can be answered easily...
 
 ### Microsoft Azure
 

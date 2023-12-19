@@ -3,7 +3,12 @@
         "Astro",
         "astrojs",
         "astropaper",
+        "divriots",
         "giscus",
-        "gisgus"
+        "gisgus",
+        "harrybin",
+        "jampack",
+        "resvg",
+        "tailwindcss"
     ]
 }

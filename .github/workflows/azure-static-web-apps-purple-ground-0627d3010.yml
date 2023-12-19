@@ -19,10 +19,13 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
       - name: Install npm packages (ci)
         run: npm ci
       - name: Build astro content
-        uses: withastro/action@v1
+        run: npm run build
       - name: Deploy to Azure static_web_apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
