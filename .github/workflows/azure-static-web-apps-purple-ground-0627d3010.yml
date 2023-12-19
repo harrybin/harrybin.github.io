@@ -19,6 +19,8 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Install npm packages (ci)
+        run: npm ci
       - name: Build astro content
         uses: withastro/action@v1
       - name: Deploy to Azure static_web_apps
