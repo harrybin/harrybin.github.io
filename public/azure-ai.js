@@ -90,7 +90,7 @@
               (~(n = (n.userAgent || "").toLowerCase()).indexOf("msie") ||
                 ~n.indexOf("trident/")) &&
               ~k.indexOf("ai.3") &&
-              (k = k.replace(/(\/)(ai\.3\.)([^\d]*)$/, function (e, t, n) {
+              (k = k.replace(/(\/)(ai\.3\.)([^\d]*)$/, function (_, t, n) {
                 return t + "ai.2" + n;
               })),
             !1 !== cfg.cr)
@@ -100,7 +100,7 @@
                 h = e;
                 break;
               }
-          var i = function (e) {
+          var i = function () {
               var a, t, n, i, o, r, s, c, p, u;
               (f.queue = []),
                 g ||
@@ -109,7 +109,7 @@
                       T(
                         k.replace(
                           /^(.*\/\/)([\w\.]*)(\/.*)$/,
-                          function (e, t, n, i) {
+                          function (_, t, _, i) {
                             return t + y[a] + i;
                           }
                         )
@@ -203,7 +203,7 @@
                             ),
                             s.send(JSON.stringify(o))))));
             },
-            a = function (e, t) {
+            a = function (_, t) {
               g ||
                 setTimeout(function () {
                   (!t && f.core) || i();
@@ -217,7 +217,7 @@
                 (!e && "" !== e) || "undefined" == n[u] || (n[u] = e),
                 (n.onload = a),
                 (n.onerror = i),
-                (n.onreadystatechange = function (e, t) {
+                (n.onreadystatechange = function (_, t) {
                   ("loaded" !== n.readyState && "complete" !== n.readyState) ||
                     a(0, t);
                 }),
