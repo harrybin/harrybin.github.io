@@ -15,7 +15,7 @@ const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 ---
 
-<script type="text/javascript" src="azure-ai.js"></script>
+<script type="text/javascript" src="../../public/azure-ai.js"></script>
 <Layout>
   <Header />
   <main id="main-content">
@@ -41,7 +41,7 @@ const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
       <p>
         Some of them, and others from my collegues, you can find at the
         <LinkButton
-          className="hover:text-skin-accent underline underline-offset-4 decoration-dashed"
+          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
           href="https://xpirit.com/news/"
         >
           Xebia|Xpirit
