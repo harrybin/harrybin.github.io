@@ -9,7 +9,7 @@ tags:
   - react
   - custom hooks
   - useEffect
-  - @harrybin/react-common
+  - harrybin/react-common
   - componentDidMount
   - componentDidUpdate
   - componentWillUnmount
