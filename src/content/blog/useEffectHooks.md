@@ -2,7 +2,7 @@
 author: Harald Binkle
 pubDatetime: 2023-12-22T17:02:00Z
 title: readability of react useEffect hook usage
-postSlug: first-post
+postSlug: useEffectHooks
 featured: false
 draft: false
 tags:
