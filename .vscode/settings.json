@@ -9,6 +9,7 @@
         "harrybin",
         "jampack",
         "resvg",
-        "tailwindcss"
+        "tailwindcss",
+        "withastro"
     ]
 }
