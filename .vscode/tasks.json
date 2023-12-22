@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run Astro",
+            "type": "npm",
+            "script": "start",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+        {
+            "label": "create/check locally",
+            "type": "npm",
+            "script": "build",
+            "group": {
+                "kind": "build",
+            },
+        },
+    ]
+}
