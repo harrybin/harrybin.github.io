@@ -1,6 +1,6 @@
 ---
 author: Harald Binkle
-pubDatetime: 2023-22-16T45:22:00Z
+pubDatetime: 2023-12-22T17:02:00Z
 title: readability of react useEffect hook usage
 postSlug: first-post
 featured: false
