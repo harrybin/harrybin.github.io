@@ -20,8 +20,6 @@ Here you will find short developer posts all around my dialy work. 📄
 
 **[giscus](https://giscus.app/)**
 
-**Microsoft Azure Application Insights**
-
 ## 👨🏻‍💻 Running Locally
 
 The easiest way to run this project locally is to run the following command in your desired directory.

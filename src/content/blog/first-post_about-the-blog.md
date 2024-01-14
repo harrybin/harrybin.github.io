@@ -11,8 +11,6 @@ tags:
   - astropaper
   - react
   - gisgus
-  - azure
-  - azure static web app
 description: What technologies I used to create this blog.
 ---
 
@@ -55,28 +53,6 @@ As you are able to generate a cool blog with astro the next big question was:
 > Where and how do I host my blog?
 
 ...since working for [<img alt="Xebia-icon" src="../../../public/assets/xebia.svg" style="all: unset;height:16px">](https://xebia.com/)'s Microsoft service line this question can be answered easily...
-
-### Microsoft Azure
-
-A personal blog should be hosted in a private context. So I decided to use a private Azure account with the free subscription plan and see if I can get all this to work **for free**.
-
-The Azure **Static Web App**<img src="../../../public/assets/azStaticApp.png" alt="Azure Static Web App" style="all: unset;height:14px"/> is the "cheapest" way for hosting as webpage and can be used in the free plan, so select that one.
-The cool thing is, when setting up the Static Web App Azure comes with an assistant suggesting to connect the GitHub repo and automatically generates a GitHub action template for deploying your project.
-So you all you need to do is to added the build step for Astro which is only two lines in the action:
-
-```yaml
-- name: Build astro content
-  uses: withastro/action@v1
-```
-
-Then after the deployment is done you can already start using the blog.
-
-But wait...what any statistics. Using a web site means the owner also wants to know is it really used and which parts are used how often. In case of the blog I like to know which article will be read most etc.
-Therefore we need some kind of logging and/or metric system.
-
-We are hosting in Azure, so why don't use **Application Insights**? - go for it.
-After adding the Azure-AI resource you get a connection string, which is to put into the client.
-In my case I decided to use the [script file](https://learn.microsoft.com/en-us/azure/azure-monitor/app/javascript-sdk?tabs=javascriptwebsdkloaderscript) and load it in the layout component of my astro app.
 
 ### giscus
 
