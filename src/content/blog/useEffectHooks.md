@@ -13,7 +13,7 @@ tags:
   - componentDidMount
   - componentDidUpdate
   - componentWillUnmount
-description: Hot to improve the readability of useEffect usages in react components
+description: How to improve the readability of useEffect usages in react components
 ---
 
 ## React<img alt="React-icon" src="../../../public/assets/React-icon.svg" style="all: unset;height: 20px"> with hooks is great
@@ -80,7 +80,7 @@ function MyComponent()=>{
 
 This is much more readable. You don't need to have a look at the dependency array to determine if a `useEffect` method is only executed once (on did mount) and you no longer call the same hook up to three times in a different way.
 
-If you like this you can either achieve it by creating your own custo hooks, or consider using them from my npm package [@harrybin/react-common](https://www.npmjs.com/package/@harrybin/react-common):
+If you like this you can either achieve it by creating your own custom hooks, or consider using them from my npm package [@harrybin/react-common](https://www.npmjs.com/package/@harrybin/react-common):
 
 - [useDidMount](https://harrybin.github.io/react-common/typedoc/functions/utils.useDidMount.html)
 - [useWillUnmount](https://harrybin.github.io/react-common/typedoc/functions/utils.useWillUnmount.html)
