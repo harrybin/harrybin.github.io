@@ -4,7 +4,7 @@ pubDatetime: 2024-1-19T11:02:00Z
 title: how to debug react useEffect state changes
 postSlug: useEffectHooks
 featured: false
-draft: true
+draft: false
 tags:
   - react
   - custom hooks
@@ -59,4 +59,5 @@ function MyComponent()=>{
   return <>[...]</>
 }
 ```
-Now reproduce the issue again and you will find the variables including their values logged to the console when they cause that useEffect method to be executed.
+Now reproduce the issue again and you will find the variables including their values logged to the console when they cause that useEffect method to be executed:
+![useEffectDebugger console](../../assets/useEffectDebuggerConsole.png)
