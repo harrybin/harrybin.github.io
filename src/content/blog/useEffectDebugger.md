@@ -2,7 +2,7 @@
 author: Harald Binkle
 pubDatetime: 2024-1-19T11:02:00Z
 title: how to debug react useEffect state changes
-postSlug: useEffectHooks
+postSlug: useEffectDebugger
 featured: false
 draft: false
 tags:
