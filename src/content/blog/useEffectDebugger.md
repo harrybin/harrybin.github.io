@@ -1,6 +1,6 @@
 ---
 author: Harald Binkle
-pubDatetime: 2024-1-19T11:02:00Z
+pubDatetime: 2024-1-20T14:23:00Z
 title: how to debug react useEffect state changes
 postSlug: useEffectDebugger
 featured: false
