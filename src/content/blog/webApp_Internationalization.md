@@ -196,7 +196,9 @@ function mapWebExtensionMessages(messages: { [key: string]: WebExtensionMessage 
 
 ```
 
-Now you got four disadvantages resolved.
+Now you got all four disadvantages resolved.
+
+
 Please leave a comment for any thoughts about this.
 
 In my next post I will show you how the get IDE support creating and editing your translation files.
