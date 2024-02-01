@@ -115,7 +115,7 @@ export function useTranslation(): Translate {
     };
 }
 ```
-#### the type definition for Mozilla WebExtension and the adjsuted interface
+#### the type definition for Mozilla WebExtension and the adjusted interface
 ```typescript
 /**
  * wrapper format for i18n messages. This format also allows integration with weblate as a translation system.
