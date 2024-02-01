@@ -68,7 +68,7 @@ This common usage has three big disadvantages in my eyes:
     [...]
   }
   ```
-  :warning: **And here is the only drawback:** Yes, when adding a new strong for translation you need to add it to the interface as well as within the json file.
+  :warning: **Here is the only drawback:** Yes, when adding a new strong for translation you need to add it to the interface as well as within the json file.
 
 ### 3. provide additional meta info for human translators
   Instead of using simply key-value pairs in your json file you may use e.g. the [Mozilla WebExtension Internationalization Format](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization). This allows you to define a _description_ beside the _message_:
