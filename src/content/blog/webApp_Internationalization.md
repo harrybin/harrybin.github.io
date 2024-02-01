@@ -163,7 +163,6 @@ export const Translations = {
 ```typescript
 import React, { ReactElement, ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
-import { SupportedLanguages } from './SupportedLanguages';
 import { Translations } from './Translations';
 import { WebExtensionMessage } from './WebExtensionMessage';
 
