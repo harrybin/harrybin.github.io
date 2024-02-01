@@ -36,7 +36,7 @@ const myDisplayText = t('helloWorldGreeting');
 This common usage has three big disadvantages in my eyes:
 1. the name of the translation method does not tell you anything </br>
   :arrow_right: **give it a speaking name** </br>
-  In times of typescript and getting intellisense and code completion there are no longer arguments for lazy developers to created method names and variables names consisting of one or few characters only.
+  In times of typescript and getting intellisense and code completion there are no longer arguments for lazy developers to created method names and variable names consisting of one or few characters only.
 2. there is a key passed as string to the translate method </br>
   :arrow_right: **"magic strings" are not refactoring safe, get rid of them** (how to solve this I'll show further down)</br>
   Such "magic string" usages get broken when changing them. Imagine you are working in a large project and like to rename such a magic string key `helloWorldGreeting` to e.g. `helloWorld`.
@@ -44,21 +44,21 @@ This common usage has three big disadvantages in my eyes:
   Also what about a second occurrence of the some key with a different translation?
 3. translations of single words or phrases may differ depending on the context </br>
   :arrow_right: **provide additional meta info the the people translating your base languages** </br>
-  Say you are working on a messing module of your app and the recipient of the message is supposed to be entered into a field labled `To:` (which is common like in all mail clients). 
+  Say you are working on a messaging module of your app and the recipient of the message is supposed to be entered into a field labeled `To:` (which is common like in all mail clients). 
   This `To` has the meaning of an recipient. In german you would translate it with an `An:`. </br>
   Somewhere else in your module you handle time spans, like for appointments. Then you will have the user to enter a date for beginning `From:` and the date until the end `To:`. I guess you already got the point. Here you uses the english word `To` in a different context having the meaning of "until".
   In german you would translate that occurrence with `Bis:`. </br>
   One further example for the need of adding context information to a translator is formatting: </br>
-  When using not only simple constant string to be translated you may use variables within your text like `Hi, my name is {name}, nice to mee you!`. Then you should tell the `{name}` must not be translated, otherwise a translator may do a translation for `{name}` to spanish like `{nombre}` resulting in `Hola, mi nombre es {nombre}, ¡encantado de conocerte!`. </br>
+  When using not only simple constant string to be translated you may use variables within your text like `Hi, my name is {name}, nice to mee you!`. Then you should tell the `{name}` must not be translated, otherwise a translator may do a translation for `{name}` to Spanish like `{nombre}` resulting in `Hola, mi nombre es {nombre}, ¡encantado de conocerte!`. </br>
   Or imagine you have a component accepting markdown strings...
-4. most project collect all translation string in a single json file which cause even with some modern IDEs very long loading times for those files.
+4. most projects collect all translation strings in a single json file which causes even with some modern IDEs very long loading times for those files.
   :arrow_right: **split your translation json files into several easily maintainable files** 
 
 ## solving those disadvantages
 ### 1. a speaking name for the translation method
   When using `react` I suggest to wrap the `t()` method with a custom hook. I'll provide a piece of code later on when we also attempt to solve the other two issues.
 
-### 2. get rid of magic stings for translations
+### 2. get rid of magic strings for translations
   I guess there is more than one solution for this but I like to show which way I decided to go: _Interfaces_ </br>
   I create an interface consisting of fields used as key for you translations.
   ```typescript
@@ -68,7 +68,7 @@ This common usage has three big disadvantages in my eyes:
     [...]
   }
   ```
-  :warning: **Here is the only drawback:** Yes, when adding a new strong for translation you need to add it to the interface as well as within the json file.
+  :warning: **Here is the only drawback:** Yes, when adding a new string for translation you need to add it to the interface as well as within the json file.
 
 ### 3. provide additional meta info for human translators
   Instead of using simply key-value pairs in your json file you may use e.g. the [Mozilla WebExtension Internationalization Format](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization). This allows you to define a _description_ beside the _message_:
@@ -83,7 +83,7 @@ This common usage has three big disadvantages in my eyes:
 }
   ```
   Now you may ask can i18n/react-intl handle this? - Not like this. </br>
-  But now we put 1-3 together and add a trnasform method to make `react-intl` able to handle this:
+  But now we put 1-3 together and add a transform method to make `react-intl` able to handle this:
   #### A method transforming Mozilla WebExtension Internationalization Format to react-intl readable:
   ```typescript
 export type PrimitiveType = string | number | boolean | null | undefined | Date;
