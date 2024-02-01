@@ -1,7 +1,7 @@
 ---
 author: Harald Binkle
 pubDatetime: 2024-2-01T12:57:00Z
-title: how to debug react useEffect state changes
+title: improve usual internationalization in typescript projects
 postSlug: webApp_Internationalization
 featured: false
 draft: false
