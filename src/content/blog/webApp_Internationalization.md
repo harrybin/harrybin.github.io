@@ -51,7 +51,7 @@ This common usage has three big disadvantages in my eyes:
   One further example for the need of adding context information to a translator is formatting: </br>
   When using not only simple constant string to be translated you may use variables within your text like `Hi, my name is {name}, nice to mee you!`. Then you should tell the `{name}` must not be translated, otherwise a translator may do a translation for `{name}` to Spanish like `{nombre}` resulting in `Hola, mi nombre es {nombre}, ¡encantado de conocerte!`. </br>
   Or imagine you have a component accepting markdown strings...
-4. most projects collect all translation strings in a single json file which causes even with some modern IDEs very long loading times for those files.
+4. most projects collect all translation strings in a single json file which causes even with some modern IDEs very long loading times for those files. </br>
   ▶️ **split your translation json files into several easily maintainable files** 
 
 ## solving those disadvantages
