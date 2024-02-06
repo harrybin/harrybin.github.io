@@ -35,15 +35,15 @@ const myDisplayText = t('helloWorldGreeting');
 
 This common usage has three big disadvantages in my eyes:
 1. the name of the translation method does not tell you anything </br>
-  :arrow_right: **give it a speaking name** </br>
+  ▶️ **give it a speaking name** </br>
   In times of typescript and getting intellisense and code completion there are no longer arguments for lazy developers to created method names and variable names consisting of one or few characters only.
 2. there is a key passed as string to the translate method </br>
-  :arrow_right: **"magic strings" are not refactoring safe, get rid of them** (how to solve this I'll show further down)</br>
+  ▶️ **"magic strings" are not refactoring safe, get rid of them** (how to solve this I'll show further down)</br>
   Such "magic string" usages get broken when changing them. Imagine you are working in a large project and like to rename such a magic string key `helloWorldGreeting` to e.g. `helloWorld`.
   Then you need to manually find all occurrences and correct them. If you miss one, you will not know. You will see that only in the running app. </br>
   Also what about a second occurrence of the some key with a different translation?
 3. translations of single words or phrases may differ depending on the context </br>
-  :arrow_right: **provide additional meta info the the people translating your base languages** </br>
+  ▶️ **provide additional meta info the the people translating your base languages** </br>
   Say you are working on a messaging module of your app and the recipient of the message is supposed to be entered into a field labeled `To:` (which is common like in all mail clients). 
   This `To` has the meaning of an recipient. In german you would translate it with an `An:`. </br>
   Somewhere else in your module you handle time spans, like for appointments. Then you will have the user to enter a date for beginning `From:` and the date until the end `To:`. I guess you already got the point. Here you uses the english word `To` in a different context having the meaning of "until".
@@ -52,7 +52,7 @@ This common usage has three big disadvantages in my eyes:
   When using not only simple constant string to be translated you may use variables within your text like `Hi, my name is {name}, nice to mee you!`. Then you should tell the `{name}` must not be translated, otherwise a translator may do a translation for `{name}` to Spanish like `{nombre}` resulting in `Hola, mi nombre es {nombre}, ¡encantado de conocerte!`. </br>
   Or imagine you have a component accepting markdown strings...
 4. most projects collect all translation strings in a single json file which causes even with some modern IDEs very long loading times for those files.
-  :arrow_right: **split your translation json files into several easily maintainable files** 
+  ▶️ **split your translation json files into several easily maintainable files** 
 
 ## solving those disadvantages
 ### 1. a speaking name for the translation method
