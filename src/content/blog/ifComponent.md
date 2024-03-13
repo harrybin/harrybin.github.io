@@ -1,6 +1,6 @@
 ---
 author: Harald Binkle
-pubDatetime: 2024-03-13T18:02:00Z
+pubDatetime: 2024-03-13T18:55:00Z
 title: unify JSX code by avoiding javascript/typescript if statements
 postSlug: ifcomponent
 featured: false
