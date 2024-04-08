@@ -1,10 +1,10 @@
 ---
 author: Harald Binkle
-pubDatetime: 2024-04-08T07:40:00Z
+pubDatetime: 2024-04-15T07:40:00Z
 title: fit text vertically into a box when using Typography of MUI
 postSlug: verticaltextwithmui
 featured: false
-draft: false
+draft: true
 tags:
   - react
   - CSS
