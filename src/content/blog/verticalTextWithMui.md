@@ -1,70 +1,49 @@
 ---
 author: Harald Binkle
-pubDatetime: 2024-03-13T18:55:00Z
+pubDatetime: 2024-04-08T07:40:00Z
 title: fit text vertically into a box when using Typography of MUI
 postSlug: verticaltextwithmui
 featured: false
-draft: true
+draft: false
 tags:
   - react
   - CSS
+  - vertical-lr
+  - rotate(180deg)
   - Typography
   - MUI
-description: How to make text vertical fit into a box when using Typography of MUI
+description: How to make text vertically fit into a box when using Typography of MUI
 ---
 
-TODO: ALL
+## Getting a MUI <img alt="MUI-icon" src="../../../public/assets/mui-logo.svg" style="all: unset;height: 20px"> `Typography` vertically fit into a box in your React <img alt="React-icon" src="../../../public/assets/React-icon.svg" style="all: unset;height: 20px"> compoent
 
-## Avoid JSX code being interrupted by javascript/typescript syntax in React <img alt="React-icon" src="../../../public/assets/React-icon.svg" style="all: unset;height: 20px">
-
-When writing JSX code in React you may have recognized that you can't use javascript/typescript if statements directly in your JSX code.
-You need to use javascript syntax like the ternary operator instead.
-This is because JSX is a XML-like syntax and not a javascript syntax:
-
-```typescript
-function MyComponent({condition})=>{
-  return (
-    <div>
-      {condition ? <p>condition is true</p> : <p>condition is false</p>}
-    </div>
-  )
-}
-```
-
-☝️ As you can see this breakes the XML syntax and makes the code less readable.
-
-## What if there was a way to use if statements directly in JSX code?
-
-There is some way to use if statements in JSX code without breaking the XML syntax:
-Simply use the `If` component from my npm package [@harrybin/react-common](https://www.npmjs.com/package/@harrybin/react-common) / [If](https://harrybin.de/react-common/typedoc/classes/.components.If.html).
-
-For using the `If` component you simply
-
-> - install and import it from [@harrybin/react-common](https://www.npmjs.com/package/@harrybin/react-common)
-
-Then use it in your JSX code:
+When trying to fit text vertically into a box, you may have recognized that the `Typography` component of MUI does not provide a prop for that.
+So how can you achieve this?
+Searching the web will find several solutions, but most of them are not working with the `Typography` component of MUI.
+So let me show you a simple solution that works with the `Typography` component of MUI:
 
 ```typescript
-import {If} from "@harrybin/react-common";
+import { Grid, Typography } from '@mui/material';
+import React, { ReactNode } from 'react';
 
-function MyComponent({condition})=>{
-  return (
-    <div>
-      <If condition={condition} else={<p>condition is false</p>}>
-        <p>condition is true</p>
-      </If>
-    </div>
-  )
-}
+const VerticalTypography = ({ className, children }: { className?: string; children: ReactNode }) => {
+    return (
+        <Grid container className={className} maxWidth="2rem" justifyContent="center" alignItems="center">
+            <Typography variant="body2" sx={{ writingMode: 'vertical-lr', transform: 'rotate(180deg)' }} noWrap>
+                {children}
+            </Typography>
+        </Grid>
+    );
+};
+
+export default React.memo(VerticalTypography);
 ```
 
-_Of course the else case is optional._
+## What is done here...
 
-This makes the code more readable and unifies the JSX code.
+The box is a `Grid` component with a maxwidth of `2rem` to make the text fit and have some kinf of spacing around. the `Grid` component as a flexbox also provides the `justifyContent` and `alignItems` props to center the text vertically and horizontally. I also added a `className` prop to make the `VerticalTypography` component reusable with custom styles.
 
-But the `If` component is not only a simple if statement replacement.
-It also provides a memoization feature for the condition and the else case by using the `useMemo` hook inside.
-This means that the childcomponent and the else component are only rendered when the condition really changes.
-This is a significant performance improvement when complex components are used.
+Finally the `Typography` component is used with `noWrap` to prevent the text from wrapping. The magic for getting the text vertically is done by the `writingMode` and `transform` props of the `sx` prop of the `Typography` component.
+I also chose `variant="body2"` for the `Typography` component, but you can choose any other variant you like. I my case the font I'm using show less clitches with `body2` than with `body1`.
 
-But you still need to be aware that the condition calculation is done on every render and may still be needed to be memoized by `useCallback`.
+Passing the `children` prop to the `Typography` component makes the `VerticalTypography` component reusable for any text you want to fit vertically into a box. If you like to have more strict typing, you can also pass a `string` instead of `ReactNode` to the `children` prop.
