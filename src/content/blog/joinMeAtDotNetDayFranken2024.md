@@ -21,7 +21,7 @@ The workshop as well as the talk will be held in german, so let's switch to germ
 
 Am **26. & 27. April 2024** findet der `.NET Day Franken 2024` statt.
 
-<img alt="Typescript-icon" src="../../../public/assets/dotnetdayfranken.png">
+<img alt="dotnetdayfranken-icon" src="../../../public/assets/dotnetdayfranken.png">
 
 Zusammen mit meinem Kollegen `Michael Theobald`, werde ich sowohl an dem Workshop-Tag (Freitag) einen [Workshop](https://dotnet-day-franken.de/ws2_typescript/) halten, als auch am Konferenz-Tag (Samstag) einen [Talk](https://dotnet-day-franken.de/140-5-2-2-2/#more-1079).
 
