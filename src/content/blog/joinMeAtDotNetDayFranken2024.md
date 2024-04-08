@@ -21,7 +21,7 @@ The workshop as well as the talk will be held in german, so let's switch to germ
 
 Am **26. & 27. April 2024** findet der `.NET Day Franken 2024` statt.
 
-<img alt="dotnetdayfranken-icon" src="../../../public/assets/dotnetdayfranken.png">
+![dotnetdayfranken](../../../public/assets/dotnetdayfranken.png)
 
 Zusammen mit meinem Kollegen `Michael Theobald`, werde ich sowohl an dem Workshop-Tag (Freitag) einen [Workshop](https://dotnet-day-franken.de/ws2_typescript/) halten, als auch am Konferenz-Tag (Samstag) einen [Talk](https://dotnet-day-franken.de/140-5-2-2-2/#more-1079).
 
@@ -32,7 +32,7 @@ Dieser Workshop bietet praktische Einblicke in die Entwicklung moderner Webanwen
 
 Mehr infos zum Workshop gibt es auch in meinem [Sessionize Profil](https://sessionize.com/s/harald-binkle/workshop-moderne-web-applikationen-mit-typescript-/85731).
 
-## Talk: Die Macht von VS-Code<img alt="VS-Code-icon" src="../../../public/assets/vscode.png" style="all: unset;height: 20px"> entfesseln
+## Talk: Die Macht von `VS-Code` entfesseln
 
 Schaut euch an, wie wir außergewöhnlichen Funktionen von Visual Studio Code demonstrieren und welche wesentliche Erweiterungen für die Full-Stack-Entwicklung mit Web-Frontends (z. B. React), C#-Backends und CI/CD-Umgebungen wie Azure DevOps oder GitHub wir empfehlen.
 
