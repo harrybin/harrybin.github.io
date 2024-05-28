@@ -7,7 +7,7 @@ export const SITE: Site = {
   title: "Harald Binkle",
   ogImage: "harrybin_icon.png",
   lightAndDarkMode: false,
-  postPerPage: 3,
+  postPerPage: 5,
 };
 
 export const LOCALE = ["en-EN"]; // set to [] to use the environment default
