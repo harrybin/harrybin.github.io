@@ -1,6 +1,6 @@
 ---
 author: Harald Binkle
-pubDatetime: 2024-05-28T23:33:00Z
+pubDatetime: 2024-06-22T23:33:00Z
 title: visual debugging of unit/component tests with vitest-preview
 postSlug: vitestPreview
 featured: false
