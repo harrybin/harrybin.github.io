@@ -10,7 +10,6 @@ tags:
   - talk
   - conference
   - IT-Tage Frankfurt
-  - Harald Binkle
 description: Join me at IT-Tage Frankfurt 2024 for a talk about unleashing the power of VS-Code.
 ---
 
