@@ -6,7 +6,7 @@ postSlug: react19Released
 featured: false
 draft: false
 tags:
-  - React 19
+  - react
   - upgrade
   - migration
   - react compiler
