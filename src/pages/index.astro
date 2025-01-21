@@ -40,14 +40,6 @@ const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
         Here you find short developer posts all around my passion and interests.
       </p>
       <p>Most of these are topics regarding React, Material-UI, and related.</p>
-      <p>
-        Re-usable code described in my posts you can find in the <LinkButton
-          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
-          href="https://www.npmjs.com/package/@harrybin/react-common"
-        >
-          @harrybin/react-common
-        </LinkButton> package I'm maintaining.
-      </p>
     </section>
 
     <Hr />
@@ -80,7 +72,7 @@ const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
             .filter(({ data }) => !data.featured)
             .map(
               ({ data }, index) =>
-                index < 4 && (
+                index < 6 && (
                   <Card
                     href={`/posts/${slugify(data)}`}
                     frontmatter={data}
