@@ -2,7 +2,10 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "🚀 run Astro",
+            "label": "run Astro",
+            "icon": {
+                "id": "rocket",
+            },
             "type": "npm",
             "script": "start",
             "group": {
@@ -17,10 +20,18 @@
         },
         {
             "label": "create/check locally",
+            "icon": {
+                "id": "check",
+            },
             "type": "npm",
             "script": "build",
             "group": {
                 "kind": "build",
+            },
+            "options": {
+                "statusbar": {
+                    "color": "#f58607"
+                },
             },
         },
     ]
