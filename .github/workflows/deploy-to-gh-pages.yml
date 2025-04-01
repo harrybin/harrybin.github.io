@@ -17,7 +17,7 @@ jobs:
         with:
           show-progress: false
       - name: Install, build, and upload site
-        uses: withastro/action@v1
+        uses: withastro/action@v4
 
   deploy:
     name: Deploy
