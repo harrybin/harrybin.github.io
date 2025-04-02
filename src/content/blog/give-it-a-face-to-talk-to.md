@@ -1,16 +1,14 @@
 ---
+author: Harald Binkle
+pubDatetime: 2025-04-5T09:00:00Z
 title: "Give it a Face to Talk To"
 description: "A guide to building a React-based AI Bot UI with speech-to-text and text-to-speech capabilities."
-publishDate: "2025-04-01"
-author: "Harry Bin"
 tags:
-  [
-    "React",
-    "AI",
-    "Speech Integration",
-    "OpenAI",
-    "Microsoft Cognitive Services",
-  ]
+  - React
+  - AI
+  - Speech Integration
+  - Azure OpenAI Services
+  - Microsoft Cognitive Services
 draft: true
 ---
 
@@ -392,7 +390,7 @@ async function speakNext(text: string) {
 ## Own avatar
 
 I decided to use [Avaturn](https://hub.avaturn.me/) for generating a custom avatar slightly looking like me. That avatar also supports viseme, which is a must in our case. You can export it as a `.glb` file.
-![avatar](image.png)
+![avatar](avatar-harry.png)
 
 ### Loading the Avatar in React
 
