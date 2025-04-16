@@ -14,9 +14,7 @@ draft: true
 
 # Why Build a Speaking Avatar Instead of a Text-Based Chatbot?
 
-## Another Chatbot / The 1001 tutorial for creating a chatbot?
-
-### No, it will be a speaking avatar!
+Another Chatbot? / The 1001st Tutorial for Creating a Chatbot? No, This Will Be a Speaking Avatar!
 
 Incorporating a speaking avatar into your chatbot experience offers several advantages over a purely text-based interface. While text-based chatbots are effective for many use cases, a speaking avatar adds a layer of interactivity and engagement that can significantly enhance user experience.
 
@@ -42,13 +40,14 @@ Incorporating a speaking avatar into your chatbot experience offers several adva
    - Speaking allows for faster information exchange compared to typing and reading text, improving efficiency in scenarios where time is critical.
 
 5. **Brand Differentiation**:
+
    - A speaking avatar sets your chatbot apart from competitors, showcasing innovation and a commitment to user-centric design.
 
 By integrating a speaking avatar, you can elevate your chatbot from a functional tool to an engaging, accessible, and emotionally resonant experience.
 
 ---
 
-# The goal is about integrating Azure's OpenAI Service, Microsoft Cognitive Services, and using Avatar Lip-Syncing for an Interactive AI Bot
+## The Goal: Integrating Azure's OpenAI Service, Microsoft Cognitive Services, and Avatar Lip-Syncing for an Interactive AI Bot
 
 This integration allows users to engage with the bot through natural speech, enhanced by a visually appealing animated avatar that synchronizes its lip movements with the AI-generated spoken output.
 
@@ -72,6 +71,7 @@ Microsoft Cognitive Services offers a comprehensive **Speech SDK** with the foll
    - The Speech SDK processes the audio and converts it into text.
 
 2. **Text-to-Speech with Lip-Sync**:
+
    - The bot generates a response (e.g., from OpenAI).
    - The Speech SDK converts the text into speech and provides corresponding **viseme data**.
    - The viseme data drives the avatar's lip animations, creating a synchronized visual.
@@ -115,7 +115,7 @@ Building such a project involves addressing several technical challenges:
 1. **Real-Time Synchronization**:
 
    - Synchronizing the avatar's lip movements with the speech output in real-time requires precise handling of viseme data and rendering updates.
-   - especially in React you need to take care not to re-render when not needed; use states with caution.
+   - Especially in React, you need to take care not to re-render unnecessarily; use states with caution.
 
 2. **Latency Management**:
 
@@ -124,13 +124,13 @@ Building such a project involves addressing several technical challenges:
 
 ---
 
-## Rendering the 3D-Avatar in React
+## Rendering the 3D Avatar in React
 
 For rendering an avatar, you first need to get one. There are free avatars available, but most of them are not viseme-capable.
 
-The easiest way is to use a predefined avatar from the Microsoft Aure Services.
-[Here in the Speech Studio](https://speech.microsoft.com/portal/3cf6c385d1e14645a0685128d3b96f23/livechat) you can try out voices and avatar bodies.
-The studio also provies example integration code.
+The easiest way is to use a predefined avatar from Microsoft Azure Services. [Here in the Speech Studio](https://speech.microsoft.com/portal/3cf6c385d1e14645a0685128d3b96f23/livechat), you can try out voices and avatar bodies. The studio also provides example integration code.
+
+---
 
 ## MS Avatar
 
@@ -192,7 +192,7 @@ function App() {
 export default App;
 ```
 
-The `MSAvatarPanel` component looks like this:
+My `MSAvatarPanel` component looks like this:
 
 ```tsx
 interface MSAvatarPanelProps {
@@ -219,177 +219,48 @@ function MSAvatarPanel({ audio, video }: MSAvatarPanelProps) {
 export default React.memo(MSAvatarPanel);
 ```
 
-I will not explain every method imported from the `useMSAvatar` hook, but two of them are esstial:
+I will not explain every method imported from the `useMSAvatar` hook, but three of them are essential:
 
-### `load` with its `setupWebRTC`
+### The `load` method with its `setupWebRTC`
 
-This funtion
+This function is responsible for initializing the avatar and setting up the WebRTC connection. It performs the following tasks:
 
-```tsx
-function load(
-  config: AvatarConfig,
-  speechConfig: SpeechConfig,
-  audioNode: HTMLAudioElement,
-  videoNode: HTMLVideoElement
-) {
-  audio.current = audioNode;
-  video.current = videoNode;
+1. **Avatar Initialization**:
 
-  voice.current = speechConfig.voice;
-  speakingStyle.current = speechConfig.speakingStyle;
+   - Configures the avatar's appearance and behavior using the provided `AvatarConfig` and `SpeechConfig`.
+   - Creates an `AvatarSynthesizer` instance to handle speech synthesis and avatar rendering.
 
-  const speechSynthesisConfig = sdk.SpeechConfig.fromSubscription(
-    speechConfig.subscriptionKey,
-    speechConfig.region
-  );
+2. **WebRTC Setup**:
+   - Fetches a relay token from the Microsoft Cognitive Services API to establish a WebRTC connection.
+   - Calls the `setupWebRTC` function to configure the WebRTC peer connection, enabling audio and video streaming for the avatar.
 
-  const avatarConfig = new sdk.AvatarConfig(
-    config.talkingAvatarCharacter,
-    config.talkingAvatarStyle,
-    new sdk.AvatarVideoFormat()
-  );
+This function ensures that the avatar is ready to interact with users by synchronizing its audio and video streams in real-time.
 
-  console.log("Avatar config: " + JSON.stringify(config));
-  if (config.greenscreen) avatarConfig.backgroundColor = "00B140FF";
+### `speakNext`
 
-  avatarSynthesizer.current = new sdk.AvatarSynthesizer(
-    speechSynthesisConfig,
-    avatarConfig
-  );
+This function is responsible for making the avatar speak a given text. It performs the following tasks:
 
-  const xhr = new XMLHttpRequest();
-  xhr.open(
-    "GET",
-    `https://${speechConfig.region}.tts.speech.microsoft.com/cognitiveservices/avatar/relay/token/v1`
-  );
+1. **SSML Generation**:
 
-  xhr.setRequestHeader(
-    "Ocp-Apim-Subscription-Key",
-    speechConfig.subscriptionKey
-  );
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === 4) {
-      const responseData = JSON.parse(this.responseText);
-      setupWebRTC(
-        responseData.Urls[0],
-        responseData.Username,
-        responseData.Password
-      );
-    }
-  });
-  xhr.send();
-}
+   - Constructs an SSML (Speech Synthesis Markup Language) string to define how the text should be spoken, including voice, style, and other parameters.
 
-function setupWebRTC(
-  iceServerUrl: string,
-  iceServerUsername: string,
-  iceServerCredential: string
-) {
-  if (avatarSynthesizer.current === undefined) {
-    console.warn("Avatar not loaded!");
-    return;
-  }
+2. **Speech Synthesis**:
+   - Uses the `AvatarSynthesizer` to convert the SSML into speech and synchronize it with the avatar's lip movements.
 
-  // Create WebRTC peer connection
-  peerConnection.current = new RTCPeerConnection({
-    iceServers: [
-      {
-        urls: [iceServerUrl],
-        username: iceServerUsername,
-        credential: iceServerCredential,
-      },
-    ],
-  });
-
-  // Fetch WebRTC video stream and mount it to an HTML video element
-  peerConnection.current.ontrack = (event: RTCTrackEvent) => {
-    if (!audio.current || !video.current) {
-      console.warn("audio or video tag not found!");
-      return;
-    }
-
-    if (event.track.kind === "audio") {
-      audio.current.srcObject = event.streams[0]!;
-    }
-
-    if (event.track.kind === "video") {
-      video.current.srcObject = event.streams[0]!;
-    }
-  };
-
-  // Make necessary update to the web page when the connection state changes
-  peerConnection.current.oniceconnectionstatechange = _ => {
-    console.log("WebRTC status: " + peerConnection.current!.iceConnectionState);
-  };
-
-  // Offer to receive 1 audio, and 1 video track
-  peerConnection.current.addTransceiver("video", { direction: "sendrecv" });
-  peerConnection.current.addTransceiver("audio", { direction: "sendrecv" });
-
-  // start avatar, establish WebRTC connection
-  avatarSynthesizer.current
-    .startAvatarAsync(peerConnection.current)
-    .then((r: sdk.SynthesisResult) => {
-      if (r.reason === sdk.ResultReason.SynthesizingAudioCompleted) {
-        console.log("Avatar started. Result ID: " + r.resultId);
-      } else {
-        if (r.reason === sdk.ResultReason.Canceled) {
-          const cancellationDetails = sdk.CancellationDetails.fromResult(
-            r as sdk.SpeechSynthesisResult
-          );
-          if (cancellationDetails.reason === sdk.CancellationReason.Error) {
-            console.error(cancellationDetails.errorDetails);
-          }
-
-          console.error(
-            "Unable to start avatar: " + cancellationDetails.errorDetails
-          );
-        } else {
-          console.error("Unable to start avatar. Result ID: " + r.resultId);
-        }
-      }
-    })
-    .catch((error: Error) => {
-      throw new Error("Avatar failed to start. Error: " + error);
-    });
-}
-```
-
-### speakNext
-
-```tsx
-async function speakNext(text: string) {
-  if (avatarSynthesizer.current === undefined || voice.current === undefined) {
-    console.warn("Avatar not loaded!");
-    return;
-  }
-
-  let ssml = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'><voice name='${voice.current}'><mstts:express-as style='${speakingStyle.current}' styledegree="2"><mstts:ttsembedding speakerProfileId=''><mstts:leadingsilence-exact value='0'/>${htmlEncode(text)}</mstts:ttsembedding></mstts:express-as></voice></speak>`;
-
-  await avatarSynthesizer.current
-    .speakSsmlAsync(ssml)
-    .then((result: any) => {
-      if (result.reason === sdk.ResultReason.SynthesizingAudioCompleted) {
-        console.log(
-          `Avatar synthesized for text [ ${text} ]. Result ID: ${result.resultId}`
-        );
-      } else {
-        console.warn(
-          `Error occurred while speaking. Result ID: ${result.resultId}`
-        );
-      }
-    })
-    .catch((error: Error) =>
-      console.error(`Error occurred while speaking: [ ${error} ]`)
-    );
-}
-```
+This function enables the avatar to deliver dynamic, natural-sounding speech while maintaining synchronization with its visual representation.
 
 ---
 
-## Own avatar
+That was easy, setting up and integrating a ready to use avatar provided by Microsoft.
 
-I decided to use [Avaturn](https://hub.avaturn.me/) for generating a custom avatar slightly looking like me. That avatar also supports viseme, which is a must in our case. You can export it as a `.glb` file.
+:::note
+But when playing around with different avatars and different language settings I noticed that not every avatar works with every language. So don't wonder if some constallations do not show lip sync at all or the lips are not in sync with the voice.
+:::
+
+## Own Avatar
+
+I decided to use [Avaturn](https://hub.avaturn.me/) for generating a custom avatar slightly resembling me. This avatar also supports viseme, which is a must in our case. You can export it as a `.glb` file.
+
 ![avatar](avatar-harry.png)
 
 ### Loading the Avatar in React
@@ -427,5 +298,3 @@ function Avatar() {
   );
 }
 ```
-
-This ensures the avatar is properly loaded and ready for interaction.
