@@ -1,0 +1,21 @@
+---
+interface Props {
+  type: "success" | "warning" | "info" | "error";
+  title?: string;
+}
+
+const { type, title } = Astro.props;
+---
+
+<aside
+  class:list={[
+    "rounded p-[1em] [&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
+    type === "success" && "bg-green-700",
+    type === "warning" && "bg-yellow-600",
+    type === "info" && "bg-sky-800",
+    type === "error" && "bg-red-700",
+  ]}
+>
+  {title && <p class="mt-0 italic">{title}</p>}
+  <slot />
+</aside>

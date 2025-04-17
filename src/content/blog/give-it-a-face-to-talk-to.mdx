@@ -12,6 +12,8 @@ tags:
 draft: true
 ---
 
+import Hint from "../../components/Hint.astro";
+
 # Why Build a Speaking Avatar Instead of a Text-Based Chatbot?
 
 Another Chatbot? / The 1001st Tutorial for Creating a Chatbot? No, This Will Be a Speaking Avatar!
@@ -251,13 +253,16 @@ This function enables the avatar to deliver dynamic, natural-sounding speech whi
 
 ---
 
-That was easy, setting up and integrating a ready to use avatar provided by Microsoft.
+That was easy - setting up and integrating a ready to use avatar provided by Microsoft is quite simply.
 
-:::note
-But when playing around with different avatars and different language settings I noticed that not every avatar works with every language. So don't wonder if some constallations do not show lip sync at all or the lips are not in sync with the voice.
-:::
+<Hint type="info" title="💡Note:">
+  When playing around with different avatars and different language settings I
+  noticed that not every avatar works with every language. So don't wonder if
+  some constallations do not show lip sync at all or the lips are not in sync
+  with the voice.
+</Hint>
 
-## Own Avatar
+## Use your own Avatar
 
 I decided to use [Avaturn](https://hub.avaturn.me/) for generating a custom avatar slightly resembling me. This avatar also supports viseme, which is a must in our case. You can export it as a `.glb` file.
 
