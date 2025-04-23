@@ -362,12 +362,10 @@ The next step is to connect the output of the speech service to the avatar.
 Therefor we connect the `SpeechSynthesisVisemeEvent` with a "VisemeProcessor" which queues and
 processes the viseme data until it's rendered under the control of the mixer or aborted.
 
-<aside>
-  <Hint type="info" title="💡Note:">
-    Viseme data from the service is provided async, so you can't simply process
-    as it arrives. That's one of the pain points I mentioned before.
-  </Hint>
-</aside>
+<Hint type="info" title="💡Note:">
+  Viseme data from the service is provided async, so you can't simply process as
+  it arrives. That's one of the pain points I mentioned before.
+</Hint>
 
 So, how does the `VisemeProcessor` look like?
 
@@ -441,15 +439,13 @@ The `createAnimation` function creates a new animation clip based on the viseme 
 The exact implementation of this may differ depending on the morphTargetDictionary structure of your avatar. In general, it's only a mapping of the visemes to the clips in the `morphTargetDictionary` using `BLEND_SHAPE_NAMES` as keys.
 Finally, the `AnimationClip`s are turned into `ClipAction`s which are then played. Unfortunately, for playing the clips there is no synchronous method, so we need to wait for the clip to finish before we can play the next one.
 
-<aside>
-  <Hint type="info" title="💡Note:">
-    You need to stop each `ClipAction` after it's done. If you don't do that,
-    your animations will become smaller and smaller (in their weight) until they
-    are not visible anymore. This is also because the `AnimationMixer`
-    calculates the weight of all active `ClipAction`s and if you don't stop
-    them, they will be added to the weight calculation.
-  </Hint>
-</aside>
+<Hint type="info" title="💡Note:">
+  You need to stop each `ClipAction` after it's done. If you don't do that, your
+  animations will become smaller and smaller (in their weight) until they are
+  not visible anymore. This is also because the `AnimationMixer` calculates the
+  weight of all active `ClipAction`s and if you don't stop them, they will be
+  added to the weight calculation.
+</Hint>
 
 If everything is connected correctly, the avatar should now be able to speak and animate its lips in sync with the speech output from Microsoft Cognitive Services.
 
