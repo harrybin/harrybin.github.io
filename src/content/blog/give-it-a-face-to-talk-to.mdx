@@ -1,6 +1,6 @@
 ---
 author: Harald Binkle
-pubDatetime: 2025-04-5T09:00:00Z
+pubDatetime: 2025-04-23T17:00:00Z
 title: "Give it a Face to Talk To"
 description: "A guide to building a React-based AI Bot UI with speech-to-text and text-to-speech capabilities."
 tags:
@@ -9,7 +9,7 @@ tags:
   - Speech Integration
   - Azure OpenAI Services
   - Microsoft Cognitive Services
-draft: true
+draft: false
 ---
 
 import Hint from "../../components/Hint.astro";
@@ -123,6 +123,16 @@ Building such a project involves addressing several technical challenges:
 
    - Ensuring low latency in speech recognition, AI response generation, and text-to-speech synthesis is critical for a seamless user experience.
    - Your code for processing the AI model's text results and applying visemes to the avatar needs to be efficient. Otherwise, you will have a large gap between questions and the bot's answer or improperly synced lips of the avatar.
+
+3. **Getting lip movements clips from the the viseme data**:
+
+   - The viseme data provided by Microsoft Cognitive Services needs to be mapped to specific lip movement animations for the avatar.
+   - This requires a good understanding of the avatar's rigging and animation system.
+
+4. **Aborting the speech synthesis**:
+
+   - If the user interrupts the bot while it is speaking, you need to handle this explicitly as the API only allows a graceful stop of the speech synthesis which leads to audio output continuning for a while.
+   - You need to implement a mechanism to stop the speech synthesis and update the avatar's state accordingly.
 
 ---
 
@@ -253,12 +263,14 @@ This function enables the avatar to deliver dynamic, natural-sounding speech whi
 
 ---
 
-That was easy - setting up and integrating a ready to use avatar provided by Microsoft is quite simply.
+That was easy - setting up and integrating a ready-to-use avatar provided by Microsoft is quite simple.
+
+<video src="ms_harry_avatar.mp4" controls width="100%" />
 
 <Hint type="info" title="💡Note:">
-  When playing around with different avatars and different language settings I
+  When playing around with different avatars and different language settings, I
   noticed that not every avatar works with every language. So don't wonder if
-  some constallations do not show lip sync at all or the lips are not in sync
+  some constellations do not show lip sync at all or the lips are not in sync
   with the voice.
 </Hint>
 
@@ -268,6 +280,16 @@ I decided to use [Avaturn](https://hub.avaturn.me/) for generating a custom avat
 
 ![avatar](avatar-harry.png)
 
+But when using a custom avatar, you need to take care of more things yourself:
+
+- start an idle animation when the avatar is not speaking
+- stop the idle animation when the avatar starts speaking
+- transform viseme data to blend shapes
+- map visemes and blend shapes to get animations
+- create clips from those animations
+- calculate the length of the clips to wait for them to finish before playing the next one
+- kill the audio of the speech service when the avatar is aborted
+
 ### Loading the Avatar in React
 
 The `.glb` file exported from Avaturn is loaded into the React application using a 3D rendering library like [Three.js](https://threejs.org/) or [react-three-fiber](https://github.com/pmndrs/react-three-fiber). Here's how the avatar is loaded:
@@ -275,8 +297,6 @@ The `.glb` file exported from Avaturn is loaded into the React application using
 1. Import the `.glb` file into the React component using a loader such as `GLTFLoader` from `three/examples/jsm/loaders/GLTFLoader`.
 2. Use the `Canvas` component from `react-three-fiber` to render the 3D avatar.
 3. Apply viseme data to the avatar's lip movements in real-time during speech synthesis.
-
-#### Example Workflow:
 
 - The `.glb` file is loaded into the scene when the React component mounts.
 - The avatar's mesh is updated dynamically based on viseme data provided by Microsoft Cognitive Services.
@@ -303,3 +323,177 @@ function Avatar() {
   );
 }
 ```
+
+### Bring it to life
+
+After loading the avatar, you could start the idle animation. The idle animation is a simple loop that keeps the avatar in a neutral state when not speaking.
+For controlling this one you need to create a `mixer` object for the 3D scene:
+
+```jsx
+const mixer = React.useRef<THREE.AnimationMixer>(undefined);
+//... when setting up the scene
+mixer.current = new THREE.AnimationMixer(scene);
+...
+    function startIdle() {
+        if (clips.length > 0 && mixer.current) {
+            console.log("Playing idle animation");
+            const action = mixer.current.clipAction(clips[0]!);
+            //set random start of the action of the entry-point fames
+            var randomEntryFrame = Math.floor(Math.random() * idleActionEntryPointFrames.length);
+            var choosenEntryFrame = idleActionEntryPointFrames[randomEntryFrame] ?? 0;
+            if (choosenEntryFrame > 0) action.time = choosenEntryFrame / 60;
+
+            idleAction.current = action;
+            action.fadeIn(0.8);
+            action.play();
+        }
+    }
+```
+
+In my case I also variied the idle animation by using different entry points of the animation.
+This way the avatar looks a bit more lively and not so robotic.
+
+The next step is to connect the output of the speech service to the avatar.
+Therefor we connect the `SpeechSynthesisVisemeEvent` with a "VisemeProcessor" which queues and
+processes the viseme data until it's rendered under the control of the mixer or aborted.
+
+<aside>
+  <Hint type="info" title="💡Note:">
+    Viseme data from the service is provided async, so you can't simply process
+    as it arrives. That's one of the pain points I mentioned before.
+  </Hint>
+</aside>
+
+So, how does the `VisemeProcessor` look like?
+
+```tsx
+async function processQueue(mixer?: THREE.AnimationMixer) {
+  const v = queue.current[0];
+  if (v) {
+    await processViseme(v, mixer);
+    queue.current = queue.current.slice(1);
+    if (queue.current.length > 0) {
+      await processQueue(mixer);
+    } else {
+      setTimeout(() => {
+        if (!idleAction.current && queue.current.length === 0) {
+          processIdle();
+        }
+      }, 200);
+    }
+  }
+}
+```
+
+This function simply decides if there is still viseme data in the queue and if so, it processes it. If not, it starts the idle animation.
+
+The `processViseme` function is responsible for processing the viseme data and updating the avatar's lip movements accordingly. It uses the `mixer` to control the animation of the avatar based on the viseme data.
+
+```tsx
+async function processViseme(
+  viseme: sdk.SpeechSynthesisVisemeEventArgs,
+  m?: THREE.AnimationMixer
+) {
+  const animation = tryParseJSON(viseme.animation);
+  if (!animation) return;
+
+  const blendData = buildBlendData(animation);
+  let morphTargetDictionary: { [key: string]: number } = {};
+  const armature = gltf.scene.getObjectByName("Armature") as THREE.Object3D;
+  //find the morphTargetDictionary
+  armature.traverse(x => {
+    const target = x as THREE.Mesh;
+    if (
+      target.morphTargetInfluences &&
+      target.morphTargetInfluences.length &&
+      target.morphTargetDictionary &&
+      target.name === config.meshName
+    ) {
+      morphTargetDictionary = target.morphTargetDictionary;
+      return;
+    }
+  });
+  const a = createAnimation(blendData, morphTargetDictionary, config.meshName);
+  const ca = m?.clipAction(a!);
+  if (ca) {
+    ca.setLoop(THREE.LoopOnce, 1);
+    ca.clampWhenFinished = true;
+    if (idleAction.current) {
+      idleAction.current = undefined;
+    }
+    ca.play();
+    if (a && a.duration !== undefined) {
+      // wait for the animation to be finished
+      await new Promise(async r => setTimeout(r, a.duration * 1000));
+    }
+    // if not stopped the animations will become smaller and smaller (in their weight)
+    ca.stop(); // Tells the mixer to deactivate this action. The action will be immediately stopped and completely reset. this is needed to remove it from the weigth calculation.
+  }
+}
+```
+
+The `createAnimation` function creates a new animation clip based on the viseme data and blend shapes. It uses the `THREE.AnimationClip` class and the `morphTargetDictionary` to create the animation and set its duration.
+The exact implementation of this may differ depending on the morphTargetDictionary structure of your avatar. In general, it's only a mapping of the visemes to the clips in the `morphTargetDictionary` using `BLEND_SHAPE_NAMES` as keys.
+Finally, the `AnimationClip`s are turned into `ClipAction`s which are then played. Unfortunately, for playing the clips there is no synchronous method, so we need to wait for the clip to finish before we can play the next one.
+
+<aside>
+  <Hint type="info" title="💡Note:">
+    You need to stop each `ClipAction` after it's done. If you don't do that,
+    your animations will become smaller and smaller (in their weight) until they
+    are not visible anymore. This is also because the `AnimationMixer`
+    calculates the weight of all active `ClipAction`s and if you don't stop
+    them, they will be added to the weight calculation.
+  </Hint>
+</aside>
+
+If everything is connected correctly, the avatar should now be able to speak and animate its lips in sync with the speech output from Microsoft Cognitive Services.
+
+### Aborting the Speech Synthesis
+
+When the user likes to interrupt the bot while it is speaking, you need to handle this explicitly. The API only allows a graceful stop of the speech synthesis, which leads to audio output continuing for a while.
+You need to implement a mechanism to stop the speech synthesis and update the avatar's state accordingly.
+
+When accessing the speech service, you created a synthesizer object. This object has a `close` method which is supposed to stop the speech synthesis.
+But as mentioned before, this will not stop the audio output immediately. This is also tracked with an issue in the [Microsoft Cognitive Services GitHub repository](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2350#issuecomment-2421535922).
+As a workaround, I found out that you can use some private objects of the synthesizer to stop the audio output immediately.
+
+I do that additionally to the `close` method of the synthesizer:
+
+```tsx
+async function killSynthesizer() {
+  if (synthesizer.current !== undefined) {
+    console.log("Killing synthesizer");
+
+    KillAudio(synthesizer.current);
+
+    synthesizer.current.close();
+    synthesizer.current = undefined;
+  }
+}
+
+//DANGER!FRAGILE uses private objects to work around issue: https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2350
+function KillAudio(synthesizer: sdk.SpeechSynthesizer) {
+  // kill the audio
+  // @ts-ignore // private :D
+  const audio: HTMLAudioElement | undefined =
+    synthesizer.privAdapter?.privSessionAudioDestination?.privDestination
+      ?.privAudio;
+  if (audio) {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+}
+```
+
+...voila, now the audio output stops immediately and the avatar is not speaking anymore.
+
+<video src="custom_avatar.mp4" controls width="100%" />
+
+## Conclusion
+
+In this article, we explored how to create a speaking avatar using Microsoft Cognitive Services and Azure OpenAI. We covered the integration of speech-to-text and text-to-speech capabilities, as well as the implementation of lip-syncing for a more engaging user experience.
+By leveraging the power of these technologies, we can build interactive and immersive applications that enhance user engagement and accessibility.
+This project served as a foundation for creating more advanced AI bots with speech capabilities.
+Some ideas to further enhance it areadding features like emotion detection, personalized responses, and more sophisticated animations.
+This is just the beginning of a new era in AI interaction,
+and I hope this article inspires you to explore the possibilities of creating your own speaking avatars.
