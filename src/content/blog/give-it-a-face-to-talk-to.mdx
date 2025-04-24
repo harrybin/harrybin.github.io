@@ -29,12 +29,12 @@ than to type out text, making interactions feel more like real conversations.
 
 1. **Enhanced User Engagement**:
 
-   - A speaking avatar creates a more immersive and human-like interaction, making users feel more connected to the bot.
+   - A speaking avatar creates a more immersive and human-like interaction, making users feel more connected to the avatar.
    - The combination of voice and visual elements captures attention more effectively than text alone.
 
 2. **Accessibility**:
 
-   - Voice interactions make the chatbot accessible to users with visual impairments or those who prefer auditory communication.
+   - Voice interactions in both directions make the avatar accessible to users with visual impairments or those who prefer auditory communication.
    - It also caters to users who may find typing inconvenient or challenging.
 
 3. **Emotional Connection**:
@@ -48,15 +48,15 @@ than to type out text, making interactions feel more like real conversations.
 
 5. **Brand Differentiation**:
 
-   - A speaking avatar sets your chatbot apart from competitors, showcasing innovation and a commitment to user-centric design.
+   - A speaking avatar sets your application apart from competitors, showcasing innovation and a commitment to user-centric design.
 
-By integrating a speaking avatar, you can elevate your chatbot from a functional tool to an engaging, accessible, and emotionally resonant experience.
+By integrating a speaking avatar, you can elevate your application from a functional tool to an engaging, accessible, and emotionally resonant experience.
 
 ---
 
-## The Goal: Integrating Azure's OpenAI Service, Microsoft Cognitive Services, and Avatar Lip-Syncing for an Interactive AI Bot
+## The Goal: Integrating Azure's OpenAI Service, Microsoft Cognitive Services, and Avatar Lip-Syncing for an Interactive AI Avatar
 
-This integration allows users to engage with the bot through natural speech, enhanced by a visually appealing animated avatar that synchronizes its lip movements with the AI-generated spoken output.
+This integration allows users to engage with the avatar through natural speech, enhanced by a visually appealing animated avatar that synchronizes its lip movements with the AI-generated spoken output.
 
 ---
 
@@ -74,12 +74,11 @@ Microsoft Cognitive Services offers a comprehensive **Speech SDK** with the foll
 
 1. **Speech-to-Text**:
 
-   - The bot captures user voice input via a microphone.
+   - The avatar captures user voice input via a microphone.
    - The Speech SDK processes the audio and converts it into text.
 
 2. **Text-to-Speech with Lip-Sync**:
-
-   - The bot generates a response (e.g., from OpenAI).
+   - The avatar generates a response (e.g., from OpenAI).
    - The Speech SDK converts the text into speech and provides corresponding **viseme data**.
    - The viseme data drives the avatar's lip animations, creating a synchronized visual.
 
@@ -87,11 +86,11 @@ Microsoft Cognitive Services offers a comprehensive **Speech SDK** with the foll
 
 ### 2. **Azure OpenAI Integration**
 
-Azure OpenAI's GPT models provide the bot's conversational intelligence, generating contextually relevant responses.
+Azure OpenAI's GPT models provide the avatar's conversational intelligence, generating contextually relevant responses.
 
 #### Functionality:
 
-1. The bot sends the user's text input (converted from the user's speech) to the Azure OpenAI API.
+1. The avatar sends the user's text input (converted from the user's speech) to the Azure OpenAI API.
 2. Azure OpenAI processes the input and returns a generated text response.
 3. The response is converted into speech using Microsoft Cognitive Services, and viseme data is provided for animating the avatar.
 
@@ -99,7 +98,7 @@ Azure OpenAI's GPT models provide the bot's conversational intelligence, generat
 
 ### 3. **Avatar Lip-Syncing Implementation**
 
-Avatar lip-syncing enhances the bot's visual appeal. Viseme data from Microsoft Cognitive Services drives real-time lip movements.
+Avatar lip-syncing enhances the avatar's visual appeal. Viseme data from Microsoft Cognitive Services drives real-time lip movements.
 
 #### Functionality:
 
@@ -111,7 +110,10 @@ Avatar lip-syncing enhances the bot's visual appeal. Viseme data from Microsoft 
 
 ### 4. **React Application Integration**
 
-The entire functionality is integrated into a React application for web accessibility. The React component manages user interactions, displays conversations, and animates the avatar.
+The entire functionality is integrated into a React application to be plattform independant.
+The React component manages user interactions, displays conversations, and animates the avatar.
+
+![diagram](../../../public/assets/avatar_flow_mermaid.svg)
 
 ---
 
@@ -127,16 +129,17 @@ Building such a project involves addressing several technical challenges:
 2. **Latency Management**:
 
    - Ensuring low latency in speech recognition, AI response generation, and text-to-speech synthesis is critical for a seamless user experience.
-   - Your code for processing the AI model's text results and applying visemes to the avatar needs to be efficient. Otherwise, you will have a large gap between questions and the bot's answer or improperly synced lips of the avatar.
+   - Your code for processing the AI model's text results and applying visemes to the avatar needs to be efficient. Otherwise, you will have a large gap between questions and the avatar's answer or improperly synced lips of the avatar.
 
 3. **Getting lip movements clips from the the viseme data**:
 
    - The viseme data provided by Microsoft Cognitive Services needs to be mapped to specific lip movement animations for the avatar.
+   - the viseme data is provided async, so you can't simply process it as it arrives. You need to queue the viseme data and process it in a controlled manner.
    - This requires a good understanding of the avatar's rigging and animation system.
 
 4. **Aborting the speech synthesis**:
 
-   - If the user interrupts the bot while it is speaking, you need to handle this explicitly as the API only allows a graceful stop of the speech synthesis which leads to audio output continuning for a while.
+   - If the user interrupts the avatar while it is speaking, you need to handle this explicitly as the API only allows a graceful stop of the speech synthesis which leads to audio output continuning for a while.
    - You need to implement a mechanism to stop the speech synthesis and update the avatar's state accordingly.
 
 ---
@@ -145,7 +148,9 @@ Building such a project involves addressing several technical challenges:
 
 For rendering an avatar, you first need to get one. There are free avatars available, but most of them are not viseme-capable.
 
-The easiest way is to use a predefined avatar from Microsoft Azure Services. [Here in the Speech Studio](https://speech.microsoft.com/portal/3cf6c385d1e14645a0685128d3b96f23/livechat), you can try out voices and avatar bodies. The studio also provides example integration code.
+The easiest way is to use a predefined avatar from Microsoft Azure Services. [Here in the Speech Studio](https://speech.microsoft.com/portal/3cf6c385d1e14645a0685128d3b96f23/livechat), you can try out voices and avatar bodies.
+There you can play around with the different avatars and voices.
+The studio also provides example integration code.
 
 ---
 
@@ -277,9 +282,13 @@ That was easy - setting up and integrating a ready-to-use avatar provided by Mic
 
 <Hint type="info" title="💡Note:">
   When playing around with different avatars and different language settings, I
-  noticed that not every avatar works with every language. So don't wonder if
-  some constellations do not show lip sync at all or the lips are not in sync
-  with the voice.
+  noticed that not every avatar works with every language at least when using a
+  custom avatar. So don't wonder if some constellations do not show lip sync at
+  all or the lips are not in sync with the voice. When creating the project the
+  voices "Leni" and "Jan" for instance didn't provide visemes. If you like to
+  know more about visemes, have a look at the [Microsofts: Get facial position
+  with
+  viseme](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-speech-synthesis-viseme?tabs=visemeid&pivots=programming-language-javascript)
 </Hint>
 
 ## Use your own Avatar
@@ -303,7 +312,7 @@ But when using a custom avatar, you need to take care of more things yourself:
 The `.glb` file exported from Avaturn is loaded into the React application using a 3D rendering library like [Three.js](https://threejs.org/) or [react-three-fiber](https://github.com/pmndrs/react-three-fiber). Here's how the avatar is loaded:
 
 1. Import the `.glb` file into the React component using a loader such as `GLTFLoader` from `three/examples/jsm/loaders/GLTFLoader`.
-2. Use the `Canvas` component from `react-three-fiber` to render the 3D avatar.
+2. Use the `Canvas` component from `react-three/fiber` to render the 3D avatar.
 3. Apply viseme data to the avatar's lip movements in real-time during speech synthesis.
 
 - The `.glb` file is loaded into the scene when the React component mounts.
