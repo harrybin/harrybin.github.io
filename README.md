@@ -1,26 +1,109 @@
 # Developer blog of harrybin
 
-Here you will find short developer posts all around my dialy work. 📄
+Here you will find short developer posts all around my daily work. 📄
+
+## 🏗️ Architecture & Theme
+
+This blog is built using the **[AstroPaper](https://github.com/satnaing/astro-paper)** theme, a minimal, responsive, and accessible blog theme for Astro. The theme provides:
+
+- **Static Site Generation (SSG)** with Astro's island architecture
+- **Responsive design** optimized for mobile and desktop
+- **SEO-friendly** with proper meta tags and Open Graph support
+- **Accessibility** features following WCAG guidelines
+- **Dark/Light mode** toggle with system preference detection
+- **Fast search** functionality powered by FuseJS
+- **RSS feed** generation for blog posts
+- **Sitemap** generation for better SEO
 
 ## 💻 Tech Stack
 
-**Main Framework** - [Astro](https://astro.build/)  
-**Type Checking** - [TypeScript](https://www.typescriptlang.org/)  
-**Component Framework** - [ReactJS](https://reactjs.org/)  
-**Styling** - [TailwindCSS](https://tailwindcss.com/)  
-**UI/UX** - [Figma](https://figma.com)  
-**Fuzzy Search** - [FuseJS](https://fusejs.io/)  
-**Icons** - [Boxicons](https://boxicons.com/) | [Tablers](https://tabler-icons.io/)  
-**Code Formatting** - [Prettier](https://prettier.io/)  
-**Deployment** - [Cloudflare Pages](https://pages.cloudflare.com/)  
+**Main Framework** - [Astro](https://astro.build/) - Static site generator with islands architecture  
+**Theme** - [AstroPaper](https://github.com/satnaing/astro-paper) - Minimal, responsive blog theme  
+**Type Checking** - [TypeScript](https://www.typescriptlang.org/) - Static type checking  
+**Component Framework** - [ReactJS](https://reactjs.org/) - Interactive components (search, theme toggle)  
+**Styling** - [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework  
+**Content Management** - [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/) - Type-safe content management  
+**Markdown Processing** - [Remark](https://remark.js.org/) & [Rehype](https://github.com/rehypejs/rehype) - Markdown to HTML processing  
+**UI/UX** - [Figma](https://figma.com) - Design and prototyping  
+**Fuzzy Search** - [FuseJS](https://fusejs.io/) - Client-side search functionality  
+**Icons** - [Boxicons](https://boxicons.com/) | [Tablers](https://tabler-icons.io/) - Icon libraries  
+**Code Formatting** - [Prettier](https://prettier.io/) - Code formatting  
+**Deployment** - [Cloudflare Pages](https://pages.cloudflare.com/) - Static site hosting  
 **Illustration in About Page** - [https://freesvgillustration.com](https://freesvgillustration.com/)  
-**Linting** - [ESLint](https://eslint.org)
+**Linting** - [ESLint](https://eslint.org) - JavaScript/TypeScript linting
 
-### Additionally:
+### Content & Features:
 
-**[giscus](https://giscus.app/)**
+**[giscus](https://giscus.app/)** - GitHub Discussions-powered comments system  
+**Social Media Integration** - Configurable social links and sharing  
+**Open Graph Images** - Dynamic OG image generation for posts  
+**Analytics Ready** - Easy integration with Google Analytics or other services
 
-## 👨🏻‍💻 Running Locally
+## 🚀 Astro Features Used
+
+### Islands Architecture
+
+- **Hydration Strategy**: Components are hydrated only when needed using Astro's `client:*` directives
+- **Performance**: Minimal JavaScript shipped to the client, better Core Web Vitals
+- **Framework Agnostic**: Can use React, Vue, Svelte, or vanilla JavaScript components
+
+### Content Collections
+
+- **Type Safety**: Strongly typed frontmatter validation using Zod schemas
+- **Content Management**: Organized blog posts with automatic slug generation
+- **Markdown Support**: Extended markdown with custom remark/rehype plugins
+
+### Static Site Generation
+
+- **Build Time**: All pages are pre-rendered at build time
+- **SEO Optimization**: Perfect SEO scores with proper meta tags and structured data
+- **Fast Loading**: Optimized assets and minimal JavaScript for blazing fast performance
+
+### Custom Integrations
+
+- **RSS Feed**: Automatically generated RSS feed for blog subscribers
+- **Sitemap**: Dynamic sitemap generation for search engines
+- **Open Graph**: Custom OG image generation for social media sharing
+
+## � Project Structure
+
+```
+/
+├── public/                 # Static assets
+│   ├── assets/            # Images, icons, and media files
+│   ├── favicon.svg        # Site favicon
+│   └── toggle-theme.js    # Theme toggle functionality
+├── src/
+│   ├── components/        # Reusable Astro and React components
+│   │   ├── Card.tsx       # Blog post cards (React)
+│   │   ├── Search.tsx     # Search functionality (React)
+│   │   └── *.astro        # Astro components (Header, Footer, etc.)
+│   ├── content/           # Content collections
+│   │   ├── blog/          # Blog posts (Markdown/MDX)
+│   │   ├── docs/          # Documentation pages
+│   │   └── config.ts      # Content collection schemas
+│   ├── layouts/           # Page layouts
+│   │   ├── Layout.astro   # Base layout with head, SEO
+│   │   ├── PostDetails.astro # Blog post layout
+│   │   └── Posts.astro    # Blog listing layout
+│   ├── pages/             # File-based routing
+│   │   ├── index.astro    # Homepage
+│   │   ├── about.md       # About page
+│   │   ├── posts/         # Blog post pages
+│   │   ├── tags/          # Tag-based filtering
+│   │   └── og.png.ts      # Dynamic OG image generation
+│   ├── styles/            # Global styles
+│   │   └── base.css       # Base styles and Tailwind imports
+│   └── utils/             # Utility functions
+│       ├── getSortedPosts.ts # Blog post sorting
+│       ├── getUniqueTags.ts  # Tag extraction
+│       └── og-templates/     # OG image templates
+├── astro.config.ts        # Astro configuration
+├── tailwind.config.cjs    # Tailwind CSS configuration
+└── tsconfig.json          # TypeScript configuration
+```
+
+## �👨🏻‍💻 Running Locally
 
 The easiest way to run this project locally is to run the following command in your desired directory.
 
@@ -70,4 +153,4 @@ All commands are run from the root of the project, from a terminal:
 
 ## 📜 License
 
-Licensed under the MIT License, Copyright © 2023
+Licensed under the MIT License, Copyright © 2025
