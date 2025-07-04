@@ -1,5 +1,20 @@
 # GitHub Copilot Instructions for harrybin.github.io
 
+## Project Context
+
+This is an Astro-based static site using the AstroPaper theme with:
+
+- **TypeScript** for type safety
+- React components for interactive elements
+- Tailwind CSS for styling
+- Astro Content Collections for blog management
+- FuseJS for search functionality
+- Deployment on GitHub Pages
+
+## Purpose
+
+The purpose of the project to create a **blog** that showcases developer-focused content, tutorials, and insights.
+
 ## Blog Post Creation Guidelines
 
 When creating new blog posts for this Astro-based developer blog, you **MUST** follow these strict requirements:
@@ -53,17 +68,6 @@ Before considering a blog post complete:
 - [ ] Images have alt text and proper paths
 - [ ] Image files are located in `/public/assets/`
 - [ ] Links are functional and properly formatted
-
-## Project Context
-
-This is an Astro-based static site using the AstroPaper theme with:
-
-- TypeScript for type safety
-- React components for interactive elements
-- Tailwind CSS for styling
-- Astro Content Collections for blog management
-- FuseJS for search functionality
-- Deployment on Cloudflare Pages
 
 ## Additional Guidelines
 

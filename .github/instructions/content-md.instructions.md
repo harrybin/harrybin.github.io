@@ -1,5 +1,5 @@
 ---
-applyTo: "**/src/content/blog/*.md"
+applyTo: "/src/content/blog/*.md"
 ---
 
 # Blog Content Creation Instructions
@@ -85,6 +85,13 @@ function example(): string {
 - Use descriptive link text
 - For external links, consider opening in new tab
 - Internal links should use relative paths
+
+### Hints
+
+- use the hint component from `src/components/Hint.astro` like it's done in `src/content/blog/give-it-a-face-to-talk-to.mdx` (lines 445-460)
+- use the types of the components appropriate: "success" | "warning" | "info" | "error"
+- put the import for hint component at the top of the file
+- if the file is a `.mdx` file, you can use the component directly in the markdown content, else rename the file-extension from `md` to `mdx`
 
 ## Tag Guidelines
 
