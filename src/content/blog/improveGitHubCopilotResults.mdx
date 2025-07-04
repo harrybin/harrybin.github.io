@@ -33,11 +33,11 @@ I hosted three sessions:
 
 As the first one was related to GitHub Copilot, a lot of attendees came to me during those days asking about how to improve the results of Copilot in their projects.
 
-Without giving a full overview what's possible, this the minimum I do for my projects:
+Without giving a full overview of what's possible, this is the minimum I do for my projects:
 
 ## Create instruction files!
 
-One of the most effective ways to improve GitHub Copilot's results in your projects is by creating instruction files. These files provide context and guidelines that help Copilot understand your project at all, the project's structure, your coding standards and specific requirements.
+One of the most effective ways to improve GitHub Copilot's results in your projects is by creating instruction files. These files provide context and guidelines that help Copilot understand your project structure, your coding standards and specific requirements.
 
 ### What are instruction files?
 
@@ -51,11 +51,11 @@ Instruction files are special files that contain information about your project 
 4. **Specify frameworks and libraries** you're using
 5. **Add examples** of your preferred code patterns
 
-![](/assets/instructionFiles.png)
+![Instruction files folder structure in VS Code](/assets/instructionFiles.png)
 
 ### What to put in instruction files
 
-Here are first lines of the `copilot-instruction.md' of this project:
+Here are first lines of the `copilot-instruction.md` of this project:
 
 ```markdown
 # GitHub Copilot Instructions for harrybin.github.io
@@ -223,7 +223,7 @@ This context helps Copilot understand whether you need web API patterns, desktop
 
 ### Custom instruction files for specific contexts
 
-![](/assets/instructionFiles.png)
+![Instruction files folder structure in VS Code](/assets/instructionFiles.png)
 
 Beyond the general `.github/copilot-instructions.md` file, you can create more targeted instruction files for specific file types or folders using VS Code's `.instructions.md` files. These are stored in the `.github/instructions` folder and use the `applyTo` frontmatter property to automatically apply to specific files.
 
@@ -430,7 +430,7 @@ Custom chat modes differ from general instruction files because they:
 
 ### Creating custom chat modes
 
-![](/assets/chatmodeFolder.png)
+![Chat mode folder structure in VS Code](/assets/chatmodeFolder.png)
 
 Custom chat modes are defined in `.chatmode.md` files, typically stored in your project's `.github/chatmodes/` folder. Here's how I structure them:
 
@@ -455,7 +455,7 @@ You are in code review mode. Focus on:
 Provide specific, actionable feedback with code examples where appropriate.
 ```
 
-![](/assets/chatmodeUi.png)
+![VS Code chat mode UI dropdown menu](/assets/chatmodeUi.png)
 
 **Testing Mode** (`.github/chatmodes/testing.chatmode.md`):
 
@@ -571,7 +571,7 @@ Since implementing custom chat modes in my projects, I've experienced:
 <Hint type="info">
 💡 VS Code also provides UI support for creating chat modes and instruction files! You can use the built-in interface to set up these configurations without manually creating the files, as shown in the VS Code interface.
 
-![](/assets/vscodechatmodecreation.png)
+![VS Code chat mode creation interface](/assets/vscodechatmodecreation.png)
 
 </Hint>
 
@@ -580,7 +580,7 @@ Since implementing custom chat modes in my projects, I've experienced:
 When to use what?
 
 - Use instruction files for specific file types or folders that require detailed technical context, like documentation, configuration files or tests
-- Use chat modes for broader task-oriented interactions that require different AI behaviors, like code reviews, testing behavoir or API design
+- Use chat modes for broader task-oriented interactions that require different AI behaviors, like code reviews, testing behavior or API design
 - You may use also chatmodes for specific technical context when you can't match all files to be covered by glob pattern
 
 ---

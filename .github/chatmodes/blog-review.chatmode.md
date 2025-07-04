@@ -1,5 +1,6 @@
 ---
 description: Review blog posts for content quality, structure, and technical accuracy
+mode: "agent"
 tools: ["codebase", "search", "readFile", "grep"]
 ---
 
