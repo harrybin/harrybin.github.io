@@ -83,23 +83,34 @@ const socialImageURL = new URL(
   </head>
   <body>
     <slot />
-    <div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#222;color:#fff;padding:1rem;z-index:1000;display:none;justify-content:center;align-items:center;gap:1rem;font-size:1rem;">
+    <div
+      id="cookie-banner"
+      style="position:fixed;bottom:0;left:0;width:100%;background:#222;color:#fff;padding:1rem;z-index:1000;display:none;justify-content:center;align-items:center;gap:1rem;font-size:1rem;"
+    >
       <span>
-        This site uses cookies for analytics (Microsoft Clarity). By clicking Accept, you consent to the use of cookies for analytics purposes. See our <a href="/privacy" style="color:#4fd1c5;text-decoration:underline;">privacy policy</a>.
+        This site uses cookies for analytics (Microsoft Clarity). By clicking
+        Accept, you consent to the use of cookies for analytics purposes. See
+        our <a href="/privacy" style="color:#4fd1c5;text-decoration:underline;"
+          >privacy policy</a
+        >.
       </span>
-      <button id="cookie-accept" style="background:#4fd1c5;color:#222;padding:0.5rem 1rem;border:none;border-radius:4px;cursor:pointer;">Accept</button>
+      <button
+        id="cookie-accept"
+        style="background:#4fd1c5;color:#222;padding:0.5rem 1rem;border:none;border-radius:4px;cursor:pointer;"
+        >Accept</button
+      >
     </div>
     <script is:inline>
       // Show banner if not accepted
-      if (!window.localStorage.getItem('cookieConsent')) {
-        document.getElementById('cookie-banner').style.display = 'flex';
+      if (!window.localStorage.getItem("cookieConsent")) {
+        document.getElementById("cookie-banner").style.display = "flex";
       } else {
-        window.dispatchEvent(new Event('cookieConsentGiven'));
+        window.dispatchEvent(new Event("cookieConsentGiven"));
       }
-      document.getElementById('cookie-accept').onclick = function() {
-        window.localStorage.setItem('cookieConsent', 'true');
-        document.getElementById('cookie-banner').style.display = 'none';
-        window.dispatchEvent(new Event('cookieConsentGiven'));
+      document.getElementById("cookie-accept").onclick = function () {
+        window.localStorage.setItem("cookieConsent", "true");
+        document.getElementById("cookie-banner").style.display = "none";
+        window.dispatchEvent(new Event("cookieConsentGiven"));
       };
     </script>
     <script is:inline>
@@ -117,16 +128,23 @@ const socialImageURL = new URL(
           y = l.getElementsByTagName(r)[0];
           y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "sb1flusu90");
-        const clarityUserId = window.localStorage.getItem("userId") || "anonymous";
+        const clarityUserId =
+          window.localStorage.getItem("userId") || "anonymous";
         const clarityPageId = window.location.pathname;
         window.clarityQueue = window.clarityQueue || [];
-        window.clarity = window.clarity || function() { clarityQueue.push(arguments); };
-        window.clarity('identify', clarityUserId, undefined, clarityPageId);
+        window.clarity =
+          window.clarity ||
+          function () {
+            clarityQueue.push(arguments);
+          };
+        window.clarity("identify", clarityUserId, undefined, clarityPageId);
       }
-      if (window.localStorage.getItem('cookieConsent')) {
+      if (window.localStorage.getItem("cookieConsent")) {
         loadClarity();
       } else {
-        window.addEventListener('cookieConsentGiven', loadClarity, { once: true });
+        window.addEventListener("cookieConsentGiven", loadClarity, {
+          once: true,
+        });
       }
     </script>
   </body>
