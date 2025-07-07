@@ -1,0 +1,301 @@
+---
+author: Harald Binkle
+pubDatetime: 2025-07-04T17:00:00Z
+title: GitHub Copilot Custom Chat Modes
+postSlug: github-copilot-custom-chat-modes
+featured: false
+draft: false
+tags:
+  - GitHub Copilot
+  - Copilot
+  - GitHub
+  - VS Code
+  - AI
+  - productivity
+  - development
+  - chat modes
+  - large projects
+description: Learn how to create custom chat modes in VS Code for GitHub Copilot to enhance your workflow in large, complex projects with specialized AI configurations.
+---
+
+import Hint from "../../components/Hint.astro";
+
+# GitHub Copilot Custom Chat Modes for Large Projects
+
+In my [previous article about improving GitHub Copilot results](/posts/improvegithubcopilotresults), I covered the fundamentals of instruction files. For larger, more complex projects, there's an additional powerful technique that can significantly enhance your workflow: **custom chat modes**.
+
+Custom chat modes provide specialized configurations for different types of interactions with GitHub Copilot Chat, allowing you to create task-specific AI "personalities" that are optimized for particular workflows.
+
+## What are custom chat modes?
+
+Custom chat modes are a VS Code feature that allows you to define specific configurations for GitHub Copilot Chat, tailored to particular tasks or workflows. They consist of predefined instructions and tool configurations that are automatically applied when you switch to that mode.
+
+VS Code comes with three built-in chat modes:
+
+- **Ask mode** - optimized for answering questions about your codebase and general coding concepts
+- **Edit mode** - optimized for making code edits across multiple files
+- **Agent mode** - optimized for autonomous edits and running terminal commands
+
+## How custom chat modes enhance your workflow
+
+Custom chat modes differ from general instruction files because they:
+
+- **Provide task-specific configurations** - each mode is optimized for a specific type of work
+- **Include tool restrictions** - you can limit which tools are available in each mode
+- **Enable quick context switching** - instantly switch between different AI "personalities" for different tasks
+- **Combine instructions with tool sets** - both what the AI should do and what tools it can use
+
+## Creating custom chat modes
+
+![Chat mode folder structure in VS Code](/assets/chatmodeFolder.png)
+
+Custom chat modes are defined in `.chatmode.md` files, typically stored in your project's `.github/chatmodes/` folder. Here's how I structure them:
+
+### Code Review Mode
+
+**File:** `.github/chatmodes/blog-review.chatmode.md`
+
+```markdown
+---
+description: Review code changes and suggest improvements
+tools: ["codebase", "search", "usages"]
+---
+
+# Code Review Mode Instructions
+
+You are in code review mode. Focus on:
+
+1. Code quality and best practices
+2. Potential bugs or security issues
+3. Performance implications
+4. Maintainability and readability
+5. Adherence to project conventions
+
+Provide specific, actionable feedback with code examples where appropriate.
+```
+
+![VS Code chat mode UI dropdown menu](/assets/chatmodeUi.png)
+
+### Testing Mode
+
+**File:** `.github/chatmodes/testing.chatmode.md`
+
+```markdown
+---
+description: Focus on test creation, debugging, and testing strategies
+tools: ["codebase", "search", "usages", "findTestFiles", "terminal"]
+---
+
+# Testing Mode Instructions
+
+You are in testing mode. Your primary focus is on all aspects of testing:
+
+## Test Creation
+
+- Write unit tests for functions and components
+- Create integration tests for API endpoints
+- Develop end-to-end tests for user workflows
+- Generate test data and mock objects
+
+## Test Analysis
+
+- Review existing tests for completeness
+- Identify missing test coverage
+- Suggest improvements to test structure
+- Debug failing tests
+
+## Testing Best Practices
+
+- Follow AAA pattern (Arrange, Act, Assert)
+- Use descriptive test names that explain the scenario
+- Keep tests focused and isolated
+- Prefer testing behavior over implementation details
+
+## Framework-Specific Guidelines
+
+- For React: Use React Testing Library patterns
+- For APIs: Test both success and error scenarios
+- For E2E: Focus on critical user journeys
+- Always consider edge cases and error conditions
+
+When suggesting tests, provide complete, runnable examples with proper setup and teardown.
+```
+
+### Interfaces & Endpoints Mode
+
+**File:** `.github/chatmodes/interfaces.chatmode.md`
+
+```markdown
+---
+description: Design and work with APIs, interfaces, and data contracts
+tools: ["codebase", "search", "usages", "fetch", "githubRepo"]
+---
+
+# Interfaces & Endpoints Mode Instructions
+
+You are in interfaces and endpoints mode. Focus on API design and data contracts:
+
+## API Design
+
+- Design RESTful endpoints with proper HTTP methods
+- Define clear request/response schemas
+- Consider versioning strategies
+- Plan for error handling and status codes
+
+## Interface Definition
+
+- Create TypeScript interfaces for data models
+- Define clear contracts between frontend and backend
+- Ensure type safety across system boundaries
+- Document expected data structures
+
+## Data Validation
+
+- Implement input validation for APIs
+- Define schema validation rules
+- Handle malformed data gracefully
+- Consider security implications of data exposure
+
+## Documentation Standards
+
+- Use OpenAPI/Swagger for API documentation
+- Include example requests and responses
+- Document error scenarios and codes
+- Provide clear field descriptions
+
+## Best Practices
+
+- Follow consistent naming conventions
+- Use proper HTTP status codes
+- Implement pagination for list endpoints
+- Consider caching strategies
+- Plan for backward compatibility
+
+When creating interfaces or endpoints, always consider the full data lifecycle and potential integration points.
+```
+
+## How to set up custom chat modes
+
+1. **Create the chatmodes directory**: Make a `.github/chatmodes/` folder in your project root
+2. **Create mode files**: Each mode is a `.chatmode.md` file with frontmatter and instructions
+3. **Configure tools**: Specify which tools each mode can access
+4. **Switch modes**: Use the chat mode dropdown in VS Code's Chat view to switch between modes
+
+## Benefits of custom chat modes
+
+Since implementing custom chat modes in my projects, I've experienced:
+
+- **Faster context switching** - no need to repeatedly explain the same constraints
+- **More focused conversations** - each mode stays within its intended scope
+- **Better tool usage** - modes only have access to relevant tools
+- **Consistent behavior** - the AI behaves predictably based on the active mode
+- **Team alignment** - shared modes ensure consistent AI interactions across the team
+
+<Hint type="info">
+💡 VS Code also provides UI support for creating chat modes and instruction files! You can use the built-in interface to set up these configurations without manually creating the files, as shown in the VS Code interface.
+
+![VS Code chat mode creation interface](/assets/vscodechatmodecreation.png)
+
+</Hint>
+
+## When to use custom chat modes vs instruction files
+
+Understanding when to use each approach is crucial for maximizing your GitHub Copilot effectiveness:
+
+### Use instruction files for:
+
+- Specific file types or folders that require detailed technical context
+- Documentation, configuration files, or test files
+- Project-wide coding standards and conventions
+- Consistent behavior across all AI interactions
+
+### Use custom chat modes for:
+
+- Broader task-oriented interactions that require different AI behaviors
+- Code reviews, testing workflows, or API design sessions
+- Specific technical contexts when you can't match all files with glob patterns
+- Switching between different "AI personalities" for different tasks
+
+## Advanced Chat Mode Examples
+
+### Documentation Mode
+
+```markdown
+---
+description: Focus on creating and improving documentation
+tools: ["codebase", "search", "fetch"]
+---
+
+# Documentation Mode Instructions
+
+You are in documentation mode. Focus on creating clear, comprehensive documentation:
+
+## Documentation Standards
+
+- Write for your target audience (developers, end-users, etc.)
+- Use clear, concise language
+- Include practical examples and code snippets
+- Structure content with logical headings
+- Add troubleshooting sections where relevant
+
+## Content Types
+
+- API documentation with request/response examples
+- User guides with step-by-step instructions
+- Technical specifications with implementation details
+- Contributing guidelines for open source projects
+
+Always ensure documentation is up-to-date with the current codebase.
+```
+
+### Performance Optimization Mode
+
+```markdown
+---
+description: Focus on performance analysis and optimization
+tools: ["codebase", "search", "usages", "terminal"]
+---
+
+# Performance Optimization Mode Instructions
+
+You are in performance optimization mode. Focus on:
+
+## Analysis Areas
+
+- Identify performance bottlenecks
+- Review database queries and API calls
+- Analyze bundle sizes and loading times
+- Check memory usage patterns
+- Evaluate algorithm complexity
+
+## Optimization Strategies
+
+- Suggest caching strategies
+- Recommend code splitting approaches
+- Propose lazy loading implementations
+- Identify unnecessary re-renders or computations
+- Suggest more efficient data structures
+
+Provide specific, measurable optimization recommendations.
+```
+
+## Best Practices for Chat Modes
+
+1. **Keep modes focused** - Each mode should have a clear, specific purpose
+2. **Limit tool access** - Only include tools that are relevant to the mode's purpose
+3. **Write clear instructions** - Be explicit about what the AI should focus on
+4. **Use descriptive names** - Mode names should clearly indicate their purpose
+5. **Regular maintenance** - Update modes as your project and workflows evolve
+6. **Team collaboration** - Share modes with your team for consistent AI interactions
+
+## Conclusion
+
+Custom chat modes represent a powerful evolution in how we interact with GitHub Copilot for complex projects. By creating specialized AI configurations for different types of work, you can dramatically improve the relevance and quality of AI assistance.
+
+Combined with the instruction files covered in my [previous article](/posts/improveGitHubCopilotResults), custom chat modes provide a comprehensive approach to optimizing GitHub Copilot for your specific project needs.
+
+The key is to start with the modes that align with your most common workflows, then gradually expand and refine them based on your team's needs and project requirements.
+
+---
+
+_Have you implemented custom chat modes in your projects? I'd love to hear about your experiences and any creative modes you've developed for your specific workflows!_
