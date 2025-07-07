@@ -83,5 +83,37 @@ const socialImageURL = new URL(
   </head>
   <body>
     <slot />
+    <script>
+      (function (
+        windowObj,
+        documentObj,
+        clarityKey,
+        scriptTag,
+        projectId,
+        scriptElem,
+        firstScript
+      ) {
+        windowObj[clarityKey] =
+          windowObj[clarityKey] ||
+          function () {
+            (windowObj[clarityKey].q = windowObj[clarityKey].q || []).push(
+              arguments
+            );
+          };
+        scriptElem = documentObj.createElement(scriptTag);
+        scriptElem.async = 1;
+        scriptElem.src = "https://www.clarity.ms/tag/" + projectId;
+        firstScript = documentObj.getElementsByTagName(scriptTag)[0];
+        firstScript.parentNode.insertBefore(scriptElem, firstScript);
+      })(window, document, "clarity", "script", "harrybin.de");
+    </script>
+    <script is:inline>
+      const clarityUserId =
+        window.localStorage.getItem("userId") || "anonymous";
+      const clarityPageId = window.location.pathname;
+      if (window.clarity && typeof window.clarity.identify === "function") {
+        window.clarity.identify(clarityUserId, undefined, clarityPageId);
+      }
+    </script>
   </body>
 </html>
