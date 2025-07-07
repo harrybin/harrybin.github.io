@@ -127,6 +127,72 @@ You can easily add your [Google Site Verification HTML tag](https://support.goog
 PUBLIC_GOOGLE_SITE_VERIFICATION=your-google-site-verification-value
 ```
 
+## 📊 Analytics: Microsoft Clarity
+
+This project uses **[Microsoft Clarity](https://clarity.microsoft.com/)** for privacy-friendly, in-depth analytics and user behavior insights.
+
+### What is Microsoft Clarity?
+
+Microsoft Clarity is a free analytics tool that provides:
+
+- **Session recordings**: See how real users interact with your site
+- **Heatmaps**: Visualize where users click, scroll, and spend time
+- **User journey analysis**: Understand navigation paths and drop-off points
+- **Performance metrics**: Identify slow pages and usability issues
+- **Privacy-first**: No sampling, GDPR-compliant, and does not track personal data
+
+### Why use Clarity?
+
+- **Improve UX**: Discover friction points and optimize user experience
+- **Content insights**: See which blog posts and features attract the most attention
+- **Debugging**: Replay sessions to reproduce and fix bugs
+- **No cost**: 100% free, no traffic limits
+
+### How is Clarity integrated?
+
+- The official Clarity tracking script is injected globally in the main layout (`src/layouts/Layout.astro`).
+- Each page view is tracked, and a unique user/session ID is used (from localStorage or fallback to 'anonymous').
+- The current page path is sent as a custom page ID, so you can analyze single blog post views in Clarity's dashboard.
+- No personal data is collected; all analytics are anonymous and privacy-friendly.
+
+**Integration snippet:**
+
+```html
+<script>
+  (function (
+    windowObj,
+    documentObj,
+    clarityKey,
+    scriptTag,
+    projectId,
+    scriptElem,
+    firstScript
+  ) {
+    windowObj[clarityKey] =
+      windowObj[clarityKey] ||
+      function () {
+        (windowObj[clarityKey].q = windowObj[clarityKey].q || []).push(
+          arguments
+        );
+      };
+    scriptElem = documentObj.createElement(scriptTag);
+    scriptElem.async = 1;
+    scriptElem.src = "https://www.clarity.ms/tag/" + projectId;
+    firstScript = documentObj.getElementsByTagName(scriptTag)[0];
+    firstScript.parentNode.insertBefore(scriptElem, firstScript);
+  })(window, document, "clarity", "script", "<your project id here>");
+</script>
+<script>
+  const clarityUserId = window.localStorage.getItem("userId") || "anonymous";
+  const clarityPageId = window.location.pathname;
+  if (window.clarity && typeof window.clarity.identify === "function") {
+    window.clarity.identify(clarityUserId, undefined, clarityPageId);
+  }
+</script>
+```
+
+For more, see [clarity.microsoft.com](https://clarity.microsoft.com/).
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
