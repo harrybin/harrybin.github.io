@@ -158,29 +158,19 @@ Microsoft Clarity is a free analytics tool that provides:
 **Integration snippet:**
 
 ```html
-<script>
-  (function (
-    windowObj,
-    documentObj,
-    clarityKey,
-    scriptTag,
-    projectId,
-    scriptElem,
-    firstScript
-  ) {
-    windowObj[clarityKey] =
-      windowObj[clarityKey] ||
+<script type="text/javascript">
+  (function (c, l, a, r, i, t, y) {
+    c[a] =
+      c[a] ||
       function () {
-        (windowObj[clarityKey].q = windowObj[clarityKey].q || []).push(
-          arguments
-        );
+        (c[a].q = c[a].q || []).push(arguments);
       };
-    scriptElem = documentObj.createElement(scriptTag);
-    scriptElem.async = 1;
-    scriptElem.src = "https://www.clarity.ms/tag/" + projectId;
-    firstScript = documentObj.getElementsByTagName(scriptTag)[0];
-    firstScript.parentNode.insertBefore(scriptElem, firstScript);
-  })(window, document, "clarity", "script", "<your project id here>");
+    t = l.createElement(r);
+    t.async = 1;
+    t.src = "https://www.clarity.ms/tag/" + i;
+    y = l.getElementsByTagName(r)[0];
+    y.parentNode.insertBefore(t, y);
+  })(window, document, "clarity", "script", "<your projectID here>");
 </script>
 <script>
   const clarityUserId = window.localStorage.getItem("userId") || "anonymous";
