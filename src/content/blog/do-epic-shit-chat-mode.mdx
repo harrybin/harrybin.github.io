@@ -14,30 +14,20 @@ tags:
   - productivity
   - chat modes
   - automation
-description: Discover how the 'Do Epic Shit' chat mode turns GitHub Copilot into Beast Mode with autonomous research loops, strict TODO discipline, and new VS Code chat features.
+description: Discover how the 'Do Epic Shit' chat mode turns GitHub Copilot into Beast Mode with autonomous research, strict TODO loops, and enhanced VS Code chat.
 ---
 
 import Hint from "../../components/Hint.astro";
 
 ## Turning GitHub Copilot Chat Into "Beast Mode"
 
-In my previous article on [custom chat modes](/posts/github-copilot-custom-chat-modes) I showed how specialized modes focus Copilot. Today we go one step further: designing a so‑called **"Beast Mode"**—a maximal autonomy configuration for deep, multi‑step problem solving—then comparing it to my own **Do Epic Shit Chat Mode**.
+In my previous article on [custom chat modes](/posts/github-copilot-custom-chat-modes) I showed how specialized modes focus Copilot.
+Today we go one step further: designing a so‑called **"Beast Mode"**, a maximal autonomy configuration for deep, multi‑step problem solving.
 
 <Hint type="info">
-  Credit: the initial version of the <strong>Do Epic Shit Mode</strong> was
-  refined with help from{" "}
-  <a href="https://github.com/kasuken" target="_blank" rel="noopener">
-    @kasuken
-  </a>
-  . The live file:{" "}
-  <a
-    href="https://github.com/harrybin/gh-copilot/blob/main/.github/chatmodes/epicshit.chatmode.md"
-    target="_blank"
-    rel="noopener"
-  >
-    epicshit.chatmode.md
-  </a>
-  .
+  Credit: the initial version of the **Do Epic Shit Mode** was refined with help
+  from [@kasuken](https://github.com/kasuken). The live file:
+  [epicshit.chatmode.md](https://github.com/harrybin/gh-copilot/blob/main/.github/chatmodes/epicshit.chatmode.md).
 </Hint>
 
 ## What Is "Beast Mode" Conceptually?
@@ -50,11 +40,30 @@ In my previous article on [custom chat modes](/posts/github-copilot-custom-chat-
 4. Encourages **recursive expansion** (follow links, fetch more docs) until coverage is high.
 5. Mandates **post‑action verification**: run tests, lint, or inspect artifacts.
 
-It is best for non‑trivial refactors, exploratory debugging, orchestration across multiple subsystems, or generating first drafts of multi‑file features. The label is community vernacular (informal; not in official docs) for a _high‑discipline autonomous_ Copilot Chat configuration rather than an official feature.
+It is best for non‑trivial refactors, exploratory debugging, orchestration across multiple subsystems, or generating first drafts of multi‑file features.
+
+### Why Was "Beast Mode" Created?
+
+Community iterations (see also [“Beast Mode v3 is here”](https://www.reddit.com/r/GithubCopilot/comments/1lv4guq/beast_mode_v3_is_here/)) emerged to solve recurring pain points.
+Another goal: bring Copilot’s default (currently GPT‑4.1) closer to the “persistent reasoning depth” people appreciate in Claude Sonnet without burning premium requests
+and additionally to mitigate:
+
+1. **Premature agent exit** – Default flows stop after surface answers; strict checklists enforce completion.
+2. **Shallow research** – Prompts sometimes lean on stale internal knowledge; recursive fetch rules force live validation.
+3. **Hidden partial edits** – Multi‑file changes risk inconsistencies; mandated verification (tests / lint) reduces drift.
+4. **Unstructured planning** – Ad hoc steps reduce traceability; a canonical markdown checklist becomes an auditable log.
+5. **Tool over/under-use** – Either terminal spam or neglect; curated tool lists create balanced, intentional capability.
+6. **Untracked evolution** – Version tagging (v1, v2, v3…) allows empirical comparison of behavior changes.
+
+These drivers shaped the norms later embodied—and extended—in more disciplined variants.
+
+## The Do Epic Shit Mode
+
+This pattern inspired my colleague [@kasuken](https://github.com/kasuken) and me to create our own version: the **Do Epic Shit Mode**—a hardened, opinionated realization of the Beast Mode idea.
 
 ## The Do Epic Shit Mode File (Highlights)
 
-Key traits from the linked `epicshit.chatmode.md`:
+Key traits from `epicshit.chatmode.md`:
 
 - Frontmatter description: versioned ("4.1 Do Epic Shit Mode v1.4") signalling iterative hardening.
 - Wide tool array: `changes`, `codebase`, `editFiles`, `runTasks`, `runTests`, `terminalLastCommand`, `searchResults`, `vscodeAPI`, `github`—> maximizes observable + actionable surface.
@@ -74,7 +83,7 @@ Key traits from the linked `epicshit.chatmode.md`:
 | Verification     | Recommended                  | Mandatory (tests, edges)                                            | Higher confidence output         |
 | Tool Governance  | Loose                        | Curated list avoiding ambiguity                                     | Predictable environment          |
 
-The **Do Epic Shit Mode** operationalizes the abstract Beast Mode idea into a **repeatable, enforceable contract** that an agent must follow, which is the real differentiator.
+The **Do Epic Shit Mode** operationalizes the abstract pattern into a **repeatable, enforceable contract**—the differentiator.
 
 ## Why This Matters
 
@@ -89,7 +98,8 @@ The mode bakes safeguards directly into the interaction layer.
 
 ## New VS Code Chat Settings & How They Differ
 
-Recent settings surfaced in your editor configuration (see the official [Copilot Chat docs](https://code.visualstudio.com/docs/copilot/copilot-chat) and [Copilot configuration overview](https://code.visualstudio.com/docs/copilot/overview#_configure-copilot), plus the [VS Code release notes](https://code.visualstudio.com/updates) for experimental flags):
+Recent settings surfaced in your editor configuration (see the official [Copilot Chat docs](https://code.visualstudio.com/docs/copilot/copilot-chat),
+[Copilot configuration overview](https://code.visualstudio.com/docs/copilot/overview#_configure-copilot), plus [VS Code release notes](https://code.visualstudio.com/updates)):
 
 ```jsonc
 "chat.todoListTool.enabled": true,
@@ -98,12 +108,13 @@ Recent settings surfaced in your editor configuration (see the official [Copilot
 
 How they relate:
 
-| Setting                                          | What It Does                                                             | Relation to Mode's Internal TODO Contract                                                            |
-| ------------------------------------------------ | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| `chat.todoListTool.enabled`                      | Enables native structured TODO extraction / management in Chat           | Complements the mode: built‑in tracking can observe the **markdown checklist** the mode enforces     |
-| `github.copilot.chat.alternateGptPrompt.enabled` | Switches to an alternative system prompt (often more reasoning‑oriented) | Stacks with the mode’s own instructions; alternate base prompt + mode overlay yields deeper planning |
+| Setting                                          | What It Does                                                             | Relation to Mode's Internal TODO Contract                                                          |
+| ------------------------------------------------ | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| `chat.todoListTool.enabled`                      | Enables native structured TODO extraction / management in Chat           | Complements the mode: native tracking observes the **markdown checklist** the mode enforces        |
+| `github.copilot.chat.alternateGptPrompt.enabled` | Switches to an alternative system prompt (often more reasoning‑oriented) | Stacks with the mode: alternate base prompt + mode overlay → deeper planning & redundancy in rigor |
 
-Difference vs in‑file checklist instruction: **The mode hard‑codes the REQUIRED checklist format; the VS Code TODO feature is optional infrastructure.** If the checklist deviates, the mode becomes invalid regardless of the tool’s capability. The tool can _assist_, not _define_, the contract.
+Difference vs in‑file checklist instruction: **The mode hard‑codes the REQUIRED checklist format; VS Code’s TODO feature is optional infrastructure.**
+If the checklist deviates, the mode becomes invalid regardless of tool assistance.
 
 ## Designing Your Own High‑Discipline Mode
 
@@ -134,9 +145,19 @@ Checklist format:
 
 ## Conclusion
 
-The **Do Epic Shit Chat Mode** transforms the aspirational idea of a Copilot "Beast Mode" into a _codified operational framework_—mixing wide tool access, rigid checklist grammar, recursive research, and verification discipline. With the new VS Code chat settings assisting (native TODO parsing + alternative base prompt), the mode remains the _source of truth_ for process governance.
+The **Do Epic Shit Chat Mode** turns an aspirational “Beast Mode” notion into a **codified operational framework**:
+wide tool access, rigid checklist grammar, recursive research, and verification discipline. With new VS Code chat settings assisting (native TODO parsing + alternate base prompt),
+the mode itself remains the authoritative governance layer.
 
-Iterate responsibly: measure value (fewer regressions, faster feature completion) and keep versioning the mode as you refine its rules.
+**Key takeaways:**
+
+- Codify autonomy; don’t rely on model goodwill.
+- Enforce deterministic checklist grammar.
+- Treat research as a loop, not a single fetch.
+- Version your mode—make evolution observable.
+- Verification gates prevent “looks done” drift.
+
+Next, you might explore deeper prompt tuning for quality improvements—see [Improve GitHub Copilot Results](/posts/improve-github-copilot-results) for complementary techniques.
 
 ---
 
