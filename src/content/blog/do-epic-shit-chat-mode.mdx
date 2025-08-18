@@ -22,7 +22,7 @@ import Hint from "../../components/Hint.astro";
 ## Turning GitHub Copilot Chat Into "Beast Mode"
 
 In my previous article on [custom chat modes](/posts/github-copilot-custom-chat-modes) I showed how specialized modes focus Copilot.
-Today we go one step further: designing a so‑called **"Beast Mode"**, a maximal autonomy configuration for deep, multi‑step problem solving.
+Today we go one step further: designing a so-called **"Beast Mode"**, a maximal autonomy configuration for deep, multi-step problem solving.
 
 <Hint type="info">
   Credit: the initial version of the **Do Epic Shit Mode** was refined with help
@@ -38,24 +38,24 @@ Today we go one step further: designing a so‑called **"Beast Mode"**, a maxima
 2. Enforces a **strict iterative TODO loop** before yielding control.
 3. Requires **fresh validation / research** instead of relying on model memory.
 4. Encourages **recursive expansion** (follow links, fetch more docs) until coverage is high.
-5. Mandates **post‑action verification**: run tests, lint, or inspect artifacts.
+5. Mandates **post-action verification**: run tests, lint, or inspect artifacts.
 
-It is best for non‑trivial refactors, exploratory debugging, orchestration across multiple subsystems, or generating first drafts of multi‑file features.
+It is best for non-trivial refactors, exploratory debugging, orchestration across multiple subsystems, or generating first drafts of multi-file features.
 
 ### Why Was "Beast Mode" Created?
 
 Community iterations (see also [“Beast Mode v3 is here”](https://www.reddit.com/r/GithubCopilot/comments/1lv4guq/beast_mode_v3_is_here/)) emerged to solve recurring pain points.
-Another goal: bring Copilot’s default (currently GPT‑4.1) closer to the “persistent reasoning depth” people appreciate in Claude Sonnet without burning premium requests
+Another goal: bring Copilot’s default (currently GPT-4.1) closer to the “persistent reasoning depth” people appreciate in Claude Sonnet without burning premium requests
 and additionally to mitigate:
 
 1. **Premature agent exit** – Default flows stop after surface answers; strict checklists enforce completion.
 2. **Shallow research** – Prompts sometimes lean on stale internal knowledge; recursive fetch rules force live validation.
-3. **Hidden partial edits** – Multi‑file changes risk inconsistencies; mandated verification (tests / lint) reduces drift.
+3. **Hidden partial edits** – Multi-file changes risk inconsistencies; mandated verification (tests / lint) reduces drift.
 4. **Unstructured planning** – Ad hoc steps reduce traceability; a canonical markdown checklist becomes an auditable log.
 5. **Tool over/under-use** – Either terminal spam or neglect; curated tool lists create balanced, intentional capability.
 6. **Untracked evolution** – Version tagging (v1, v2, v3…) allows empirical comparison of behavior changes.
 
-These drivers shaped the norms later embodied—and extended—in more disciplined variants.
+These drivers shaped the norms later embodied and extended in more disciplined variants.
 
 ## The Do Epic Shit Mode
 
@@ -83,7 +83,7 @@ Key traits from `epicshit.chatmode.md`:
 | Verification     | Recommended                  | Mandatory (tests, edges)                                            | Higher confidence output         |
 | Tool Governance  | Loose                        | Curated list avoiding ambiguity                                     | Predictable environment          |
 
-The **Do Epic Shit Mode** operationalizes the abstract pattern into a **repeatable, enforceable contract**—the differentiator.
+The **Do Epic Shit Mode** is more persistent and less lasse aggressive at some point and gives you more control over the behavior of the agent because you modify it to your needs.
 
 ## Why This Matters
 
@@ -91,7 +91,7 @@ Without a structured autonomy contract, large edits risk:
 
 - Early termination leaving hidden TODOs
 - Unverified assumptions about external APIs
-- Shallow research (first‑page bias)
+- Shallow research (first-page bias)
 - Undocumented decision paths
 
 The mode bakes safeguards directly into the interaction layer.
@@ -111,12 +111,12 @@ How they relate:
 | Setting                                          | What It Does                                                             | Relation to Mode's Internal TODO Contract                                                          |
 | ------------------------------------------------ | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
 | `chat.todoListTool.enabled`                      | Enables native structured TODO extraction / management in Chat           | Complements the mode: native tracking observes the **markdown checklist** the mode enforces        |
-| `github.copilot.chat.alternateGptPrompt.enabled` | Switches to an alternative system prompt (often more reasoning‑oriented) | Stacks with the mode: alternate base prompt + mode overlay → deeper planning & redundancy in rigor |
+| `github.copilot.chat.alternateGptPrompt.enabled` | Switches to an alternative system prompt (often more reasoning-oriented) | Stacks with the mode: alternate base prompt + mode overlay → deeper planning & redundancy in rigor |
 
-Difference vs in‑file checklist instruction: **The mode hard‑codes the REQUIRED checklist format; VS Code’s TODO feature is optional infrastructure.**
+Difference vs in-file checklist instruction: **The mode hard-codes the REQUIRED checklist format; VS Code’s TODO feature is optional infrastructure.**
 If the checklist deviates, the mode becomes invalid regardless of tool assistance.
 
-## Designing Your Own High‑Discipline Mode
+## Designing Your Own High-Discipline Mode
 
 When forking or extending:
 
@@ -161,4 +161,4 @@ Next, you might explore deeper prompt tuning for quality improvements—see [Imp
 
 ---
 
-_Have you built your own high‑discipline mode? Share ideas—I may feature interesting evolutions in a future post._
+_Have you built your own high-discipline mode? Share ideas—I may feature interesting evolutions in a future post._
