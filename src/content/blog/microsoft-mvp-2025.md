@@ -25,14 +25,12 @@ Today I had the privilege of receiving that beautiful crystal tower with the 202
 
 ![Microsoft MVP crystal award with 2025 year disc](/assets/microsoft-mvp-2025.jpg)
 
-This recognition reinforces my commitment to keep sharing what I learn—openly, honestly, and with practical, real‑world code. It gives me fresh energy to continue speaking, running workshops, and writing, and it’s a powerful reminder that communities grow strongest when we teach, listen, and build together.
+This recognition reinforces my commitment to keep sharing what I learn—openly, honestly and with practical real‑world code. It gives me fresh energy to continue speaking, running workshops and writing. It’s a powerful reminder that communities grow strongest when we teach, listen and build together.
 
-I’m deeply grateful to the developer community for the countless discussions, questions, pull requests, and hallway conversations that shaped my thinking. I also want to thank my colleagues, clients, and friends who continuously challenge me to think bigger and do better, and my family for their unfailing support behind the scenes. Your encouragement made this possible.
-
+I’m deeply grateful to my family for their unfailing support behind the scenes. Your encouragement made this possible.
 I want to extend my heartfelt thanks to [Nico Orschel](https://www.linkedin.com/in/nico-orschel/) for being a trusted mentor and for the nomination—your support has been instrumental in this journey. Also, a big thank you to [Thomas Tomow](https://www.linkedin.com/in/thomas-tomow-963850111/) for supporting this throughout my time at Xebia; your guidance has helped shape my path in ways I deeply appreciate.
 
-Let’s keep doing epic shit together!
-
 Thanks for being part of this journey. Let’s keep building and learning together.
+Let’s keep doing epic shit together!
 
 ![Microsoft MVP logo](/assets/mvp-logo.png)
