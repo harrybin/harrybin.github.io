@@ -1,6 +1,6 @@
 ---
 author: Harald Binkle
-pubDatetime: 2025-10-01T21:31:00Z
+pubDatetime: 2025-10-01T23:51:00Z
 title: Using GitHub Copilot for Multiple Tasks in Parallel
 postSlug: parallel-github-copilot-workflow
 featured: false
