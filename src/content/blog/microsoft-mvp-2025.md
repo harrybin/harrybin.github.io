@@ -14,7 +14,7 @@ tags:
   - TechCommunity
   - Microsoft
   - ThankYou
-description: Honored to receive the Microsoft Most Valuable Professional (MVP) award for 2025 today—grateful to the community, colleagues, and family.
+description: Honored to receive the Microsoft Most Valuable Professional (MVP) award for 2025.
 ---
 
 **Accepted on:** September 1, 2025 (01‑09‑2025)
