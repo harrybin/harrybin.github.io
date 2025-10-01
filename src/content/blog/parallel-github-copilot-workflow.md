@@ -13,7 +13,7 @@ tags:
   - Productivity
   - Developer Tools
   - Automation
-description: Discover how to break free from the sequential developer workflow and use GitHub Copilot, Copilot CLI, and the coding agent to run multiple independent tasks in parallel—boosting your productivity and speeding up project delivery.
+description: Discover how to break free from the sequential developer workflow and use GitHub Copilot, Copilot CLI and the coding agent to run multiple independent tasks in parallel—boosting your productivity and speeding up project delivery.
 ---
 
 ## Why Wait? Unlocking Parallelism with GitHub Copilot
