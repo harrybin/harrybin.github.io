@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+    <!-- Multiple persona circles representing different agents -->
+    <circle cx="50" cy="30" r="18" fill="#6366f1" opacity="0.9" />
+    <circle cx="50" cy="30" r="10" fill="#a5b4fc" />
+    <!-- Face features for main agent -->
+    <circle cx="45" cy="27" r="2" fill="#1e1b4b" />
+    <circle cx="55" cy="27" r="2" fill="#1e1b4b" />
+    <path d="M44 34 Q50 38 56 34" stroke="#1e1b4b" stroke-width="2" fill="none" stroke-linecap="round" />
+
+    <!-- Secondary agent (left) -->
+    <circle cx="22" cy="55" r="14" fill="#10b981" opacity="0.8" />
+    <circle cx="22" cy="55" r="8" fill="#6ee7b7" />
+    <circle cx="19" cy="53" r="1.5" fill="#064e3b" />
+    <circle cx="25" cy="53" r="1.5" fill="#064e3b" />
+
+    <!-- Secondary agent (right) -->
+    <circle cx="78" cy="55" r="14" fill="#f59e0b" opacity="0.8" />
+    <circle cx="78" cy="55" r="8" fill="#fcd34d" />
+    <circle cx="75" cy="53" r="1.5" fill="#78350f" />
+    <circle cx="81" cy="53" r="1.5" fill="#78350f" />
+
+    <!-- Connection lines -->
+    <path d="M38 42 L28 48" stroke="#94a3b8" stroke-width="2" stroke-dasharray="3,2" />
+    <path d="M62 42 L72 48" stroke="#94a3b8" stroke-width="2" stroke-dasharray="3,2" />
+
+    <!-- Switch arrow -->
+    <path d="M35 75 L65 75" stroke="#6366f1" stroke-width="3" stroke-linecap="round" />
+    <path d="M58 69 L65 75 L58 81" stroke="#6366f1" stroke-width="3" fill="none" stroke-linecap="round"
+        stroke-linejoin="round" />
+    <path d="M42 81 L35 75 L42 69" stroke="#6366f1" stroke-width="3" fill="none" stroke-linecap="round"
+        stroke-linejoin="round" />
+</svg>
