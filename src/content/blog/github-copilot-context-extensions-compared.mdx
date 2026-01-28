@@ -1,0 +1,276 @@
+---
+author: Harald Binkle
+pubDatetime: 2026-01-28T10:00:00Z
+title: GitHub Copilot Context Extensions Compared
+postSlug: github-copilot-context-extensions-compared
+featured: false
+draft: true
+tags:
+  - GitHub Copilot
+  - Copilot
+  - GitHub
+  - VS Code
+  - AI
+  - productivity
+  - development
+  - MCP
+  - custom agents
+  - skills
+description: Compare Custom Agents, Skills, and MCP Tools in GitHub Copilot. Learn when to use each extension type to maximize your AI coding assistant's capabilities.
+---
+
+import Hint from "../../components/Hint.astro";
+
+# GitHub Copilot Context Extensions Compared
+
+GitHub Copilot has evolved far beyond simple code completion. Today it offers a rich ecosystem of customization options that let you tailor the AI to your specific workflows, projects, and domains. While instruction files and prompt files provide the foundation for guiding Copilot's responses, three more advanced extension mechanisms unlock truly powerful capabilities: **Custom Agents**, **Skills**, and **MCP Tools**.
+
+This article compares these three extension types and helps you understand when to use each one.
+
+## The Extension Landscape
+
+Before diving into comparisons, let's understand where these extensions fit in the broader customization picture:
+
+- **Instruction files** (`.instructions.md`) provide persistent guidelines that are automatically applied to all Copilot interactions
+- **Prompt files** (`.prompt.md`) define reusable prompts for specific tasks that you invoke on demand
+- **Custom Agents** (`.agent.md`) create specialized AI personas with defined tools and behaviors
+- **Skills** (`SKILL.md`) teach Copilot specialized capabilities with scripts and resources
+- **MCP Tools** connect external services and data sources through a standardized protocol
+
+The last three are the focus of this comparison.
+
+## Custom Agents
+
+> 📖 [VS Code Custom Agents Documentation](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
+
+Custom Agents (previously known as "custom chat modes") let you create specialized AI personas for specific development roles or tasks. They combine instructions with tool restrictions to create focused configurations that you can switch between during your work.
+
+### How They Work
+
+Custom agents are defined in `.agent.md` files stored in `.github/agents/` (workspace) or your user profile. Each agent specifies:
+
+- **Instructions**: Guidelines for how the AI should behave
+- **Available tools**: Which tools the agent can use
+- **Model selection**: Which language model to prefer
+- **Handoffs**: Transitions to other agents for multi-step workflows
+
+### Example Use Cases
+
+VS Code already includes a predefined **Plan** agent out of the box, demonstrating the power of this approach. Beyond the built-in options, you can create your own agents for specific roles:
+
+- **Security Reviewer**: Focused on identifying vulnerabilities with access to security scanning tools
+- **Frontend Developer**: Specialized in UI work with relevant framework-specific knowledge
+- **Documentation Writer**: Focused on creating and updating documentation
+- **Database Admin**: Restricted to database-related tools and queries
+
+### Sample Configuration
+
+```markdown
+---
+description: Create and improve project documentation
+name: Documentator
+tools: ["fetch", "search", "codebase"]
+model: Claude Sonnet 4
+---
+
+# Documentation Writer Instructions
+
+You are in documentation mode. Focus on creating clear, comprehensive documentation.
+
+When writing documentation:
+
+1. Use clear, concise language
+2. Include code examples where helpful
+3. Structure content with proper headings
+4. Explain both the "what" and the "why"
+5. Keep the target audience in mind
+
+Don't make code changes unless they're documentation-related (comments, JSDoc, README updates).
+```
+
+<Hint type="info">
+  Hint: <br />
+  Custom agents can be shared at the organization level for team-wide
+  consistency. Enable this with the
+  `github.copilot.chat.customAgents.showOrganizationAndEnterpriseAgents`
+  setting.
+</Hint>
+
+## Agent Skills
+
+> 📖 [VS Code Agent Skills Documentation](https://code.visualstudio.com/docs/copilot/customization/agent-skills) | [Agent Skills Standard](https://agentskills.io/)
+
+Agent Skills are the newest addition to the Copilot extension ecosystem in VS Code. They follow an open standard that works across multiple AI tools, including VS Code, GitHub Copilot CLI, and GitHub Copilot coding agent. Unlike instruction files that primarily define guidelines, skills teach Copilot specialized capabilities that can include scripts, examples, and other resources.
+
+### How They Work
+
+Skills are folders containing a `SKILL.md` file and optional supporting resources. They're stored in `.github/skills/` (project) or `~/.copilot/skills/` (personal). The key innovation is **progressive disclosure**:
+
+1. **Discovery**: Copilot reads skill names and descriptions (lightweight metadata)
+2. **Loading**: When relevant, the full `SKILL.md` instructions are loaded
+3. **Resources**: Additional files are accessed only when needed
+
+This architecture means you can install many skills without consuming context until they're actually relevant.
+
+### Example Use Cases
+
+- **Testing workflows**: Including test templates, testing scripts, and execution guidelines
+- **Deployment processes**: Step-by-step deployment procedures with verification scripts
+- **Database operations**: SQL templates and database management procedures
+- **Debugging routines**: Systematic debugging approaches with diagnostic scripts
+
+### Sample Skill Structure
+
+```
+.github/skills/webapp-testing/
+├── SKILL.md
+├── test-template.js
+└── examples/
+    ├── unit-test.js
+    └── integration-test.js
+```
+
+```markdown
+---
+name: webapp-testing
+description: Run and create tests for web applications using Jest and Testing Library
+---
+
+# Web Application Testing
+
+When testing web applications:
+
+1. Use the test template at [test-template.js](./test-template.js)
+2. Follow the patterns in [examples/](./examples/)
+3. Run tests with `npm test`
+```
+
+<Hint type="warning">
+  Agent Skills support in VS Code is currently in preview. Enable the
+  `chat.useAgentSkills` setting to use them.
+</Hint>
+
+## MCP Tools
+
+> 📖 [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/customization/mcp-servers) | [Model Context Protocol](https://modelcontextprotocol.io/)
+
+Model Context Protocol (MCP) is an open standard for connecting AI models to external services and data sources. Think of it as a "USB-C port for AI applications" that provides standardized access to databases, APIs, file systems, and other external tools.
+
+### How They Work
+
+MCP servers run either locally or remotely and expose tools, resources, and prompts through a standardized protocol. VS Code connects to these servers via configuration in `mcp.json`, and the tools become available in agent mode where they're automatically invoked based on user prompts.
+
+### Example Use Cases
+
+- **Database integration**: Query and analyze data directly from chat
+- **API access**: Interact with GitHub, Jira, Slack, or other services
+- **Browser automation**: Control a browser for testing or scraping
+- **File system operations**: Access and manipulate files outside the workspace
+- **Custom business systems**: Connect to internal enterprise tools
+
+### Sample Configuration
+
+```json
+{
+  "servers": {
+    "github": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "${input:github-token}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "github-token",
+      "description": "GitHub Personal Access Token",
+      "password": true
+    }
+  ]
+}
+```
+
+<Hint type="info">
+  You can install MCP servers directly from the GitHub MCP server registry via
+  VS Code's Extensions view. Enable the `chat.mcp.gallery.enabled` setting and
+  search for `@mcp`.
+</Hint>
+
+### MCP Apps: The Next Evolution
+
+> 📖 [GitHub MCP Server Registry](https://github.com/mcp)
+
+Beyond traditional MCP servers, a new type is emerging: **MCP Apps**. While MCP servers expose tools and resources for AI invocation, MCP apps take this further by providing interactive experiences that combine AI capabilities with user interfaces. They present information visually, enable user interaction, and create richer workflows than pure tool invocations.
+
+MCP apps are a recent addition and adoption is still in its early stages. However, VS Code already supports them, which is exciting. I look forward to seeing more real-world implementations emerge. One example is the `git-commit-history` MCP app, which promises an interactive way to explore and analyze commit history. Unfortunately, I have not been able to locate it for hands-on testing yet. As this ecosystem matures, expect more apps that bridge AI tools with interactive developer experiences.
+
+## Choosing the Right Extension Type
+
+### Use Custom Agents When...
+
+- You need different "personas" for different types of work (planning vs. implementation)
+- You want to restrict available tools for specific workflows
+- You're creating multi-step workflows with handoffs between specialized roles
+- You need workspace or team-wide configurations that developers can easily switch between
+
+### Use Skills When...
+
+- You want capabilities that work across VS Code, CLI, and the coding agent
+- Your workflow includes scripts, templates, or other supporting files
+- You're creating reusable procedures that should be auto-loaded based on context
+- You want to share capabilities with the broader community via the open standard
+
+### Use MCP Tools When...
+
+- You need to connect to external services (databases, APIs, third-party platforms)
+- The tool should work across different AI clients, not just VS Code
+- You're building something that runs as a separate service (local or remote)
+- You don't need access to VS Code APIs
+
+## Comparison Table
+
+| Aspect                 | Custom Agents              | Skills                         | MCP Tools                     |
+| ---------------------- | -------------------------- | ------------------------------ | ----------------------------- |
+| **Primary Purpose**    | Specialized AI personas    | Teach specialized capabilities | Connect external services     |
+| **File Extension**     | `.agent.md`                | `SKILL.md`                     | `mcp.json`                    |
+| **Location**           | `.github/agents/`          | `.github/skills/`              | Workspace or user config      |
+| **Activation**         | Manual switch via dropdown | Auto-loaded when relevant      | Always available when started |
+| **Tool Restrictions**  | Yes, define allowed tools  | No                             | No                            |
+| **Include Scripts**    | No                         | Yes                            | N/A (runs externally)         |
+| **Cross-platform**     | VS Code, GitHub.com        | VS Code, CLI, coding agent     | Any MCP client                |
+| **Open Standard**      | No                         | Yes (agentskills.io)           | Yes (modelcontextprotocol.io) |
+| **VS Code API Access** | Via allowed tools          | Via VS Code execution          | No                            |
+| **Best For**           | Workflow personas          | Specialized workflows          | External integrations         |
+
+## Combining Extensions for Maximum Power
+
+These extension types work best when combined:
+
+1. **Create a custom agent** that uses specific MCP tools and has particular skills available
+2. **Reference instruction files** from your agent to maintain consistent guidelines
+3. **Use prompt files** within your agent workflow for specific repeatable tasks
+
+For example, a "Database Admin" agent might:
+
+- Include instructions for database best practices
+- Allow only database-related MCP tools
+- Have access to skills for common database operations
+- Hand off to an "Implementation" agent when changes are approved
+
+## Conclusion
+
+GitHub Copilot's extension ecosystem provides remarkable flexibility in customizing your AI assistant. Custom agents excel at creating focused workflow personas, skills teach specialized capabilities with supporting resources, and MCP tools connect to the broader world of external services.
+
+Start with custom agents if you want to quickly create specialized workflows. Add skills when you need portable capabilities with scripts and examples. Integrate MCP tools when you need to connect to external services and data sources.
+
+The key is matching the extension type to your specific needs rather than using one approach for everything. As these technologies continue to evolve, expect even tighter integration between them, making it easier to build sophisticated AI-powered development workflows.
+
+## Further Reading
+
+- [VS Code Custom Agents Documentation](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
+- [Agent Skills Standard](https://agentskills.io/)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Awesome Copilot Repository](https://github.com/github/awesome-copilot)

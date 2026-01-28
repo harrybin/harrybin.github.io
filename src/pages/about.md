@@ -23,7 +23,8 @@ including cloud and DevOps to help customers creating business
 value. My approach is one of cooperation and building relationships. Throughout the past two decades I accumulated a broad
 experience in business and IT mainly at companies that relied on
 Microsoft technologies.
-I worked in various disciplines ranging from developer, project/product owner to customer support and consultant. I was involved in software development processes for consumer, B2B and enterprise applications like Mercedes-Benz` manufacturing execution system.
+I worked in various disciplines ranging from developer, project/product owner to customer support and consultant.
+I was involved in software development processes for consumer, B2B and enterprise applications like Mercedes-Benz` manufacturing execution system.
 In my role as full stack developer and architect, I mostly focus on the frontend part, responsible for developing, introducing and maintaining cloud applications based on microservices architecture.
 
 ### Impact made
