@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1e2e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#2d2d44;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="chatGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b3b5c"/>
+      <stop offset="100%" style="stop-color:#2a2a42"/>
+    </linearGradient>
+    <linearGradient id="appGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a6b3c"/>
+      <stop offset="100%" style="stop-color:#145a30"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="400" rx="12" fill="url(#bgGrad)"/>
+
+  <!-- Left side: Text-only output -->
+  <text x="200" y="40" text-anchor="middle" fill="#ff6b6b" font-size="16" font-weight="bold">Traditional MCP Server</text>
+
+  <rect x="30" y="55" width="340" height="310" rx="10" fill="url(#chatGrad)" stroke="#555" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="30" y="55" width="340" height="30" rx="10" fill="#444"/>
+  <circle cx="50" cy="70" r="5" fill="#ff5f57"/>
+  <circle cx="68" cy="70" r="5" fill="#febc2e"/>
+  <circle cx="86" cy="70" r="5" fill="#28c840"/>
+  <text x="200" y="74" text-anchor="middle" fill="#aaa" font-size="11">Chat Output</text>
+
+  <!-- Static text lines -->
+  <text x="50" y="110" fill="#8888aa" font-size="12" font-family="Consolas, monospace">| Name    | CPU  | Region    |</text>
+  <text x="50" y="128" fill="#8888aa" font-size="12" font-family="Consolas, monospace">|---------|------|-----------|</text>
+  <text x="50" y="146" fill="#8888aa" font-size="12" font-family="Consolas, monospace">| srv-01  | 82%  | us-east-1 |</text>
+  <text x="50" y="164" fill="#8888aa" font-size="12" font-family="Consolas, monospace">| srv-02  | 45%  | eu-west-1 |</text>
+  <text x="50" y="182" fill="#8888aa" font-size="12" font-family="Consolas, monospace">| srv-03  | 91%  | ap-south  |</text>
+  <text x="50" y="200" fill="#8888aa" font-size="12" font-family="Consolas, monospace">| srv-04  | 12%  | us-west-2 |</text>
+  <text x="50" y="218" fill="#8888aa" font-size="12" font-family="Consolas, monospace">| srv-05  | 67%  | eu-north  |</text>
+  <text x="50" y="236" fill="#8888aa" font-size="12" font-family="Consolas, monospace">| ...     | ...  | ...       |</text>
+
+  <!-- Problems -->
+  <text x="50" y="270" fill="#ff6b6b" font-size="12">✗ No sorting</text>
+  <text x="50" y="290" fill="#ff6b6b" font-size="12">✗ No filtering</text>
+  <text x="50" y="310" fill="#ff6b6b" font-size="12">✗ Can't select rows</text>
+  <text x="50" y="330" fill="#ff6b6b" font-size="12">✗ Static, read-only text</text>
+  <text x="50" y="350" fill="#ff6b6b" font-size="12">✗ Re-prompt to change view</text>
+
+  <!-- Arrow -->
+  <text x="400" y="210" text-anchor="middle" fill="#666" font-size="28">→</text>
+
+  <!-- Right side: App output -->
+  <text x="600" y="40" text-anchor="middle" fill="#51cf66" font-size="16" font-weight="bold">MCP App Server</text>
+
+  <rect x="430" y="55" width="340" height="310" rx="10" fill="url(#chatGrad)" stroke="#51cf66" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="430" y="55" width="340" height="30" rx="10" fill="#444"/>
+  <circle cx="450" cy="70" r="5" fill="#ff5f57"/>
+  <circle cx="468" cy="70" r="5" fill="#febc2e"/>
+  <circle cx="486" cy="70" r="5" fill="#28c840"/>
+  <text x="600" y="74" text-anchor="middle" fill="#aaa" font-size="11">Interactive App</text>
+
+  <!-- Table header row -->
+  <rect x="450" y="95" width="300" height="26" rx="4" fill="#2a5a3a"/>
+  <text x="470" y="113" fill="#fff" font-size="11" font-weight="bold">Name ▼</text>
+  <text x="555" y="113" fill="#fff" font-size="11" font-weight="bold">CPU ▼</text>
+  <text x="635" y="113" fill="#fff" font-size="11" font-weight="bold">Region</text>
+  <text x="720" y="113" fill="#fff" font-size="11" font-weight="bold">⚙</text>
+
+  <!-- Filter row -->
+  <rect x="450" y="123" width="300" height="22" rx="2" fill="#333350"/>
+  <rect x="455" y="126" width="75" height="16" rx="3" fill="#444466" stroke="#666" stroke-width="0.5"/>
+  <text x="462" y="138" fill="#888" font-size="9">🔍 Filter...</text>
+  <rect x="540" y="126" width="55" height="16" rx="3" fill="#444466" stroke="#666" stroke-width="0.5"/>
+  <rect x="605" y="126" width="75" height="16" rx="3" fill="#444466" stroke="#666" stroke-width="0.5"/>
+
+  <!-- Data rows -->
+  <rect x="450" y="147" width="300" height="24" rx="2" fill="#2d2d44"/>
+  <rect x="455" y="150" width="14" height="14" rx="2" fill="#444" stroke="#51cf66" stroke-width="1"/>
+  <text x="475" y="163" fill="#ccc" font-size="11">srv-03</text>
+  <rect x="555" y="152" width="40" height="12" rx="6" fill="#ff6b6b"/>
+  <text x="561" y="162" fill="#fff" font-size="9">91%</text>
+  <text x="635" y="163" fill="#ccc" font-size="11">ap-south</text>
+
+  <rect x="450" y="173" width="300" height="24" rx="2" fill="#252540"/>
+  <rect x="455" y="176" width="14" height="14" rx="2" fill="#444" stroke="#666" stroke-width="1"/>
+  <text x="475" y="189" fill="#ccc" font-size="11">srv-01</text>
+  <rect x="555" y="178" width="40" height="12" rx="6" fill="#ffa94d"/>
+  <text x="561" y="188" fill="#fff" font-size="9">82%</text>
+  <text x="635" y="189" fill="#ccc" font-size="11">us-east-1</text>
+
+  <rect x="450" y="199" width="300" height="24" rx="2" fill="#2d2d44"/>
+  <rect x="455" y="202" width="14" height="14" rx="2" fill="#51cf66" stroke="#51cf66" stroke-width="1"/>
+  <text x="462" y="213" fill="#fff" font-size="9">✓</text>
+  <text x="475" y="215" fill="#ccc" font-size="11">srv-05</text>
+  <rect x="555" y="204" width="40" height="12" rx="6" fill="#ffa94d"/>
+  <text x="561" y="214" fill="#fff" font-size="9">67%</text>
+  <text x="635" y="215" fill="#ccc" font-size="11">eu-north</text>
+
+  <rect x="450" y="225" width="300" height="24" rx="2" fill="#252540"/>
+  <rect x="455" y="228" width="14" height="14" rx="2" fill="#444" stroke="#666" stroke-width="1"/>
+  <text x="475" y="241" fill="#ccc" font-size="11">srv-02</text>
+  <rect x="555" y="230" width="40" height="12" rx="6" fill="#51cf66"/>
+  <text x="561" y="240" fill="#fff" font-size="9">45%</text>
+  <text x="635" y="241" fill="#ccc" font-size="11">eu-west-1</text>
+
+  <!-- Pagination -->
+  <rect x="450" y="258" width="300" height="22" rx="2" fill="#333350"/>
+  <text x="465" y="273" fill="#888" font-size="10">Page 1 of 5</text>
+  <rect x="690" y="261" width="18" height="16" rx="3" fill="#444"/>
+  <text x="695" y="273" fill="#ccc" font-size="10">‹</text>
+  <rect x="712" y="261" width="18" height="16" rx="3" fill="#444"/>
+  <text x="717" y="273" fill="#ccc" font-size="10">›</text>
+
+  <!-- Benefits -->
+  <text x="450" y="300" fill="#51cf66" font-size="12">✓ Sort by any column</text>
+  <text x="450" y="320" fill="#51cf66" font-size="12">✓ Filter and search</text>
+  <text x="450" y="340" fill="#51cf66" font-size="12">✓ Select rows → feed back to LLM</text>
+  <text x="450" y="360" fill="#51cf66" font-size="12">✓ Paginate large datasets</text>
+</svg>

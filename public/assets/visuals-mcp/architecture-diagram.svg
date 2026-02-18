@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1e2e"/>
+      <stop offset="100%" style="stop-color:#2d2d44"/>
+    </linearGradient>
+    <filter id="shadow2">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#888"/>
+    </marker>
+    <marker id="arrG" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#51cf66"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="520" rx="12" fill="url(#bg2)"/>
+
+  <text x="400" y="30" text-anchor="middle" fill="#ddd" font-size="16" font-weight="bold">Architecture: One App Per Visual</text>
+
+  <!-- Top: 5 HTML entry points -->
+  <text x="400" y="60" text-anchor="middle" fill="#888" font-size="11">HTML Entry Points (one per visual)</text>
+
+  <rect x="20" y="75" width="135" height="45" rx="6" fill="#3a2a20" stroke="#ffa94d" stroke-width="1.2" filter="url(#shadow2)"/>
+  <text x="87" y="95" text-anchor="middle" fill="#ffa94d" font-size="10" font-weight="bold">mcp-table.html</text>
+  <text x="87" y="110" text-anchor="middle" fill="#888" font-size="9">📄 React entry</text>
+
+  <rect x="170" y="75" width="135" height="45" rx="6" fill="#3a2a20" stroke="#ffa94d" stroke-width="1.2" filter="url(#shadow2)"/>
+  <text x="237" y="95" text-anchor="middle" fill="#ffa94d" font-size="10" font-weight="bold">mcp-tree.html</text>
+  <text x="237" y="110" text-anchor="middle" fill="#888" font-size="9">📄 React entry</text>
+
+  <rect x="320" y="75" width="155" height="45" rx="6" fill="#3a2a20" stroke="#ffa94d" stroke-width="1.2" filter="url(#shadow2)"/>
+  <text x="397" y="95" text-anchor="middle" fill="#ffa94d" font-size="10" font-weight="bold">mcp-master-detail.html</text>
+  <text x="397" y="110" text-anchor="middle" fill="#888" font-size="9">📄 React entry</text>
+
+  <rect x="490" y="75" width="135" height="45" rx="6" fill="#3a2a20" stroke="#ffa94d" stroke-width="1.2" filter="url(#shadow2)"/>
+  <text x="557" y="95" text-anchor="middle" fill="#ffa94d" font-size="10" font-weight="bold">mcp-image.html</text>
+  <text x="557" y="110" text-anchor="middle" fill="#888" font-size="9">📄 React entry</text>
+
+  <rect x="640" y="75" width="135" height="45" rx="6" fill="#3a2a20" stroke="#ffa94d" stroke-width="1.2" filter="url(#shadow2)"/>
+  <text x="707" y="95" text-anchor="middle" fill="#ffa94d" font-size="10" font-weight="bold">mcp-list.html</text>
+  <text x="707" y="110" text-anchor="middle" fill="#888" font-size="9">📄 React entry</text>
+
+  <!-- Arrows down to React apps -->
+  <line x1="87" y1="120" x2="87" y2="145" stroke="#888" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="237" y1="120" x2="237" y2="145" stroke="#888" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="397" y1="120" x2="397" y2="145" stroke="#888" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="557" y1="120" x2="557" y2="145" stroke="#888" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="707" y1="120" x2="707" y2="145" stroke="#888" stroke-width="1" marker-end="url(#arr)"/>
+
+  <!-- React App Components -->
+  <text x="400" y="160" text-anchor="middle" fill="#888" font-size="11">React App Components (src/)</text>
+
+  <rect x="20" y="170" width="135" height="45" rx="6" fill="#1a3050" stroke="#74c0fc" stroke-width="1.2" filter="url(#shadow2)"/>
+  <text x="87" y="190" text-anchor="middle" fill="#74c0fc" font-size="10" font-weight="bold">table-app.tsx</text>
+  <text x="87" y="205" text-anchor="middle" fill="#888" font-size="9">⚛ TanStack Table</text>
+
+  <rect x="170" y="170" width="135" height="45" rx="6" fill="#1a3050" stroke="#74c0fc" stroke-width="1.2" filter="url(#shadow2)"/>
+  <text x="237" y="190" text-anchor="middle" fill="#74c0fc" font-size="10" font-weight="bold">tree-app.tsx</text>
+  <text x="237" y="205" text-anchor="middle" fill="#888" font-size="9">⚛ Tree component</text>
+
+  <rect x="320" y="170" width="155" height="45" rx="6" fill="#1a3050" stroke="#74c0fc" stroke-width="1.2" filter="url(#shadow2)"/>
+  <text x="397" y="190" text-anchor="middle" fill="#74c0fc" font-size="10" font-weight="bold">master-detail-app.tsx</text>
+  <text x="397" y="205" text-anchor="middle" fill="#888" font-size="9">⚛ Split pane</text>
+
+  <rect x="490" y="170" width="135" height="45" rx="6" fill="#1a3050" stroke="#74c0fc" stroke-width="1.2" filter="url(#shadow2)"/>
+  <text x="557" y="190" text-anchor="middle" fill="#74c0fc" font-size="10" font-weight="bold">image-app.tsx</text>
+  <text x="557" y="205" text-anchor="middle" fill="#888" font-size="9">⚛ Image card</text>
+
+  <rect x="640" y="170" width="135" height="45" rx="6" fill="#1a3050" stroke="#74c0fc" stroke-width="1.2" filter="url(#shadow2)"/>
+  <text x="707" y="190" text-anchor="middle" fill="#74c0fc" font-size="10" font-weight="bold">list-app.tsx</text>
+  <text x="707" y="205" text-anchor="middle" fill="#888" font-size="9">⚛ Drag &amp; drop</text>
+
+  <!-- Vite build arrow -->
+  <text x="400" y="240" text-anchor="middle" fill="#51cf66" font-size="12" font-weight="bold">⬇  Vite Build (vite-plugin-singlefile)  ⬇</text>
+  <text x="400" y="256" text-anchor="middle" fill="#666" font-size="10">Each visual builds independently into a single self-contained HTML</text>
+
+  <!-- Built output -->
+  <rect x="100" y="270" width="600" height="50" rx="8" fill="#1a2a1a" stroke="#51cf66" stroke-width="1" stroke-dasharray="4"/>
+  <text x="400" y="290" text-anchor="middle" fill="#51cf66" font-size="12" font-weight="bold">dist/</text>
+  <text x="155" y="308" text-anchor="middle" fill="#8d8" font-size="9">mcp-table.html</text>
+  <text x="275" y="308" text-anchor="middle" fill="#8d8" font-size="9">mcp-tree.html</text>
+  <text x="400" y="308" text-anchor="middle" fill="#8d8" font-size="9">mcp-master-detail.html</text>
+  <text x="535" y="308" text-anchor="middle" fill="#8d8" font-size="9">mcp-image.html</text>
+  <text x="645" y="308" text-anchor="middle" fill="#8d8" font-size="9">mcp-list.html</text>
+
+  <!-- Arrow to server -->
+  <line x1="400" y1="320" x2="400" y2="350" stroke="#51cf66" stroke-width="2" marker-end="url(#arrG)"/>
+
+  <!-- Server.ts -->
+  <rect x="100" y="355" width="600" height="145" rx="10" fill="#252540" stroke="#e599f7" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="400" y="380" text-anchor="middle" fill="#e599f7" font-size="14" font-weight="bold">server.ts</text>
+
+  <!-- Two columns inside server -->
+  <rect x="120" y="393" width="270" height="90" rx="6" fill="#2a2a42" stroke="#ffa94d" stroke-width="0.8"/>
+  <text x="255" y="413" text-anchor="middle" fill="#ffa94d" font-size="11" font-weight="bold">Tool Definitions</text>
+  <text x="135" y="433" fill="#aaa" font-size="9" font-family="Consolas, monospace">name: "display_table"</text>
+  <text x="135" y="448" fill="#aaa" font-size="9" font-family="Consolas, monospace">_meta.ui.resourceUri:</text>
+  <text x="145" y="463" fill="#ffa94d" font-size="9" font-family="Consolas, monospace">"table://display"</text>
+  <text x="135" y="478" fill="#666" font-size="9">... (one per visual)</text>
+
+  <rect x="410" y="393" width="270" height="90" rx="6" fill="#2a2a42" stroke="#74c0fc" stroke-width="0.8"/>
+  <text x="545" y="413" text-anchor="middle" fill="#74c0fc" font-size="11" font-weight="bold">Resource Handlers</text>
+  <text x="425" y="433" fill="#aaa" font-size="9" font-family="Consolas, monospace">uri: "table://display"</text>
+  <text x="425" y="448" fill="#aaa" font-size="9" font-family="Consolas, monospace">→ readFile("mcp-table.html")</text>
+  <text x="425" y="463" fill="#aaa" font-size="9" font-family="Consolas, monospace">→ return { text/html }</text>
+  <text x="425" y="478" fill="#666" font-size="9">... (one per visual)</text>
+</svg>

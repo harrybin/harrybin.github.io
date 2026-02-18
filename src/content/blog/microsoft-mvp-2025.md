@@ -3,7 +3,7 @@ author: Harald Binkle
 pubDatetime: 2025-09-22T20:00:00Z
 title: Honored to receive the Microsoft MVP Award 2025
 postSlug: microsoft-mvp-2025
-featured: true
+featured: false
 draft: false
 tags:
   - MVPBuzz

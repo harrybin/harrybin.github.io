@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1e2e"/>
+      <stop offset="100%" style="stop-color:#2d2d44"/>
+    </linearGradient>
+    <filter id="glow">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#51cf66" flood-opacity="0.4"/>
+    </filter>
+    <filter id="sh">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+    </filter>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#51cf66"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#74c0fc"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ffa94d"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="340" rx="12" fill="url(#bg)"/>
+
+  <!-- Step labels -->
+  <circle cx="88" cy="45" r="14" fill="#51cf66" filter="url(#glow)"/>
+  <text x="88" y="50" text-anchor="middle" fill="#1e1e2e" font-size="14" font-weight="bold">1</text>
+  <text x="115" y="50" fill="#ccc" font-size="14" font-weight="bold">User Prompt</text>
+
+  <circle cx="315" cy="45" r="14" fill="#74c0fc"/>
+  <text x="315" y="50" text-anchor="middle" fill="#1e1e2e" font-size="14" font-weight="bold">2</text>
+  <text x="342" y="50" fill="#ccc" font-size="14" font-weight="bold">LLM Calls Tool</text>
+
+  <circle cx="525" cy="45" r="14" fill="#ffa94d"/>
+  <text x="525" y="50" text-anchor="middle" fill="#1e1e2e" font-size="14" font-weight="bold">3</text>
+  <text x="552" y="50" fill="#ccc" font-size="14" font-weight="bold">Server Responds</text>
+
+  <circle cx="700" cy="45" r="14" fill="#e599f7"/>
+  <text x="700" y="50" text-anchor="middle" fill="#1e1e2e" font-size="14" font-weight="bold">4</text>
+  <text x="728" y="50" fill="#ccc" font-size="12" font-weight="bold">Render</text>
+
+  <!-- User box -->
+  <rect x="30" y="80" width="140" height="120" rx="10" fill="#2a2a42" stroke="#51cf66" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="100" y="108" text-anchor="middle" fill="#51cf66" font-size="30">👤</text>
+  <text x="100" y="135" text-anchor="middle" fill="#ddd" font-size="12">"Show me all</text>
+  <text x="100" y="152" text-anchor="middle" fill="#ddd" font-size="12">users in a</text>
+  <text x="100" y="169" text-anchor="middle" fill="#ddd" font-size="12">table."</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="175" y1="140" x2="230" y2="140" stroke="#51cf66" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+  <!-- LLM box -->
+  <rect x="238" y="80" width="140" height="120" rx="10" fill="#2a2a42" stroke="#74c0fc" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="308" y="108" text-anchor="middle" fill="#74c0fc" font-size="30">🤖</text>
+  <text x="308" y="132" text-anchor="middle" fill="#74c0fc" font-size="11" font-weight="bold">LLM Agent</text>
+  <text x="308" y="152" text-anchor="middle" fill="#aaa" font-size="10">calls</text>
+  <text x="308" y="168" text-anchor="middle" fill="#74c0fc" font-family="Consolas, monospace" font-size="10">display_table</text>
+  <text x="308" y="183" text-anchor="middle" fill="#aaa" font-size="10">with data</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="383" y1="140" x2="438" y2="140" stroke="#74c0fc" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- MCP Server box -->
+  <rect x="446" y="80" width="150" height="120" rx="10" fill="#2a2a42" stroke="#ffa94d" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="521" y="108" text-anchor="middle" fill="#ffa94d" font-size="30">⚡</text>
+  <text x="521" y="132" text-anchor="middle" fill="#ffa94d" font-size="11" font-weight="bold">MCP Server</text>
+  <text x="521" y="152" text-anchor="middle" fill="#aaa" font-size="10">returns</text>
+  <text x="521" y="168" text-anchor="middle" fill="#ffa94d" font-family="Consolas, monospace" font-size="10">resourceUri +</text>
+  <text x="521" y="183" text-anchor="middle" fill="#ffa94d" font-family="Consolas, monospace" font-size="10">JSON data</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="601" y1="140" x2="649" y2="140" stroke="#ffa94d" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+  <!-- Rendered App box -->
+  <rect x="655" y="80" width="120" height="120" rx="10" fill="#2a2a42" stroke="#e599f7" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="715" y="108" text-anchor="middle" fill="#e599f7" font-size="13" font-weight="bold">React App</text>
+  <!-- Mini table -->
+  <rect x="670" y="118" width="90" height="14" rx="2" fill="#3a3a5a"/>
+  <rect x="670" y="118" width="90" height="14" rx="2" fill="#2a5a3a" opacity="0.7"/>
+  <text x="677" y="128" fill="#fff" font-size="8">▼ Col1  ▼ Col2</text>
+  <rect x="670" y="134" width="90" height="10" rx="1" fill="#333355"/>
+  <text x="677" y="142" fill="#bbb" font-size="7">row-1     val-a</text>
+  <rect x="670" y="146" width="90" height="10" rx="1" fill="#2d2d44"/>
+  <text x="677" y="154" fill="#bbb" font-size="7">row-2     val-b</text>
+  <rect x="670" y="158" width="90" height="10" rx="1" fill="#333355"/>
+  <text x="677" y="166" fill="#bbb" font-size="7">row-3     val-c</text>
+  <rect x="670" y="170" width="90" height="12" rx="1" fill="#3a3a5a"/>
+  <text x="677" y="179" fill="#888" font-size="7">Page 1/3  ‹ ›</text>
+
+  <!-- Bottom: Data flow summary -->
+  <rect x="30" y="230" width="740" height="90" rx="8" fill="#252540" stroke="#444" stroke-width="0.5"/>
+  <text x="50" y="255" fill="#888" font-size="11">DATA FLOW</text>
+
+  <rect x="50" y="268" width="120" height="35" rx="6" fill="#2a3a2a" stroke="#51cf66" stroke-width="1"/>
+  <text x="110" y="290" text-anchor="middle" fill="#51cf66" font-size="10">Natural Language</text>
+
+  <text x="185" y="290" fill="#666" font-size="16">→</text>
+
+  <rect x="205" y="268" width="120" height="35" rx="6" fill="#2a2a42" stroke="#74c0fc" stroke-width="1"/>
+  <text x="265" y="290" text-anchor="middle" fill="#74c0fc" font-size="10">Tool Call + Args</text>
+
+  <text x="340" y="290" fill="#666" font-size="16">→</text>
+
+  <rect x="360" y="268" width="130" height="35" rx="6" fill="#3a2a20" stroke="#ffa94d" stroke-width="1"/>
+  <text x="425" y="285" text-anchor="middle" fill="#ffa94d" font-size="10">resourceUri</text>
+  <text x="425" y="298" text-anchor="middle" fill="#ffa94d" font-size="10">+ HTML app</text>
+
+  <text x="505" y="290" fill="#666" font-size="16">→</text>
+
+  <rect x="525" y="268" width="110" height="35" rx="6" fill="#2a2040" stroke="#e599f7" stroke-width="1"/>
+  <text x="580" y="290" text-anchor="middle" fill="#e599f7" font-size="10">Rendered UI</text>
+
+  <text x="650" y="290" fill="#666" font-size="16">→</text>
+
+  <rect x="670" y="268" width="90" height="35" rx="6" fill="#2a3a2a" stroke="#51cf66" stroke-width="1"/>
+  <text x="715" y="285" text-anchor="middle" fill="#51cf66" font-size="10">User interacts</text>
+  <text x="715" y="298" text-anchor="middle" fill="#51cf66" font-size="10">→ back to LLM</text>
+</svg>
