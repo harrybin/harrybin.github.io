@@ -250,6 +250,10 @@ For `visuals-mcp` specifically, I've wrapped it as a **VS Code Extension**. This
 
 That's it! The extension automatically registers the MCP server with GitHub Copilot Chat. You don't need to touch any JSON configuration files. This "server-as-extension" model is a game-changer for adoption, making advanced AI tools accessible to everyone.
 
+Alternatively you can install the extension using these buttons:
+[![Install with VS Code](https://img.shields.io/badge/install-VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode)](vscode:mcp/install?%7B%22type%22%3A%22stdio%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22%40harrybin%2Fvisuals-mcp%22%5D%7D)
+°°° [![Install with VS Code Insiders](https://img.shields.io/badge/install-VS%20Code%20Insiders-24bfa5?style=for-the-badge&logo=visualstudiocode)](vscode-insiders:mcp/install?%7B%22type%22%3A%22stdio%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22%40harrybin%2Fvisuals-mcp%22%5D%7D)
+
 ## Conclusion
 
 The Model Context Protocol is evolving. We are moving from simple text exchanges to rich, interactive application experiences driven by AI. Whether you want to build your own or just use existing tools, now is the time to explore what MCP can do.
