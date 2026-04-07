@@ -15,7 +15,7 @@ tags:
   - Charts
   - Dashboard
   - AI
-description: "Explore the latest Visuals MCP updates with chart tools that let AI agents render interactive single charts and full dashboards directly inside VS Code."
+description: "Explore the latest Visuals MCP updates with chart tools that let AI agents render interactive single charts and full dashboards directly inside the AI chat."
 ---
 
 If you read my [earlier post about Visuals MCP](/posts/visuals-mcp-server), you saw how an MCP server can render real UI instead of only text responses. Since then, the project has moved forward in a big way.
