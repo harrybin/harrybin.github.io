@@ -1,6 +1,6 @@
 ---
 name: create-new-post
-description: Turn the new post prompt into a reusable Copilot skill that creates a complete blog post from proposed content.
+description: Create a complete, publishable blog post markdown file from a topic brief or proposed content in context.
 ---
 
 # Create New Post
