@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img" aria-labelledby="title desc">
+  <title id="title">Chapter 1 visual: PRD creation with guided refinement</title>
+  <desc id="desc">Flow from idea to guided prompts to reviewed PRD output.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="800" fill="url(#bg)"/>
+  <rect x="100" y="180" width="320" height="160" rx="18" fill="#1d4ed8"/>
+  <rect x="540" y="180" width="320" height="160" rx="18" fill="#0ea5e9"/>
+  <rect x="980" y="180" width="320" height="160" rx="18" fill="#10b981"/>
+  <path d="M430 260 H530" stroke="#e2e8f0" stroke-width="10"/>
+  <path d="M870 260 H970" stroke="#e2e8f0" stroke-width="10"/>
+  <polygon points="530,260 505,245 505,275" fill="#e2e8f0"/>
+  <polygon points="970,260 945,245 945,275" fill="#e2e8f0"/>
+  <text x="700" y="110" text-anchor="middle" fill="#f8fafc" font-size="54" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Chapter 1: PRD Creation</text>
+  <text x="260" y="270" text-anchor="middle" fill="#f8fafc" font-size="36" font-family="Segoe UI, Arial, sans-serif">Vague Idea</text>
+  <text x="700" y="270" text-anchor="middle" fill="#f8fafc" font-size="36" font-family="Segoe UI, Arial, sans-serif">Guided Refinement</text>
+  <text x="1140" y="270" text-anchor="middle" fill="#f8fafc" font-size="36" font-family="Segoe UI, Arial, sans-serif">Reviewed PRD</text>
+  <text x="700" y="710" text-anchor="middle" fill="#cbd5e1" font-size="32" font-family="Segoe UI, Arial, sans-serif">Party mode and elicitation rounds force assumptions into explicit scope.</text>
+</svg>
