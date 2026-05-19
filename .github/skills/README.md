@@ -18,7 +18,12 @@ Use these skills when you want better composability in agent mode.
    - Path: `.github/skills/review-blog-post-and-fix-issues/SKILL.md`
    - Purpose: Review a blog post and fix language and clarity issues.
 
+4. `generate-blog-image`
+   - Path: `.github/skills/generate-image/SKILL.md`
+   - Purpose: Generate a blog image from paragraph context, inferring the visual concept automatically and saving it under `public/assets/`.
+
 ## Suggested combinations
 
 1. Draft flow: `create-blog-post-from-brief` -> `review-blog-post-and-fix-issues`
 2. Promotion flow: `review-blog-post-and-fix-issues` -> `linkedin-post-from-blog`
+3. Visual enrichment flow: `create-blog-post-from-brief` -> `generate-blog-image` -> `review-blog-post-and-fix-issues`
