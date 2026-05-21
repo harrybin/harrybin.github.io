@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img" aria-labelledby="title desc">
+  <title id="title">Chapter 5 visual: TEA risk based test design</title>
+  <desc id="desc">Risk matrix with critical scenarios prioritized first.</desc>
+  <rect width="1400" height="800" fill="#0b1324"/>
+  <text x="700" y="90" text-anchor="middle" fill="#e2e8f0" font-size="48" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Chapter 5: Risk Based Test Design</text>
+  <rect x="250" y="150" width="900" height="520" fill="#111827" stroke="#64748b" stroke-width="4"/>
+  <line x1="700" y1="150" x2="700" y2="670" stroke="#475569" stroke-width="3"/>
+  <line x1="250" y1="410" x2="1150" y2="410" stroke="#475569" stroke-width="3"/>
+  <text x="700" y="720" text-anchor="middle" fill="#cbd5e1" font-size="28" font-family="Segoe UI, Arial, sans-serif">Low Impact</text>
+  <text x="1080" y="720" text-anchor="middle" fill="#fca5a5" font-size="28" font-family="Segoe UI, Arial, sans-serif">High Impact</text>
+  <text x="145" y="430" transform="rotate(-90 145 430)" text-anchor="middle" fill="#93c5fd" font-size="28" font-family="Segoe UI, Arial, sans-serif">High Probability</text>
+  <text x="190" y="430" transform="rotate(-90 190 430)" text-anchor="middle" fill="#94a3b8" font-size="28" font-family="Segoe UI, Arial, sans-serif">Low Probability</text>
+  <rect x="760" y="180" width="350" height="200" rx="14" fill="#991b1b"/>
+  <text x="935" y="260" text-anchor="middle" fill="#fee2e2" font-size="30" font-family="Segoe UI, Arial, sans-serif">Critical</text>
+  <text x="935" y="305" text-anchor="middle" fill="#fee2e2" font-size="26" font-family="Segoe UI, Arial, sans-serif">Cross Tenant Leakage</text>
+  <rect x="320" y="460" width="300" height="140" rx="14" fill="#1d4ed8"/>
+  <text x="470" y="540" text-anchor="middle" fill="#dbeafe" font-size="28" font-family="Segoe UI, Arial, sans-serif">Regression</text>
+  <text x="700" y="760" text-anchor="middle" fill="#94a3b8" font-size="30" font-family="Segoe UI, Arial, sans-serif">TEA prioritizes dangerous failures before broad implementation starts.</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img" aria-labelledby="title desc">
+  <title id="title">Chapter 6 visual: Traceability and NFR checks</title>
+  <desc id="desc">Trace links from requirement to tests and non functional checks.</desc>
+  <rect width="1400" height="800" fill="#0f172a"/>
+  <text x="700" y="90" text-anchor="middle" fill="#e2e8f0" font-size="48" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Chapter 6: Traceability and NFR</text>
+  <rect x="120" y="180" width="320" height="420" rx="18" fill="#1d4ed8"/>
+  <rect x="540" y="180" width="320" height="420" rx="18" fill="#0ea5e9"/>
+  <rect x="960" y="180" width="320" height="420" rx="18" fill="#10b981"/>
+  <text x="280" y="250" text-anchor="middle" fill="#eff6ff" font-size="34" font-family="Segoe UI, Arial, sans-serif">Requirements</text>
+  <text x="700" y="250" text-anchor="middle" fill="#ecfeff" font-size="34" font-family="Segoe UI, Arial, sans-serif">Test Ideas</text>
+  <text x="1120" y="250" text-anchor="middle" fill="#ecfdf5" font-size="34" font-family="Segoe UI, Arial, sans-serif">NFR Checks</text>
+  <line x1="440" y1="330" x2="540" y2="330" stroke="#e2e8f0" stroke-width="8"/>
+  <line x1="860" y1="420" x2="960" y2="420" stroke="#e2e8f0" stroke-width="8"/>
+  <circle cx="500" cy="330" r="10" fill="#e2e8f0"/>
+  <circle cx="900" cy="420" r="10" fill="#e2e8f0"/>
+  <text x="700" y="710" text-anchor="middle" fill="#a7f3d0" font-size="31" font-family="Segoe UI, Arial, sans-serif">You can check coverage and quality concerns before code complexity explodes.</text>
+</svg>
