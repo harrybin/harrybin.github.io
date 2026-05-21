@@ -1,6 +1,6 @@
 ---
 name: generate-blog-image
-description: "Generate an AI image for a blog post section. Use when: creating visuals for blog articles, generating featured section artwork, adding illustrative images to posts, or replacing image placeholders in blog content. Triggers: generate image, blog image, create post visual, add article artwork."
+description: "Generate an image for a blog post section or capter. Use when: creating visuals for blog articles, generating featured section artwork, adding illustrative images to posts, or replacing image placeholders in blog content. Triggers: generate image, blog image, create post visual, add article artwork."
 argument-hint: "Provide the blog paragraph context or reference the section in context"
 ---
 

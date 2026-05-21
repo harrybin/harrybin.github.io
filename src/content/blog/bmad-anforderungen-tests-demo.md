@@ -1,6 +1,6 @@
 ---
 author: Harald Binkle
-pubDatetime: 2026-05-08T12:00:00Z
+pubDatetime: 2026-05-18T12:00:00Z
 title: From Vague Ideas to Testable Outcomes with BMAD and GitHub Copilot
 postSlug: bmad-anforderungen-tests-demo
 featured: false
