@@ -1,8 +1,9 @@
 > Proposal for the future GitHub profile README of **@harrybin**.  
 > This draft is designed to be copied later into the dedicated GitHub profile repository.
+> For the final profile repository, copy the logo into that repository and replace the raw asset URL with a local path.
 
 <div align="center">
-  <img src="public/assets/logo.png" alt="Harald Binkle logo" width="112" height="112" />
+  <img src="https://raw.githubusercontent.com/harrybin/harrybin.github.io/copilot/customized-github-profile/public/assets/logo.png" alt="Harald Binkle logo" width="112" height="112" />
 
   # Harald Binkle
 
@@ -82,8 +83,8 @@ Recent public touchpoints include **Sessionize**, **Xebia**, **Microsoft MVP**, 
 
 These blocks fit the intended modern style and can be enabled in the final profile repository:
 
-![Harald Binkle GitHub stats](https://github-readme-stats.vercel.app/api?username=harrybin&show_icons=true&hide_border=true&theme=transparent)
-![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=harrybin&layout=compact&hide_border=true&theme=transparent)
+![GitHub contribution statistics for Harald Binkle](https://github-readme-stats.vercel.app/api?username=harrybin&show_icons=true&hide_border=true&theme=transparent)
+![Most used programming languages in Harald Binkle repositories](https://github-readme-stats.vercel.app/api/top-langs/?username=harrybin&layout=compact&hide_border=true&theme=transparent)
 
 ## Content basis
 
