@@ -1,9 +1,9 @@
 > Proposal for the future GitHub profile README of **@harrybin**.  
 > This draft is designed to be copied later into the dedicated GitHub profile repository.
-> For the final profile repository, copy the logo into that repository and replace the raw asset URL with a local path.
+> For the final profile repository, copy the logo into that repository and replace the current absolute asset URL with a local path.
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/harrybin/harrybin.github.io/copilot/customized-github-profile/public/assets/logo.png" alt="Harald Binkle logo" width="112" height="112" />
+  <img src="https://harrybin.de/assets/logo.png" alt="Harald Binkle logo" width="112" height="112" />
 
   # Harald Binkle
 
@@ -63,7 +63,7 @@ Recent public touchpoints include **Sessionize**, **Xebia**, **Microsoft MVP**, 
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
   <img alt="React" src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" />
   <img alt="GitHub Copilot" src="https://img.shields.io/badge/GitHub%20Copilot-181717?style=flat-square&logo=githubcopilot&logoColor=white" />
-  <img alt="MCP" src="https://img.shields.io/badge/MCP-Model%20Context%20Protocol-111827?style=flat-square" />
+  <img alt="Model Context Protocol (MCP)" src="https://img.shields.io/badge/MCP-Model%20Context%20Protocol-111827?style=flat-square" />
   <img alt="Playwright" src="https://img.shields.io/badge/Playwright-45BA4B?style=flat-square&logo=playwright&logoColor=white" />
   <img alt="Azure" src="https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white" />
   <img alt="DevOps" src="https://img.shields.io/badge/DevOps-0F172A?style=flat-square&logo=azuredevops&logoColor=white" />
