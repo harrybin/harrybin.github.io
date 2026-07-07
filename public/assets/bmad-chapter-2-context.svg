@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img" aria-labelledby="title desc">
+  <title id="title">Chapter 2 visual: Context engineering</title>
+  <desc id="desc">Central project context feeding downstream steps.</desc>
+  <rect width="1400" height="800" fill="#111827"/>
+  <circle cx="700" cy="380" r="180" fill="#0f766e"/>
+  <rect x="590" y="320" width="220" height="120" rx="16" fill="#ccfbf1"/>
+  <text x="700" y="390" text-anchor="middle" fill="#0f172a" font-size="40" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Context</text>
+  <g stroke="#99f6e4" stroke-width="8">
+    <line x1="700" y1="200" x2="700" y2="110"/>
+    <line x1="520" y1="280" x2="430" y2="230"/>
+    <line x1="880" y1="280" x2="970" y2="230"/>
+    <line x1="520" y1="480" x2="430" y2="530"/>
+    <line x1="880" y1="480" x2="970" y2="530"/>
+  </g>
+  <text x="700" y="90" text-anchor="middle" fill="#ecfeff" font-size="36" font-family="Segoe UI, Arial, sans-serif">Requirements</text>
+  <text x="350" y="220" text-anchor="middle" fill="#ecfeff" font-size="36" font-family="Segoe UI, Arial, sans-serif">Architecture</text>
+  <text x="1050" y="220" text-anchor="middle" fill="#ecfeff" font-size="36" font-family="Segoe UI, Arial, sans-serif">Epics</text>
+  <text x="350" y="570" text-anchor="middle" fill="#ecfeff" font-size="36" font-family="Segoe UI, Arial, sans-serif">Testing</text>
+  <text x="1050" y="570" text-anchor="middle" fill="#ecfeff" font-size="36" font-family="Segoe UI, Arial, sans-serif">Traceability</text>
+  <text x="700" y="710" text-anchor="middle" fill="#a5f3fc" font-size="32" font-family="Segoe UI, Arial, sans-serif">A stable project-context.md keeps downstream generation aligned.</text>
+</svg>
