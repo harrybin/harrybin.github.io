@@ -42,10 +42,13 @@ const options: SatoriOptions = {
   ],
 };
 
-function svgBufferToPngBuffer(svg: string) {
+function svgBufferToPngBuffer(svg: string): ArrayBuffer {
   const resvg = new Resvg(svg);
   const pngData = resvg.render();
-  return pngData.asPng();
+  const pngBytes = pngData.asPng();
+  const pngBuffer = new ArrayBuffer(pngBytes.byteLength);
+  new Uint8Array(pngBuffer).set(pngBytes);
+  return pngBuffer;
 }
 
 export async function generateOgImageForPost(post: CollectionEntry<"blog">) {
