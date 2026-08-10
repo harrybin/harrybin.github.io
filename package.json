@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
-    "@astrojs/rss": "^4.0.18",
+    "@astrojs/rss": "^4.0.19",
     "@microsoft/clarity": "^1.0.2",
     "@resvg/resvg-js": "^2.6.2",
     "astro": "^7.2.0",
@@ -33,7 +33,7 @@
     "@astrojs/markdown-remark": "^7.2.2",
     "@astrojs/markdown-satteri": "^0.3.5",
     "@astrojs/mdx": "^7.0.5",
-    "@astrojs/react": "^4.4.2",
+    "@astrojs/react": "^6.0.2",
     "@astrojs/sitemap": "^3.7.2",
     "@divriots/jampack": "^0.34.0",
     "@tailwindcss/typography": "^0.5.19",
