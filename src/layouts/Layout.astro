@@ -101,17 +101,31 @@ const socialImageURL = new URL(
       >
     </div>
     <script is:inline>
-      // Show banner if not accepted
-      if (!window.localStorage.getItem("cookieConsent")) {
-        document.getElementById("cookie-banner").style.display = "flex";
-      } else {
-        window.dispatchEvent(new Event("cookieConsentGiven"));
-      }
-      document.getElementById("cookie-accept").onclick = function () {
-        window.localStorage.setItem("cookieConsent", "true");
-        document.getElementById("cookie-banner").style.display = "none";
-        window.dispatchEvent(new Event("cookieConsentGiven"));
-      };
+      (function () {
+        const consentKey = "cookieConsentV2";
+
+        function initializeCookieBanner() {
+          const banner = document.getElementById("cookie-banner");
+          const acceptButton = document.getElementById("cookie-accept");
+          if (!banner || !acceptButton) return;
+
+          if (window.localStorage.getItem(consentKey) === "true") {
+            banner.style.display = "none";
+            window.dispatchEvent(new Event("cookieConsentGiven"));
+          } else {
+            banner.style.display = "flex";
+          }
+
+          acceptButton.onclick = function () {
+            window.localStorage.setItem(consentKey, "true");
+            banner.style.display = "none";
+            window.dispatchEvent(new Event("cookieConsentGiven"));
+          };
+        }
+
+        initializeCookieBanner();
+        document.addEventListener("astro:page-load", initializeCookieBanner);
+      })();
     </script>
     <script is:inline>
       // Only activate Clarity after consent
@@ -139,7 +153,7 @@ const socialImageURL = new URL(
           };
         window.clarity("identify", clarityUserId, undefined, clarityPageId);
       }
-      if (window.localStorage.getItem("cookieConsent")) {
+      if (window.localStorage.getItem("cookieConsentV2") === "true") {
         loadClarity();
       } else {
         window.addEventListener("cookieConsentGiven", loadClarity, {
