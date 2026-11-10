@@ -1,41 +1,29 @@
 ---
 name: create-blog-post-from-brief
-description: Turn a proposed topic brief into a complete blog post markdown file for this Astro blog.
+description: Use when asked to turn a supplied topic brief or draft into a publishable post in this Astro blog. Do not use for editing an existing post only, social promotion, or general technical questions.
 ---
 
-# Create Blog Post From Brief
+# Create a blog post from a brief
 
-A new blog post is to be created from the proposed content in context.
+## Inputs
+
+Use the proposed topic or draft supplied in the conversation. If no topic or source material is available, ask for it rather than inventing the subject. Research technical claims only when needed; prefer primary, current sources and distinguish facts from opinion.
 
 ## Workflow
 
-1. Read the proposed content describing the topic.
-2. Do focused web research to validate and enrich key claims.
-3. Create the blog post markdown file in `src/content/blog/`.
+1. Read the brief and identify its audience, purpose, and claims that need verification.
+2. Read `.github/instructions/content-md.instructions.md` and check `src/content.config.ts` for current content schema requirements.
+3. Draft a clear, useful article in English. Translate German source sentences, improve flow, and add only relevant, substantiated context.
+4. Create the post under `src/content/blog/` using a kebab-case `.md` filename, or `.mdx` only when JSX is needed. Do not overwrite an existing post without checking it and preserving its content.
+5. Include `author: Harald Binkle`, `pubDatetime`, `title`, `description`, and `tags`. Keep the description between 150 and 160 characters. Start the article body at `##`; specify code fence languages and meaningful image alt text.
+6. Check frontmatter against the schema, internal paths, links, and Markdown/MDX structure. Run relevant validation when available and report checks that could not be run.
 
-## Content requirements
+## Style
 
-1. Add all required frontmatter fields for the blog collection.
-2. Improve and complete the content for readability and flow.
-3. Translate any German sentences to English.
-4. Rephrase awkward wording.
-5. Add missing but relevant context based on research.
-6. Add anything else needed for a complete, publishable post.
-
-## Style rules
-
-1. Do not use dashes for sentence parts.
-2. Do not put colons before an "and".
-
-## Project conventions
-
-1. Follow instructions in `.github/copilot-instructions.md`.
-2. Follow markdown rules in `.github/instructions/content-md.instructions.md`.
-3. Use `author: Harald Binkle`.
-4. Keep `description` in the 150 to 160 character range.
-5. Use kebab-case filename unless `postSlug` requires a custom slug.
+- Write in a conversational, developer-friendly tone with practical examples.
+- Do not use dashes as sentence asides.
+- Do not put a colon before "and".
 
 ## Output
 
-1. Create or update the target markdown file.
-2. Provide a short summary of what was added or improved.
+Create the post file and summarize its path and the main content added. Do not publish, commit, or promote it unless separately requested.
