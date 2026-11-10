@@ -1,0 +1,130 @@
+---
+author: Harald Binkle
+pubDatetime: 2026-11-10T13:07:00Z
+title: "3D Modeling with GitHub Copilot: From Brief to Shape"
+postSlug: 3d-modeling-with-github-copilot
+featured: false
+draft: true
+tags:
+  - GitHub Copilot
+  - 3D Printing
+  - Python
+  - Blender
+  - VS Code
+  - Productivity
+description: How I use the GitHub Copilot App to turn measurements, photos, and video into 3D models, combining Python, Blender, visual reviews, and iterative corrections.
+---
+
+import CopilotPrintingSeries from "../../components/CopilotPrintingSeries.astro";
+
+## From a reference to a model with the GitHub Copilot App
+
+In [the first article](/posts/from-prompt-to-print-with-github-copilot/), I described how two 3D printing repositories grew out of GitHub Copilot App sessions. This second part focuses on the modeling work itself: how I communicate a shape and its requirements, inspect the result, and ask Copilot to refine it.
+
+The projects live in [3D Printing](https://github.com/harrybin/3d-printing), the reusable engine, and [3D Printing Models](https://github.com/harrybin/3d-printing-models), the model catalog. Both have been created and maintained entirely through the GitHub Copilot App. I supply goals, measurements, and references; Copilot works on the generators, scenes, model files, and documentation.
+
+There is no one ideal prompt format. Different models need different evidence, and a session often grows through short follow-ups rather than one elaborate specification. The useful question is not just “can you make this shape?” but “what information makes this shape reviewable?”
+
+## Table of contents
+
+## Text and measurements for functional parts
+
+For a replacement part, I start with what it connects to, which surfaces must fit, key dimensions, how it is used, and any printer constraints. The important details are not only the overall size. Hole diameters, insertion depth, clearances, wall thickness, and whether a joint should slide, snap, or stay fixed all affect the design.
+
+The clothesline reducer ring is a good example of why user-confirmed measurements matter. The original measurements were corrected after the first design. The sleeve's inner diameter changed from 60 mm to 67 mm, and the pole's outer diameter changed from 43 mm to 50.2 mm. The generator and the dimensions document were updated to reflect the new values. The recorded design keeps a 0.4 mm diametral sliding clearance at both contact surfaces, with the derived ring dimensions documented alongside their sources and confidence.
+
+![Presentation render of the measured rotary clothesline reducer ring](/assets/3d-printing/reducer-ring-presentation.png)
+
+_A corrected measurement is a design input, not a cosmetic edit. The [dimensions record](https://github.com/harrybin/3d-printing-models/blob/main/docs/waeschespinne-reduzierring-masse.md) distinguishes user-confirmed values from derived dimensions and design choices._
+
+In the GitHub Copilot App, that correction can become an edit to the parameterized source rather than a manual repair to a final mesh. The session can regenerate the output and update the accompanying record so that the next iteration starts from the corrected dimensions.
+
+## Photos for shape, condition, and details
+
+Photos help when a silhouette, surface transition, or worn component is difficult to describe. Several useful views are better than a dramatic but ambiguous single angle. A ruler or a known dimension establishes scale. If the part has to mate with an existing object, the fit-critical surfaces need measurements even when its visible shape is estimated from photos.
+
+For a replacement or replica, the process is iterative: compare the generated view with the supplied reference, point out a mismatch, update the generator, and render again. That makes a specific photo landmark a practical review target instead of a vague request to make the model “look closer.”
+
+I can combine references with a written design brief. The description says what the model should do and which dimensions must remain fixed. Photos or selected video frames help with its appearance. A render or 3D preview gives us a concrete result to inspect.
+
+The next prompt can target a problem: a contour that does not match the reference, a pin that is too loose, a part that crosses the build plate boundary, or an assembly that collides during movement. Each correction narrows the gap between the idea and the file that will actually be printed.
+
+## The dragon: from a reference video to a multipart model
+
+The dragon project started with a remarkably short German prompt: “baue den drachen nach,” or “recreate the dragon.” The reference was a video of a small Toothless figure from _How to Train Your Dragon_. Rather than specifying every curve in writing, I supplied the visual evidence and let the Copilot session investigate the shape.
+
+The [source documentation](https://github.com/harrybin/3d-printing-models/blob/main/docs/drache-masze.md) records 25 extracted video frames. Together they show views that a single photo could not provide: the face, stance, wings, back, and raised tail. A 2-euro coin beside the figure supplied a scale reference. Its known 25.75 mm diameter helped estimate a target envelope of roughly 78 × 45.5 × 60.5 mm. These were image-derived estimates with millimeter-scale uncertainty, not caliper measurements or a full photogrammetric scan.
+
+![Project presentation showing front and rear views of the dragon, separated color components, and their print layouts](/assets/3d-printing/drache-presentation.png)
+
+_The existing project render documents the result of this experiment, including an exploded view. It is not a photograph of a completed print or a side-by-side comparison with Claude's output._
+
+The resulting workflow combined Blender for the organic shape with Python for dimensional calibration, part separation, and mesh checks. The recorded assembly measures about 77.66 × 46.58 × 60.97 mm. Instead of treating color as decoration in a render, the project separates the body, two eyes, a tail-fin component, and its emblem into five parts across four single-color plates.
+
+That introduces an engineering task beyond matching a silhouette. Separate pieces need assembly paths, and an attractive pose still needs a printable orientation. The [assembly and verification report](https://github.com/harrybin/3d-printing-models/blob/main/docs/drache-montage-und-kollisionspruefung.md) records collision checks at 25 positions along each insert's path and reports no detected intersection. It also records OrcaSlicer estimates of 1 h 29 min 33 s and 18.04 g across the four plates, including 0.79 g of support. Those are documented digital results, not proof of the physical fit or visual fidelity.
+
+![Four print-layout previews separating the black dragon body, green eye inserts, red tail fin, and white emblem](/assets/3d-printing/drache-print-preview.png)
+
+_The print-layout preview makes the color and assembly strategy visible. The small colored inserts are separate parts, rather than color changes throughout the body print._
+
+Video was therefore the beginning of the brief, not a magic conversion into a ready-to-print object. Frame selection, scale estimation, modeling, assembly checks, and slicing remained distinct steps. Later session work also preserved missing reference images and the video alongside the exported chat, keeping the design evidence connected to the project.
+
+## The same prompt in Claude Code and the GitHub Copilot App
+
+In parallel, I tried Claude Code with the exact same prompt and the exact same video file. That made this a particularly memorable comparison: I was not asking the assistants to solve two different briefs or giving one of them better reference material.
+
+Claude Code repeatedly declined to recreate the copyrighted character, including after follow-up attempts, and proposed a different dragon instead. To my eyes, that alternative looked unattractive and did not capture what I wanted from the reference. The Copilot session proceeded with the requested reconstruction and produced the documented model and print project shown above.
+
+For my practical experience, that difference mattered. One route changed the design brief; the other continued working from it. But it would be misleading to turn this into “Claude cannot model dragons” or a general quality or cost benchmark. The observed difference included how the tools handled the request, not just how well they could generate geometry. I do not have a Claude result image available in this article, so the diagram summarizes my reported experience rather than presenting a visual head-to-head test.
+
+The character remains protected intellectual property. Rebuilding geometry does not itself grant rights to the character, and the repository's software license should not be read as permission to reproduce or redistribute it. This example documents the experiment and the differing assistant responses, not a method for bypassing a refusal.
+
+![Diagram comparing the responses of two coding assistants to the same prompt and reference video, without depicting the copyrighted character](/assets/3d-printing/copilot-claude-same-input.svg)
+
+## Python for dimensions, Blender for organic shape
+
+The projects use Python and Blender for different kinds of geometry rather than forcing everything through one tool.
+
+Python is the source of truth for measured geometry. It handles dimensions, datums, holes, fasteners, clearances, printable joints, and mechanisms. A script can generate the same part again from the same parameters, and a change to a confirmed measurement can flow into a fresh model and its checks.
+
+Blender is better suited to sculptural and organic regions such as creatures, bones, ornaments, and relief. For a mixed model, I can generate a fit-critical frame or mechanical reference in Python, preserve it in Blender, and shape only the regions that need artistic treatment. Blender also supports reproducible scene construction, batch import and export, rendering, and bounded interactive inspection.
+
+The GitHub Copilot App session works across those files rather than replacing either tool. Repository instructions and skills tell it which geometry must remain measured and which regions can be sculptural. My review checks whether that boundary survived the change.
+
+### A modular cable channel
+
+The 3.5 mm cable-channel work is a compact example of parameterized functional design. Five variants are generated from the same channel-building function, including full-length 242 mm modules and a 100 mm variant. The geometry has a 4.3 mm internal bore and a 3.2 mm rear slot. The [mechanical validation report](https://github.com/harrybin/3d-printing-models/blob/main/docs/kabelkanal-3-5mm-mechanikpruefung.md) records mesh and dimensional checks for the variants.
+
+![Presentation render of the modular cable channel](/assets/3d-printing/cable-channel-presentation.png)
+
+_One parametric source can produce several printable variants without maintaining five unrelated meshes._
+
+### The Ghoul's Grip: organic detail around a mechanism
+
+The Ghoul's Grip needs organic detail in its skeleton hand, but it also has to fit a dish and move through a mechanical assembly. Its measured parts need protection while the organic pieces are refined.
+
+![Exploded construction drawing of the Ghoul's Grip assembly, with its printed components separated for inspection](/assets/3d-printing/ghouls-grip-exploded-view.png)
+
+_An exploded drawing connects the 3D model to a practical assembly. The catalog also records part names, pin assignments, and intermediate checks._
+
+The Oct. 7 commit introduced the mechanical Halloween box. Subsequent history shows Blender and OrcaSlicer workflows, 3MF metadata and Canvas display, orientation changes to reduce support, and continuing repairs to the model's mechanism and print plates.
+
+The model's recorded Oct. 19 print project contains 42 objects across four plates. Its documentation reports a successful OrcaSlicer CLI slice with the selected profiles, plus a separate audit of 61 hand poses with zero detected collision against the chest, lid, and mechanism. That is digital verification, not a physical load rating: the assembly instructions explicitly say the prototype still needs to be tested on a real print.
+
+### Optional image-to-3D experiments
+
+The projects also explore local image-to-3D generation for organic seed meshes. One session began with a request to create the skeleton-hand chest using local AI models, then explicitly narrowed the task to a clean comparison with the existing model and asked to open the result in Canvas. It separates two jobs: generative models can propose an organic starting shape, while Python and Blender workflows preserve dimensions, fit, and reproducibility.
+
+Local generation is optional, not a replacement for measured design. The repository's approach keeps it opt-in, checks model and tool licensing, and routes unsuitable local hardware to a Gemini vision and code workflow. Whether the initial shape comes from Python, Blender, an image-to-3D model, or a combination, its scale, mesh, fit, and printability still need validation.
+
+## A model I can inspect and refine
+
+The most useful prompts are grounded in evidence: a confirmed measurement, a visible reference feature, or a specific problem in the generated model. The GitHub Copilot App lets me carry those corrections into the implementation and inspect the next result in context, including through STL and 3MF Canvas previews.
+
+The result is not just a mesh that resembles an idea. It is a model with sources, decisions, and known limitations that another session can continue working on.
+
+## The series continues
+
+A third article will follow on **print verification with the GitHub Copilot App**.
+
+<CopilotPrintingSeries currentPart={2} />

@@ -1,0 +1,112 @@
+---
+author: Harald Binkle
+pubDatetime: 2026-11-10T13:07:00Z
+title: "3D Printing with GitHub Copilot: Fit and Verification"
+postSlug: 3d-print-validation-with-github-copilot
+featured: false
+draft: true
+tags:
+  - GitHub Copilot
+  - 3D Printing
+  - Python
+  - VS Code
+  - Productivity
+description: How I use the GitHub Copilot App to refine a Terraforming Mars player board, inspect 3MF projects, and separate slicer evidence from physical print validation.
+---
+
+import CopilotPrintingSeries from "../../components/CopilotPrintingSeries.astro";
+
+## From a model to print evidence with the GitHub Copilot App
+
+A render can look perfect while hiding a bad fit, an unsupported feature, or an object outside the build plate. This final part of my GitHub Copilot 3D printing series is about the gap between a convincing preview and a print project I have actually checked.
+
+The series began with [building the workflow](/posts/from-prompt-to-print-with-github-copilot/). The preceding article covers [modeling with the GitHub Copilot App](/posts/3d-modeling-with-github-copilot/). Here, the current _Terraforming Mars_ player-board project provides a concrete example of iteration and verification.
+
+As in the other projects, I work through the GitHub Copilot App: I supply physical feedback and photos, ask Copilot to inspect the existing files, and review its changes to geometry, scripts, documentation, and print settings. The app connects those activities, but it does not turn a digital check into proof that the printed object works.
+
+## Table of contents
+
+## The latest project: fitting a Terraforming Mars player board
+
+The current _Terraforming Mars_ player-board project connects physical feedback, photos, measured geometry, transparent PLA, and slicer troubleshooting. It is not just a newly generated shape. It starts from an imported 3MF and adapts it to my laminated board and game cubes.
+
+The [project record](https://github.com/harrybin/3d-printing-models/blob/main/docs/terraforming-mars-tableau.md) makes that provenance explicit: the original model author and license are unknown, and the repository's MIT license does not apply to the imported model. Adapting a supplied file and creating geometry from scratch are different workflows, even when both are managed through Copilot.
+
+### Physical feedback becomes a constrained revision
+
+My feedback after an earlier physical print was concrete: shorten the long dimension by 2 mm, correct the cube-field alignment without shrinking the already tight openings, and reduce the front thickness to 2.5 mm. Photos showed the laminated board, a ruler, and where the number fields failed to line up.
+
+Simply scaling the whole object would have been the wrong fix. It would also shrink fitted joints and cube apertures. The revision instead preserves the coupon-selected 3.0 mm sockets and 2.6 mm pins while changing the panel layout. The current envelope is approximately 238.4 × 179 mm around a measured 227 × 168 mm laminate.
+
+This is an important part of using the GitHub Copilot App for an existing model: the prompt needs to distinguish what should change from what must stay fixed. “Make it smaller” is not equivalent to “shorten this dimension while preserving the tested joints.”
+
+![Before-and-after comparison overlaying exported panel contours, resource windows, cube openings, and slider geometry on a photo of the laminated Terraforming Mars board](/assets/3d-printing/terraforming-mars-tableau-179mm-laminate-centered-blocks-photo-before-after.png)
+
+_The photo overlay turns “these fields do not line up” into a reviewable comparison. The report discloses about 1 mm of photo-registration uncertainty; the overlay is not a precision measurement._
+
+The comparison script maps the model onto the photo with one shared transformation, rather than warping each area until it appears to fit. That matters because the model's pocket pitch and the printed board's field pitch differ. Moving a block can improve its overall alignment without making every cell perfectly centered. The documentation preserves the remaining drift instead of hiding it.
+
+### Check the feature, not just the overall shape
+
+The 65 standard apertures are 8.64 mm wide for nominal 8.5 mm cubes. That leaves only 0.14 mm of nominal total clearance before print variation. It explains why “just add more flow for transparency” is not a harmless material tweak: a surface-quality experiment could make the game pieces stop fitting.
+
+Another iteration corrected the ramp between two resource windows. An earlier diagram used a mirrored orientation and showed the slope backwards. The revised mesh section shows the intended rise from window 5 toward window 6 through the 2.5 mm front thickness. A swept-volume check tests a cube's modeled path, while physical sliding force and handling strength remain open questions.
+
+![Cross-section of the revised divider showing a ramp rising from window 5 to window 6 through the 2.5 mm panel thickness](/assets/3d-printing/terraforming-mars-tableau-179mm-laminate-centered-blocks-ramp-section.png)
+
+_A cross-section is more useful than a beauty render for checking slope direction and whether an unintended shelf remains._
+
+The Copilot session can produce both the correction and the evidence needed to review it: an updated generator, an exported mesh section, a test of the modeled path, and a record of what is still unknown. That is more useful than accepting a verbal assurance that the ramp has been fixed.
+
+## Transparent PLA: an experiment, not a clarity guarantee
+
+Some of my earliest AI-assisted printing experiments were about getting a transparent surface for this player board. The resulting skills preserved the learning so that later GitHub Copilot App sessions could work from it rather than start the discussion again.
+
+For the transparent front, the saved test profile uses 0.10 mm layers, 100% aligned single-direction infill, configured 20 mm/s paths, two top layers, and top-surface ironing. Rotating the infill direction shortens the nominal straight run from about 238 mm to 179 mm. The transparent plate has its own Cool Plate setting at 35 °C, while the other plates retain their settings. A 230 °C nozzle setting is a proposed test against the earlier 220 °C baseline, not a demonstrated improvement in clarity.
+
+These settings belong to this documented experiment, not a universal recipe for transparent PLA. Material, printer, surface, and the fit-critical openings all constrain what can safely change. A smooth plate affects its contact face; ironing affects the top surface. Neither removes the internal extrusion paths.
+
+The goal is a surface through which I can read the board, but a transparent-looking render cannot establish that result. The next print must answer both questions: is it clearer, and do the cubes still fit?
+
+![Preview of the current Terraforming Mars 3MF showing the two front-panel variants and rear panel across the project layout](/assets/3d-printing/terraforming-mars-tableau-179mm-laminate-centered-blocks-preview.png)
+
+_The current integrated project keeps three plates. Geometry, object-level process settings, filament assignments, and plate placement all belong to the deliverable._
+
+## What the actual OrcaSlicer run caught
+
+Actual slicing caught two issues that the previews did not resolve: an invalid saved retraction value and a rear-panel placement extending beyond its printable area. After a profile correction and recentering that build item without changing its mesh, OrcaSlicer 2.4.2 successfully generated G-code for all three plates. The [Nov. 10 fix](https://github.com/harrybin/3d-printing-models/commit/27fe98b3715d72be48da9fbb218643d83c472736) and project report record estimates totaling about 20 h 37 min and 189.86 g.
+
+This is where using GitHub Copilot as a coding agent helps beyond producing a mesh. The session can investigate a tool failure, identify whether geometry or configuration caused it, change the relevant file, and rerun the check. The result should still point to the exact deliverable and tool that succeeded.
+
+That is a successful slice, not a finished physical validation. Supports were disabled, so zero support extrusion does not prove that the geometry needs none. The earlier physical print informed the revision, but the latest full assembly, laminate retention, cube fit, ramp behavior, and optical result still need hands-on confirmation.
+
+## Preview first, then verify the print project
+
+The STL Canvas extension displays STL and 3MF models inside the GitHub Copilot App or VS Code. It is useful for opening a model in context, inspecting its shape and parts, and checking previews without switching immediately to a separate modeling tool. The catalog's web viewer and rendered project images make the same model history easier to browse.
+
+![Rendered view preview of the Ghoul's Grip model used to inspect its assembled geometry](/assets/3d-printing/ghouls-grip-view-preview.png)
+
+_The Canvas view helps review the assembled project. A visual preview is not a mesh or printability certificate._
+
+The workflow therefore separates several checks:
+
+1. **Inspect the geometry.** Compare dimensions and bounds with the measurements, check that expected components are present, and validate mesh integrity.
+2. **Check the design.** Use model-specific probes, cross-sections, assembly checks, and motion or collision tests where applicable.
+3. **Slice the deliverable.** Load the exact final 3MF in OrcaSlicer with the intended printer, process, filament, plate, and support settings.
+4. **Record the result.** Save the relevant print time, material use, warnings, plate previews, and the exact status in the model documentation.
+
+![OrcaSlicer print project preview showing the model arranged on a build plate before printing](/assets/3d-printing/ghouls-grip-print-preview.png)
+
+_The print project preview complements the CLI result. If the geometry, orientation, support settings, or printer profile changes, the project needs another slice._
+
+The Ghoul's Grip is another reminder of those boundaries. A digital mechanism audit can catch intersections but cannot prove material strength. “The model looks right” is not the same as “the mesh is valid,” “the mechanism clears,” “the 3MF sliced successfully,” or “the printed assembly works under real use.”
+
+## Preserve the evidence for the next Copilot session
+
+The repositories keep reusable procedures in skills, deterministic operations in scripts, and model-specific findings in documentation and tests. The GitHub Copilot App uses those files to continue the project, rather than treating each chat as a fresh design exercise.
+
+For the tableau, the important record includes both what changed and what has not been demonstrated. A successful slicer run can be recorded as such. A proposed transparency improvement remains a test candidate. A physical fit question stays open until a physical print answers it.
+
+That is the conclusion of this three-part series: the most valuable outcome is not a confident AI answer or an impressive render. It is a maintained project in which GitHub Copilot helps implement changes, expose evidence, and keep the remaining questions visible.
+
+<CopilotPrintingSeries currentPart={3} />

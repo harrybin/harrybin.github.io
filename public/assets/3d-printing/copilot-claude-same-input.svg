@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" role="img" aria-labelledby="title description">
+  <title id="title">Different assistant responses to the same prompt and video</title>
+  <desc id="description">An abstract comparison shows one prompt and reference video sent to Claude Code and the GitHub Copilot app, followed by different outcomes. No character or copyrighted design is depicted.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#172554"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="760" rx="36" fill="url(#background)"/>
+  <text x="800" y="88" text-anchor="middle" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="700">Same prompt. Same reference video.</text>
+  <text x="800" y="133" text-anchor="middle" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="23">One personal comparison, not a general model benchmark</text>
+
+  <rect x="520" y="182" width="560" height="132" rx="22" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <circle cx="590" cy="248" r="36" fill="#0f766e" opacity=".8"/>
+  <path d="M578 235h24v22h-24zM584 228h24v22M584 266h24" fill="none" stroke="#ccfbf1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="648" y="237" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700">One fixed input</text>
+  <text x="648" y="276" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="20">The exact same prompt and video file</text>
+
+  <path d="M800 314v45M800 359H410v42M800 359h390v42" fill="none" stroke="url(#accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m402 394 8 14 8-14M1182 394l8 14 8-14" fill="none" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="100" y="424" width="620" height="236" rx="24" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+  <rect x="880" y="424" width="620" height="236" rx="24" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+  <text x="410" y="476" text-anchor="middle" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">Claude Code</text>
+  <text x="1190" y="476" text-anchor="middle" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">GitHub Copilot app</text>
+  <rect x="156" y="504" width="508" height="104" rx="16" fill="#0f172a"/>
+  <rect x="936" y="504" width="508" height="104" rx="16" fill="#0f172a"/>
+  <text x="410" y="548" text-anchor="middle" fill="#fcd34d" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Refused the requested recreation</text>
+  <text x="410" y="582" text-anchor="middle" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Offered a different dragon design</text>
+  <text x="1190" y="548" text-anchor="middle" fill="#86efac" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Produced the requested recreation</text>
+  <text x="1190" y="582" text-anchor="middle" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="18">A different policy outcome in this one test</text>
+  <text x="800" y="713" text-anchor="middle" fill="#a5f3fc" font-family="Segoe UI, Arial, sans-serif" font-size="20">A refusal is a rights boundary, not a prompt-engineering challenge.</text>
+</svg>
