@@ -52,7 +52,7 @@ Analyze these aspects of blog posts:
   - featured, draft flags
 - **Markdown syntax**: Proper headers, lists, emphasis, code blocks, links
 - **Astro components**: Correct import and usage (e.g., Hint component)
-- **Asset references**: Images properly referenced from `/public/assets/`
+- **Asset references**: Images stored in `public/assets/` and referenced by their served paths, such as `/assets/image.png`
 - **MDX syntax**: If using .mdx, verify JSX components are properly integrated
 
 ## Feedback Structure
