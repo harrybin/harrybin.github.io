@@ -69,13 +69,13 @@ _The print-layout preview makes the color and assembly strategy visible. The sma
 
 Video was therefore the beginning of the brief, not a magic conversion into a ready-to-print object. Frame selection, scale estimation, modeling, assembly checks, and slicing remained distinct steps. Later session work also preserved missing reference images and the video alongside the exported chat, keeping the design evidence connected to the project.
 
-## The same prompt in Claude Code and the GitHub Copilot App
+## The same prompt, context, skills, and instructions in Claude Code and the GitHub Copilot App
 
-In parallel, I tried Claude Code with the exact same prompt and the exact same video file. That made this a particularly memorable comparison: I was not asking the assistants to solve two different briefs or giving one of them better reference material.
+In parallel, I tried Claude Code with the exact same prompt and the exact same video file. The comparison also used the same project context, skills, and instruction files. Both assistants had the same brief and reference material, as well as the same repository-specific guidance for how to approach the work. I was not comparing a carefully prepared Copilot session with an unconfigured Claude Code prompt.
 
-Claude Code repeatedly declined to recreate the copyrighted character, including after follow-up attempts, and proposed a different dragon instead. To my eyes, that alternative looked unattractive and did not capture what I wanted from the reference. The Copilot session proceeded with the requested reconstruction and produced the documented model and print project shown above.
+Claude Code repeatedly declined to recreate the copyrighted character, including after follow-up attempts, and proposed a different dragon instead. To my eyes, that alternative looked unattractive and did not capture what I wanted from the reference. The GitHub Copilot App session proceeded with the requested reconstruction and produced the documented model and print project shown above.
 
-For my practical experience, that difference mattered. One route changed the design brief; the other continued working from it. But it would be misleading to turn this into “Claude cannot model dragons” or a general quality or cost benchmark. The observed difference included how the tools handled the request, not just how well they could generate geometry. I do not have a Claude result image available in this article, so the diagram summarizes my reported experience rather than presenting a visual head-to-head test.
+For my practical experience, that difference mattered. One route changed the design brief; the other continued working from it, despite both having the same project context and guidance. This remains one personal comparison, not a general quality or cost benchmark. It demonstrates a difference in how these setups handled this request, not that one tool is categorically better at modeling. I do not have a Claude result image available in this article, so the diagram summarizes my reported experience rather than presenting a visual head-to-head test.
 
 The character remains protected intellectual property. Rebuilding geometry does not itself grant rights to the character, and the repository's software license should not be read as permission to reproduce or redistribute it. This example documents the experiment and the differing assistant responses, not a method for bypassing a refusal.
 
@@ -91,25 +91,11 @@ Blender is better suited to sculptural and organic regions such as creatures, bo
 
 The GitHub Copilot App session works across those files rather than replacing either tool. Repository instructions and skills tell it which geometry must remain measured and which regions can be sculptural. My review checks whether that boundary survived the change.
 
-### A modular cable channel
+### The Ghoul's Grip: modeling organic form around constraints
 
-The 3.5 mm cable-channel work is a compact example of parameterized functional design. Five variants are generated from the same channel-building function, including full-length 242 mm modules and a 100 mm variant. The geometry has a 4.3 mm internal bore and a 3.2 mm rear slot. The [mechanical validation report](https://github.com/harrybin/3d-printing-models/blob/main/docs/kabelkanal-3-5mm-mechanikpruefung.md) records mesh and dimensional checks for the variants.
+The Ghoul's Grip is a useful example of hybrid modeling. Blender provides room to shape the skeleton hand organically, while measured geometry and Python-based references keep the hand connected to a mechanism with real fit constraints. That separation lets me refine the visual form without treating the functional interfaces as guesswork.
 
-![Presentation render of the modular cable channel](/assets/3d-printing/cable-channel-presentation.png)
-
-_One parametric source can produce several printable variants without maintaining five unrelated meshes._
-
-### The Ghoul's Grip: organic detail around a mechanism
-
-The Ghoul's Grip needs organic detail in its skeleton hand, but it also has to fit a dish and move through a mechanical assembly. Its measured parts need protection while the organic pieces are refined.
-
-![Exploded construction drawing of the Ghoul's Grip assembly, with its printed components separated for inspection](/assets/3d-printing/ghouls-grip-exploded-view.png)
-
-_An exploded drawing connects the 3D model to a practical assembly. The catalog also records part names, pin assignments, and intermediate checks._
-
-The Oct. 7 commit introduced the mechanical Halloween box. Subsequent history shows Blender and OrcaSlicer workflows, 3MF metadata and Canvas display, orientation changes to reduce support, and continuing repairs to the model's mechanism and print plates.
-
-The model's recorded Oct. 19 print project contains 42 objects across four plates. Its documentation reports a successful OrcaSlicer CLI slice with the selected profiles, plus a separate audit of 61 hand poses with zero detected collision against the chest, lid, and mechanism. That is digital verification, not a physical load rating: the assembly instructions explicitly say the prototype still needs to be tested on a real print.
+In [part three](/posts/3d-print-validation-with-github-copilot/), I return to this same model from a different angle: how its movement, assembly, and multi-plate print project were checked.
 
 ### Optional image-to-3D experiments
 
