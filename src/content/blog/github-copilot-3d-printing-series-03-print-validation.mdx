@@ -1,0 +1,88 @@
+---
+author: Harald Binkle
+pubDatetime: 2026-11-15T13:07:00Z
+title: "3D Printing with GitHub Copilot: Model Verification"
+postSlug: 3d-print-validation-with-github-copilot
+featured: false
+draft: true
+tags:
+  - GitHub Copilot
+  - 3D Printing
+  - Python
+  - VS Code
+  - Productivity
+description: How I use the GitHub Copilot App to verify the Ghoul's Grip mechanism, inspect meshes, slice 3MF projects, and distinguish digital checks from a real print.
+---
+
+import CopilotPrintingSeries from "../../components/CopilotPrintingSeries.astro";
+
+## From a model to print evidence with the GitHub Copilot App
+
+A render can look perfect while hiding a bad fit, an unsupported feature, or an object outside the build plate. This final part of my GitHub Copilot 3D printing series is about the gap between a convincing preview and a print project I have actually checked.
+
+The series began with [building the workflow](/posts/from-prompt-to-print-with-github-copilot/). The preceding article covers [modeling with the GitHub Copilot App](/posts/3d-modeling-with-github-copilot/). Here, the Ghoul's Grip provides a larger example of how I use Copilot to iterate on a model, inspect its moving parts, and validate the print project.
+
+As in the other projects, I work through the GitHub Copilot App: I supply physical feedback and photos, ask Copilot to inspect the existing files, and review its changes to geometry, scripts, documentation, and print settings. The app connects those activities, but it does not turn a digital check into proof that the printed object works.
+
+## Table of contents
+
+## Ghoul's Grip: verifying a moving, multi-part model
+
+The Ghoul's Grip is a mechanical Halloween box with a decorated chest, an organic skeleton hand, and a moving mechanism. It brings together the modeling approaches from the previous article: Blender is useful for the hand's sculptural form, while measured geometry and Python-based checks help keep the mechanism and mating parts under control.
+
+![The Ghoul's Grip hand rising from the decorated chest, showing the assembled model and its moving mechanism](/assets/3d-printing/ghouls-grip-deployed.png)
+
+_The assembled view makes the intended action visible. It cannot show whether hidden parts collide during the full movement._
+
+The GitHub Copilot App helped me iterate across the model, Blender scene, print setup, and project documentation. The repository history records a [hybrid Blender and OrcaSlicer workflow](https://github.com/harrybin/3d-printing/commit/1d5a60c5), [3MF metadata surfaced in the Canvas](https://github.com/harrybin/3d-printing/commit/8e424db5), and print-orientation changes that [reduced support by 61 percent](https://github.com/harrybin/3d-printing/commit/31e52220). Those changes came from inspecting and revising the actual project, not from asking for a single finished mesh.
+
+### Test movement, not just the resting pose
+
+A static render only shows one position. For a moving mechanism, the more important question is whether parts stay clear throughout the motion. The [project audit](https://github.com/harrybin/3d-printing-models/blob/main/docs/ghouls-grip-druckvalidierung.md) checks 61 hand poses against the chest, lid, and mechanism and reports zero detected collisions.
+
+![Exploded construction drawing of the Ghoul's Grip assembly with its printed components separated for inspection](/assets/3d-printing/ghouls-grip-exploded-view.png)
+
+_The exploded view makes the relationships between the printed parts easier to inspect before assembly._
+
+The audit is digital evidence about the modeled geometry. It does not prove that the real mechanism will move freely after printing, that thin features will withstand handling, or that the parts will fit without adjustment. Those questions still require a physical prototype.
+
+### Turn the assembly into a print project
+
+The recorded print project contains 42 objects across four plates. That is a different review problem from checking a single STL: the parts must be assigned, oriented, and arranged as a coherent deliverable. The model was sliced successfully through the OrcaSlicer CLI with the selected profiles, and the repository records the plate previews and validation results.
+
+![Canvas preview of the assembled Ghoul's Grip used to inspect its overall geometry](/assets/3d-printing/ghouls-grip-view-preview.png)
+
+_Canvas makes it possible to review the 3MF in the GitHub Copilot App or VS Code without relying only on a render._
+
+![OrcaSlicer print-project preview showing the Ghoul's Grip parts arranged on their build plates](/assets/3d-printing/ghouls-grip-print-preview.png)
+
+_The slicer preview exposes plate layout and per-plate estimates. It is evidence about the saved project, not a photograph of a completed print._
+
+When OrcaSlicer reports a successful slice, that confirms that the saved 3MF and selected profiles produced G-code. It does not establish that the object is safe, strong, or fully functional. Supports, material settings, plate arrangement, and profile warnings all matter, so the report records what was sliced and which limitations remain.
+
+## A brief note on transparent PLA
+
+On a separate _Terraforming Mars_ player-board project, I wanted the front surface to be more transparent. The GitHub Copilot App helped me explore slicer settings and turn what I learned into reusable skills for improving clarity. The visual result still has to be judged on a physical print.
+
+## A repeatable verification loop with GitHub Copilot
+
+The STL Canvas extension displays STL and 3MF models inside the GitHub Copilot App or VS Code. It helps me inspect the assembled Ghoul's Grip and its parts in context before relying on slicer output.
+
+The workflow separates several checks:
+
+1. **Inspect the geometry.** Compare dimensions and bounds with the measurements, check that expected components are present, and validate mesh integrity.
+2. **Check the mechanism.** Use model-specific probes, assembly checks, and motion or collision tests across relevant positions.
+3. **Slice the deliverable.** Load the exact final 3MF in OrcaSlicer with the intended printer, process, filament, plate, and support settings.
+4. **Record the result.** Save the relevant print time, material use, warnings, plate previews, and the exact status in the model documentation.
+
+Each check answers a different question. A valid mesh can still have a collision. A mechanism can clear in a digital motion audit but fail after printing. A successful slice can still hide a weak feature or unsuitable material choice. Keeping those distinctions visible is part of using GitHub Copilot as an engineering assistant rather than treating its output as a guarantee.
+
+## Preserve the evidence for the next Copilot session
+
+The repositories keep reusable procedures in skills, deterministic operations in scripts, and model-specific findings in documentation and tests. The GitHub Copilot App uses those files to continue the project, rather than treating each chat as a fresh design exercise.
+
+For the Ghoul's Grip, the important record includes both what changed and what has not been demonstrated. The collision audit and successful slice can be recorded as digital checks. Strength, fit, and free movement stay open until a physical print answers them.
+
+That is the conclusion of this three-part series: the most valuable outcome is not a confident AI answer or an impressive render. It is a maintained project in which GitHub Copilot helps implement changes, expose evidence, and keep the remaining questions visible.
+
+<CopilotPrintingSeries currentPart={3} />
