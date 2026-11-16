@@ -51,7 +51,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "react": "^19.2.8",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.8"
   },
   "config": {
     "commitizen": {
