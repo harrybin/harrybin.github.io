@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import slugify from "@utils/slugify";
+
+interface Props {
+  currentPart: 1 | 2 | 3;
+}
+
+const { currentPart } = Astro.props;
+const parts = [
+  {
+    slug: "from-prompt-to-print-with-github-copilot",
+    topic: "Building a workflow with the GitHub Copilot App",
+  },
+  {
+    slug: "3d-modeling-with-github-copilot",
+    topic: "Modeling with the GitHub Copilot App",
+  },
+  {
+    slug: "3d-print-validation-with-github-copilot",
+    topic: "Print verification with the GitHub Copilot App",
+  },
+];
+const published = await getCollection("blog", ({ data }) => !data.draft);
+---
+
+<nav aria-label="GitHub Copilot 3D printing series">
+  <p><strong>3D printing with GitHub Copilot: a three-part series</strong></p>
+  <ol>
+    {
+      parts.map(({ slug, topic }, index) => {
+        const part = index + 1;
+        const post = published.find(entry => slugify(entry.data) === slug);
+        return (
+          <li>
+            {part === currentPart ? (
+              <span aria-current="page">{topic} (this article)</span>
+            ) : post ? (
+              <a href={`/posts/${slugify(post.data)}/`}>{topic}</a>
+            ) : (
+              <span>{topic} (coming later)</span>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>

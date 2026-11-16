@@ -1,5 +1,5 @@
 ---
-applyTo: "/src/content/blog/*.md"
+applyTo: "src/content/blog/**/*.md,src/content/blog/**/*.mdx"
 ---
 
 # Blog Content Creation Instructions
@@ -15,7 +15,7 @@ This document outlines the guidelines and structure for creating blog posts in A
 
 ## Required Frontmatter
 
-Every blog post must include YAML frontmatter at the top of the file with the following required fields:
+Every blog post must include YAML frontmatter at the top of the file. The collection requires `pubDatetime`, `title`, and `description`; use `author: Harald Binkle` and include tags as the established blog convention. The schema defaults `author` and `tags` when omitted. `postSlug`, `featured`, `draft`, `ogImage`, and `canonicalURL` are optional.
 
 ```yaml
 ---
@@ -76,19 +76,19 @@ function example(): string {
 ### Images and Assets
 
 - Place images in `public/assets/` directory
-- Reference images using relative paths: `../../../public/assets/image.png`
-- Use inline styles for image sizing: `<img alt="description" src="path" style="all: unset; height: 20px">`
+- Reference images by their served path, such as `/assets/image.png`.
+- Use existing styling patterns for image sizing rather than adding inline styles.
 - Always include meaningful alt text for accessibility
 
 ### Links
 
 - Use descriptive link text
 - For external links, consider opening in new tab
-- Internal links should use relative paths
+- Use site paths for internal links where appropriate.
 
 ### Hints
 
-- use the hint component from `src/components/Hint.astro` like it's done in `src/content/blog/give-it-a-face-to-talk-to.mdx` (lines 445-460)
+- Use the hint component from `src/components/Hint.astro` as shown in `src/content/blog/give-it-a-face-to-talk-to.mdx`.
 - use the types of the components appropriate: "success" | "warning" | "info" | "error"
 - put the import for hint component at the top of the file
 - if the file is a `.mdx` file, you can use the component directly in the markdown content, else rename the file-extension from `md` to `mdx`
@@ -150,7 +150,7 @@ function MyComponent(): JSX.Element {
 
 More content with images if needed:
 
-<img alt="React logo" src="../../../public/assets/React-icon.svg" style="all: unset; height: 20px">
+<img alt="React logo" src="/assets/React-icon.svg">
 
 ## Conclusion
 
