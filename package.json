@@ -35,7 +35,8 @@
     "@astrojs/mdx": "^7.0.5",
     "@astrojs/react": "^6.0.2",
     "@astrojs/sitemap": "^3.7.2",
-    "@divriots/jampack": "^0.34.0",
+    "@divriots/jampack": "^0.35.0",
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/typography": "^0.5.20",
     "@types/github-slugger": "^2.0.0",
     "@types/react": "^19.2.18",
@@ -45,6 +46,7 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^10.0.0",
     "eslint-plugin-astro": "^3.1.0",
+    "globals": "^17.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",
     "prettier": "^3.8.2",
@@ -52,6 +54,9 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
+  },
+  "overrides": {
+    "@divriots/cheerio": "npm:cheerio@1.2.0"
   },
   "config": {
     "commitizen": {

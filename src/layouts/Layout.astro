@@ -149,7 +149,7 @@ const socialImageURL = new URL(
         window.clarity =
           window.clarity ||
           function () {
-            clarityQueue.push(arguments);
+            window.clarityQueue.push(arguments);
           };
         window.clarity("identify", clarityUserId, undefined, clarityPageId);
       }
