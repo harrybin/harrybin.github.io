@@ -4,7 +4,7 @@ pubDatetime: 2026-11-17T7:07:00Z
 title: "3D Printing with GitHub Copilot: Model Verification"
 postSlug: 3d-print-validation-with-github-copilot
 featured: false
-draft: true
+draft: false
 tags:
   - GitHub Copilot
   - 3D Printing
@@ -59,6 +59,10 @@ _Canvas makes it possible to review the 3MF in the GitHub Copilot App or VS Code
 _The slicer preview exposes plate layout and per-plate estimates. It is evidence about the saved project, not a photograph of a completed print._
 
 When OrcaSlicer reports a successful slice, that confirms that the saved 3MF and selected profiles produced G-code. It does not establish that the object is safe, strong, or fully functional. Supports, material settings, plate arrangement, and profile warnings all matter, so the report records what was sliced and which limitations remain.
+
+The physical print confirmed that the parts fit together and the mechanism can be assembled without difficulty. The mechanism turns, and the gears move as expected. **However, the gears have too much backlash when they mesh.** This means the lever has to turn farther than intended, making the mechanism feel unstable. The skeletal hand is supposed to complete its movement with only a quarter-turn of the lever, but the lever takes considerable force to operate. Combined with the excess backlash, this can cause the gears to skip, raising the risk of breaking their teeth.
+
+The weight of the hand also causes parts of the mechanism, including the carriage, to flex. As a result, the carriage becomes harder to move and can bind. Overall, the mechanism works in principle, but it needs to be operated carefully, with occasional assistance to help it complete its movement.
 
 ## A brief note on transparent PLA
 
